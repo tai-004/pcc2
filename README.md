@@ -1,1 +1,1 @@
-# pcc2
+# PCC - Projeto de Conclusão de Curso
