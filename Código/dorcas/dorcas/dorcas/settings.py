@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
+    'bootstrapform',
+    #'crispy_form',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +57,7 @@ ROOT_URLCONF = 'dorcas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [str(BASE_DIR) + '/templates'],
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -103,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
@@ -117,7 +121,29 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
+# Só precisa digitar a senha uma vez
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+# Não precisa de username
+ACCOUNT_USERNAME_REQUIRED = True
+# Método de autenticação: email
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+# Email obrigatório
+ACCOUNT_EMAIL_REQUIRED = True
+# Email único
+ACCOUNT_UNIQUE_EMAIL = True
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL="/index" 
+LOGOUT_REDIRECT_URL="/accounts/login/"
+
+#PARTE UTILIZADA PARA ARMAZENAR AS FOTOS DO PERFIL
+import os
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [ str(BASE_DIR) + '\static' ]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
