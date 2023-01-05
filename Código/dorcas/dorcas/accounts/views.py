@@ -5,9 +5,9 @@ from .forms import UsuarioForm
 
 
 class UsuarioCreate(CreateView):
-    template_name = "registration/register.html"  #pagina de login/registro
+    template_name = "registration/register.html"
     form_class = UsuarioForm
-    success_url = reverse_lazy('login')  #o usurio vai ser direcionado para o login
+    success_url = reverse_lazy('login')
 
     def form_valid(self, form):
         url = super().form_valid(form)
@@ -15,6 +15,7 @@ class UsuarioCreate(CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+
         context['titulo'] = "Registro de novo usuário"
         context['botao'] = "Cadastrar"
 
