@@ -59,6 +59,7 @@ def EditProfile(request):
 			profile.telefone = form.cleaned_data.get('telefone')
 			profile.formacao = form.cleaned_data.get('formacao')
 			profile.sexo = form.cleaned_data.get('sexo')
+			profile.idade = form.cleaned_data.get('idade')
 			profile.trabalho = form.cleaned_data.get('trabalho')
 			profile.habilidades = form.cleaned_data.get('habilidades')
 			profile.cidade = form.cleaned_data.get('cidade')

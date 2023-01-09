@@ -41,7 +41,7 @@ class Profile(models.Model):
     telefone = models.CharField(max_length=20, null=True, blank=True)
     formacao = models.CharField(max_length=100, null=True, blank=True)
     sexo = models.CharField(max_length=1, choices=SEXO_CHOICES,  null=True)
-    #idade = models.DateTimeField(auto_now_add= False, auto_now=False, blank=True, null= True)
+    idade = models.DateTimeField(auto_now_add= False, auto_now=False, blank=True, null= True)
     trabalho = models.CharField(max_length=150, null=True, blank=True)
     habilidades = models.CharField(max_length=150, null=True, blank=True)
     #created = models.DateInput(auto_now_add=True)
