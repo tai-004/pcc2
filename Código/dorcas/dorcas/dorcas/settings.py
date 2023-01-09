@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'accounts',
     'bootstrapform',
     'crispy_forms',
+    'index',
 ]
 
 MIDDLEWARE = [
@@ -121,6 +122,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #PARTE UTILIZADA PARA ARMAZENAR AS FOTOS DO PERFIL
 import os
+
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [ str(BASE_DIR) + '\static' ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
