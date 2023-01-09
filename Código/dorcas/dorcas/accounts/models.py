@@ -29,7 +29,7 @@ def user_directory_path_banner(instance, filename):
 
     return banner_pic_name
 
-# Create your models here.
+# model referente ao perfil de usuario simples
 class Profile(models.Model):
     SEXO_CHOICES = [
         ["F", "Feminino"],
@@ -41,10 +41,10 @@ class Profile(models.Model):
     telefone = models.CharField(max_length=20, null=True, blank=True)
     formacao = models.CharField(max_length=100, null=True, blank=True)
     sexo = models.CharField(max_length=1, choices=SEXO_CHOICES,  null=True)
-    idade = models.DateTimeField(auto_now_add= False, auto_now=False, blank=True, null= True)
+    #idade = models.DateTimeField(auto_now_add= False, auto_now=False, blank=True, null= True)
     trabalho = models.CharField(max_length=150, null=True, blank=True)
     habilidades = models.CharField(max_length=150, null=True, blank=True)
-    created = models.DateField(auto_now_add=True)
+    #created = models.DateInput(auto_now_add=True)
     cidade = models.CharField(max_length=150, null=True, blank=True)
     estado = models.CharField(max_length=150, null=True, blank=True)
     rua = models.CharField(max_length=150, null=True, blank=True)

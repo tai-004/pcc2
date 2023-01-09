@@ -30,7 +30,7 @@ class EditProfileForm(forms.ModelForm):
             telefone = forms.CharField(widget=forms.TextInput(), max_length=20, required=False)
             formacao = forms.CharField(widget=forms.TextInput(), max_length=100, required=False)
             sexo = forms.CharField(widget=forms.TextInput(), required=False)
-            idade = forms.DateTimeField(widget=forms.DateTimeField())
+            #idade = forms.DateTimeField(widget=forms.DateTimeField())
             trabalho = forms.CharField(widget=forms.TextInput(), max_length=150, required=False)
             habilidades = forms.CharField(widget=forms.TextInput(), max_length=150, required=False)
             cidade = forms.CharField(widget=forms.TextInput(), max_length=150, required=False)
@@ -44,4 +44,4 @@ class EditProfileForm(forms.ModelForm):
 
             class Meta:
                 model = Profile
-                fields = ('nome', 'telefone', 'formacao','sexo', 'idade', 'trabalho', 'habilidades', 'cidade', 'estado', 'rua', 'numero', 'bairro', 'cpf', 'picture', 'banner')
+                fields = ('nome', 'telefone', 'formacao','sexo', 'trabalho', 'habilidades', 'cidade', 'estado', 'rua', 'numero', 'bairro', 'cpf', 'picture', 'banner')

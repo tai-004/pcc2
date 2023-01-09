@@ -59,7 +59,6 @@ def EditProfile(request):
 			profile.telefone = form.cleaned_data.get('telefone')
 			profile.formacao = form.cleaned_data.get('formacao')
 			profile.sexo = form.cleaned_data.get('sexo')
-			profile.idade = form.cleaned_data.get('idade')
 			profile.trabalho = form.cleaned_data.get('trabalho')
 			profile.habilidades = form.cleaned_data.get('habilidades')
 			profile.cidade = form.cleaned_data.get('cidade')
@@ -68,10 +67,9 @@ def EditProfile(request):
 			profile.numero = form.cleaned_data.get('numero')
 			profile.bairro = form.cleaned_data.get('bairro')
 			profile.cpf = form.cleaned_data.get('cpf')   
-			profile.profile_info = form.cleaned_data.get('profile_info')
 			profile.save()
 			user_basic_info.save()
-			return redirect('index')
+			return redirect('login')
 	else:
 		form = EditProfileForm(instance=profile)
 
@@ -79,4 +77,4 @@ def EditProfile(request):
 		'form':form,
 	}
 
-	return render(request, 'edit_profile.html', context)
+	return render(request, 'registration/editarperfil.html', context)
