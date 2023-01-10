@@ -40,8 +40,8 @@ class EditProfileForm(forms.ModelForm):
             bairro = forms.CharField(widget=forms.TextInput(), max_length=150, required=False)
             cpf = forms.IntegerField(required=False)
             picture = forms.ImageField(required=False)
-            banner = forms.ImageField(required=False)
+          
 
             class Meta:
                 model = Profile
-                fields = ('nome', 'telefone', 'formacao','sexo', 'trabalho', 'habilidades', 'cidade', 'estado', 'rua', 'numero', 'bairro', 'cpf', 'picture', 'banner')
+                fields = ('nome', 'telefone', 'formacao','sexo','idade', 'trabalho', 'habilidades', 'cidade', 'estado', 'rua', 'numero', 'bairro', 'cpf', 'picture')

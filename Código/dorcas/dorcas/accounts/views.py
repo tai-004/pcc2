@@ -1,4 +1,3 @@
-
 from django.shortcuts import redirect
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
@@ -68,6 +67,7 @@ def EditProfile(request):
 			profile.numero = form.cleaned_data.get('numero')
 			profile.bairro = form.cleaned_data.get('bairro')
 			profile.cpf = form.cleaned_data.get('cpf')   
+			profile.responsavel = form.cleaned_data.get('responsavel')   
 			profile.save()
 			user_basic_info.save()
 			return redirect('login')

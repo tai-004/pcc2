@@ -202,13 +202,13 @@
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <span class="activity active"></span>
-                                <img src="images/user/1.png" height="40" width="40" alt="">
+                                <img src="{% static 'images/user/dorcas.jpg' %}" height="40" width="40" alt="">
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li>
-                                            <a href="app-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
+                                            <a href="/accounts/editarperfil"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
                                         <li>
                                             <a href="javascript:void()">
@@ -232,7 +232,8 @@
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
-
+        {% block content %}
+        {% endblock %}
         <!--**********************************
             Sidebar start
         ***********************************-->
@@ -249,7 +250,7 @@
             Content body end
         ***********************************-->
         
-        
+     
         <!--**********************************
             Footer start
         ***********************************-->

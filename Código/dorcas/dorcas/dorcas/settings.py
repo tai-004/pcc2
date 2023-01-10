@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'crispy_forms',
     'index',
+    'responsavel',
 ]
 
 MIDDLEWARE = [

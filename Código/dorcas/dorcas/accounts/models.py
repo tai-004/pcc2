@@ -1,5 +1,5 @@
 from django.db import models
-
+from responsavel.models import Responsavel
 # Create your models here.
 
 from django.contrib.auth.models import User
@@ -31,16 +31,12 @@ def user_directory_path_banner(instance, filename):
 
 # model referente ao perfil de usuario simples
 class Profile(models.Model):
-    SEXO_CHOICES = [
-        ["F", "Feminino"],
-        ["M", "Masculino"],
-        ["N", "Nenhuma das opções"]
-    ]
+
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', null=True)
     nome = models.CharField(max_length=100, null=True, blank=True)
     telefone = models.CharField(max_length=20, null=True, blank=True)
     formacao = models.CharField(max_length=100, null=True, blank=True)
-    sexo = models.CharField(max_length=1, choices=SEXO_CHOICES,  null=True)
+    sexo = models.CharField(max_length=20, null=True, blank=True)
     idade = models.DateTimeField(auto_now_add= False, auto_now=False, blank=True, null= True)
     trabalho = models.CharField(max_length=150, null=True, blank=True)
     habilidades = models.CharField(max_length=150, null=True, blank=True)
@@ -53,7 +49,7 @@ class Profile(models.Model):
     cpf = models.IntegerField(null=True, blank=True)
     picture = models.ImageField(upload_to=user_directory_path_profile, blank=True, null=True, verbose_name='Picture')
     banner = models.ImageField(upload_to=user_directory_path_banner, blank=True, null=True, verbose_name='Banner')
-
+    responsavel = models.ForeignKey(Responsavel,  on_delete=models.CASCADE, blank=True, null=True)
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         SIZE = 250, 250

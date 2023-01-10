@@ -1,0 +1,20 @@
+from django.db import models
+
+from django.contrib.auth.models import User
+# Create your models here.
+
+
+class Responsavel(models.Model):
+    nome = models.CharField(max_length=100, null=True, blank=True)
+    idade = models.DateTimeField(auto_now_add= False, auto_now=False, blank=True, null= True)
+    parentesco= models.CharField(max_length=100, null=True, blank=True)
+    cpf = models.IntegerField(null=True, blank=True)
+    cidade = models.CharField(max_length=150, null=True, blank=True)
+    rua = models.CharField(max_length=150, null=True, blank=True)
+    numero = models.IntegerField(null=True, blank=True)
+    bairro = models.CharField(max_length=150, null=True, blank=True)
+    telefone = models.IntegerField(null=True, blank=True)
+
+
+    def __str__(self):
+        return self.nome
