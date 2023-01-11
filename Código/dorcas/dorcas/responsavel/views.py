@@ -17,7 +17,7 @@ def EditResponsavel(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect("login")
+            return redirect("/accounts/editarperfil")
     else:
        form = ResponsavelForm()
 
@@ -46,8 +46,8 @@ def EditResponsavel(request):
    # else:
     #    form = ResponsavelForm(instance=responsavel)
 
-    context={
-        'form':form,
-    }
+   # context={
+    #    'form':form,
+    #}
 
-    return render(request, 'responsavel/responsavel.html', context)
+    #return render(request, 'responsavel/responsavel.html', context)
