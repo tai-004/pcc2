@@ -1,7 +1,7 @@
 from django.db import models
 from responsavel.models import Responsavel
 # Create your models here.
-
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
 from PIL import Image
@@ -32,24 +32,25 @@ def user_directory_path_banner(instance, filename):
 # model referente ao perfil de usuario simples
 class Profile(models.Model):
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', null=True)
-    nome = models.CharField(max_length=100, null=True, blank=True)
-    telefone = models.CharField(max_length=20, null=True, blank=True)
-    formacao = models.CharField(max_length=100, null=True, blank=True)
-    sexo = models.CharField(max_length=20, null=True, blank=True)
-    idade = models.DateTimeField(auto_now_add= False, auto_now=False, blank=True, null= True)
-    trabalho = models.CharField(max_length=150, null=True, blank=True)
-    habilidades = models.CharField(max_length=150, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete= models.CASCADE, null=True)
+    nome = models.CharField(default = 'Dorcas(nome padrão)', max_length=100, null=True)
+    telefone = models.CharField(max_length=20, null=True)
+    formacao = models.CharField(max_length=100, null=True)
+    sexo = models.CharField(max_length=20, null=True)
+    idade = models.DateTimeField(auto_now_add= False, auto_now=False, null= True)
+    trabalho = models.CharField(max_length=150, null=True)
+    habilidades = models.CharField(max_length=150, null=True)
     #created = models.DateInput(auto_now_add=True)
-    cidade = models.CharField(max_length=150, null=True, blank=True)
-    estado = models.CharField(max_length=150, null=True, blank=True)
-    rua = models.CharField(max_length=150, null=True, blank=True)
-    numero = models.CharField(max_length=10, null=True, blank=True)
-    bairro = models.CharField(max_length=150, null=True, blank=True)
-    cpf = models.IntegerField(null=True, blank=True)
+    cidade = models.CharField(max_length=150, null=True)
+    estado = models.CharField(max_length=150, null=True)
+    rua = models.CharField(max_length=150, null=True)
+    numero = models.CharField(max_length=10, null=True)
+    bairro = models.CharField(max_length=150, null=True)
+    cpf = models.IntegerField(null=True)
     picture = models.ImageField(upload_to=user_directory_path_profile, blank=True, null=True, verbose_name='Picture')
     banner = models.ImageField(upload_to=user_directory_path_banner, blank=True, null=True, verbose_name='Banner')
-    responsavel = models.ForeignKey(Responsavel,  on_delete=models.CASCADE, blank=True, null=True)
+
+ 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         SIZE = 250, 250
@@ -59,13 +60,5 @@ class Profile(models.Model):
             pic.thumbnail(SIZE, Image.LANCZOS)
             pic.save(self.picture.path)
 
-    def __str__(self):
-        return self.nome
         
 
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
