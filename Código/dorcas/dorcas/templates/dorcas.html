@@ -206,18 +206,22 @@
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <span class="activity active"></span>
-                                {% if user.profile.picture %}
-                                <img src="{{ user.profile.picture.url }}" class="circle responsive-img">
-                              {% else %}
+                               
                                 <img src="{% static 'images/user/dorcas.jpg'%}">
-                              {% endif %}
+                            
                               <!--<img src="{% static 'images/user/dorcas.jpg' %}" height="40" width="40" alt="">-->
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li>
-                                            <a href="/accounts/profile"><i class="icon-user"></i> <span>Profile</span></a>
+                                            <a href="/accounts/login"><i class="icon-user"></i> <span>Login</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="/accounts/registrar"><i class="icon-user"></i> <span>Cadastro de Usuario</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="/accounts/instituicao"><i class="icon-user"></i> <span>Cadastro de instituição</span></a>
                                         </li>
                                         <li>
                                             <a href="javascript:void()">

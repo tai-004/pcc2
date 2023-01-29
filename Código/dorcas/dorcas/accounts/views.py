@@ -1,9 +1,9 @@
 from django.shortcuts import redirect
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from .forms import UsuarioForm
+from .forms import UsuarioForm, InstituicaoForm
 from django.template import loader
-
+from django.contrib.auth.models import  Group
 from django.shortcuts import render,  get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -26,13 +26,39 @@ def UserProfile(request, username):
 
 	return HttpResponse(template.render(context, request))
 
+#registro de usuario comum
 class UsuarioCreate(CreateView):
     template_name = "registration/register.html"
     form_class = UsuarioForm
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
+        grupo = get_object_or_404(Group, name="usuarios")
         url = super().form_valid(form)
+        self.object.groups.add(grupo)
+        self.object.save()
+        return url
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        context['titulo'] = "Registro de novo usuário"
+        context['botao'] = "Cadastrar"
+
+        return context
+    
+
+#registro de instituicao
+class InstituicaoCreate(CreateView):
+    template_name = "registration/registrarinstituicao.html"
+    form_class = InstituicaoForm
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        url = super().form_valid(form)
+        grupo = get_object_or_404(Group, name="instituicao")
+        url = super().form_valid(form)
+        self.object.groups.add(grupo)
         return url
 
     def get_context_data(self, *args, **kwargs):

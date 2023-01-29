@@ -2,6 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.templates, name="templates"),
-   
+    path('home/', views.templates, name="templates"),
+    path('', views.dorcas, name="dorcas"),
 ]

@@ -15,7 +15,7 @@ def user_directory_path_profile(instance, filename):
     full_path = os.path.join(settings.MEDIA_ROOT, profile_pic_name)
 
     if os.path.exists(full_path):
-            os.remove(full_path)
+         os.remove(full_path)
 
     return profile_pic_name
 
@@ -25,7 +25,7 @@ def user_directory_path_banner(instance, filename):
     full_path = os.path.join(settings.MEDIA_ROOT, banner_pic_name)
 
     if os.path.exists(full_path):
-        os.remove(full_path)
+         os.remove(full_path)
 
     return banner_pic_name
 
@@ -58,7 +58,8 @@ class Profile(models.Model):
         if self.picture:
             pic = Image.open(self.picture.path)
             pic.thumbnail(SIZE, Image.LANCZOS)
-            pic.save(self.picture.path)
+            pic.save(self.picture.path)   
 
-        
-
+    def __str__(self):
+       return self.user.username
+    

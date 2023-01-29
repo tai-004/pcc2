@@ -21,6 +21,20 @@ class UsuarioForm(UserCreationForm):
 
         return e
 
+class InstituicaoForm(UserCreationForm):
+    email = forms.EmailField(max_length=100)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+    def clean_email(self):
+        ins = self.cleaned_data['email']
+        if User.objects.filter(email=ins).exists():
+            raise ValidationError("O email {} já está em uso.".format(ins))
+
+        return ins
+
 
 
 
@@ -31,6 +45,6 @@ class ProfileForm(ModelForm):
         fields = '__all__'
         exclude = ['user']
         widgets = {
-         'profile_img': FileInput(),
+         'picture': FileInput(),
          }
 
