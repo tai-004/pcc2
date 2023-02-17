@@ -3,7 +3,7 @@ from django.contrib.auth.forms import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django import forms
-from .models import Profile
+from .models import Profile, Instituicao
 from django.forms.widgets import FileInput
 from django.forms.models import ModelForm
 
@@ -48,3 +48,14 @@ class ProfileForm(ModelForm):
          'picture': FileInput(),
          }
 
+
+#class de formulario referente ao perfil do user comum
+class InstituicaoForm(ModelForm):
+    class Meta:
+        model = Instituicao
+        fields = '__all__'
+        exclude = ['user']
+        widgets = {
+         'picture': FileInput(),
+         'banner': FileInput(),
+         }

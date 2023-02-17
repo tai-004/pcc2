@@ -9,3 +9,8 @@ from django.dispatch import receiver
 def create_user_profile(sender, instance, created, **kwargs):  
     if created:  
        created = Profile.objects.get_or_create(user=instance)
+
+@receiver(post_save, sender=User)
+def create_user_inst(sender, instance, created, **kwargs):  
+    if created:  
+       created = Instituicao.objects.get_or_create(user=instance)

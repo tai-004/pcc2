@@ -10,8 +10,11 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from accounts.models import Profile
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm
+from .forms import ProfileForm, InstituicaoForm
 from django.contrib import messages
+from django.contrib.auth.decorators import permission_required
+from django.views.generic import TemplateView
+
 
 
 def UserProfile(request, username):
@@ -51,7 +54,7 @@ class UsuarioCreate(CreateView):
 #registro de instituicao
 class InstituicaoCreate(CreateView):
     template_name = "registration/registrarinstituicao.html"
-    form_class = InstituicaoForm
+    form_class = UsuarioForm
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
@@ -70,16 +73,38 @@ class InstituicaoCreate(CreateView):
         return context
 
 
-@login_required(login_url='login')
+@login_required
+@permission_required('profile.use')
 def profile(request):
+            if request.method == 'POST':
+                form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+                if form.is_valid():
+                    form.save()
+                    username = request.user.username
+                    messages.success(request, f'{username}, Your profile is updated.')
+                    return redirect('/home')
+            else:
+                form = ProfileForm(instance=request.user.profile)
+            context = {'form':form}
+            return render(request, 'registration/profile.html', context)
+
+
+
+def instituicao(request):
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        form = InstituicaoForm(request.POST, request.FILES, instance=request.user.instituicao)
         if form.is_valid():
             form.save()
             username = request.user.username
-            messages.success(request, f'{username}, Your profile is updated.')
-            return redirect('/')
+            messages.success(request, f'{username}, Seu perfil foi criado!.')
+            return redirect('/home')
     else:
-        form = ProfileForm(instance=request.user.profile)
+        form = InstituicaoForm(instance=request.user.instituicao)
     context = {'form':form}
-    return render(request, 'registration/profile.html', context)
+    return render(request, 'registration/instituicaoprofile.html', context)
+
+
+
+
+def apresenteprofile(request):
+    return render(request, "registration/apresenteprofile.html", {})
