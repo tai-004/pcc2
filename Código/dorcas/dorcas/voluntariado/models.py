@@ -2,12 +2,12 @@ from django.db import models
 
 from django.contrib.auth.models import User
 # Create your models here.
+from accounts.models import Instituicao
 
-
-class Responsavel(models.Model):
+class Voluntario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     titulo = models.CharField(max_length=100, null=True, blank=True)
-    horario = models.DateTimeField(auto_now_add= False, auto_now=False, blank=True, null= True)
+    horario = models.IntegerField(null=True, blank=True)
     funcao= models.CharField(max_length=100, null=True, blank=True)
     qnt = models.IntegerField(null=True, blank=True)
     tempo = models.IntegerField(null=True, blank=True)

@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'index',
     'responsavel',
+    'voluntariado',
 ]
 
 MIDDLEWARE = [

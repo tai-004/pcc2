@@ -1,3 +1,6 @@
+<!--PÁGINA APÓS O LOGINNNNNNNNNNNNNNNNNNNNNNNNNNN   ###############################################################################
+##########################################################
+#######################-->
 {% load static %}
 {%load bootstrap%}
 
@@ -231,9 +234,11 @@
                                         </li>
                                         
                                         <hr class="my-2">
+                                        {% if request.user.is_authenticated %}
+                                        {% if perms.accounts.atual %}
                                         <li>
-                                            <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
-                                        </li>
+                                            <a href="/accounts/instituicao_profile/"><i class="icon-people"></i> <span>Cadastre sua instituição</span></a></
+                                        </li>   {% endif %}{% endif %}
                                         <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
@@ -245,38 +250,19 @@
         </div><!--  ********************
             Header end ti-comment-alt
         ***********************************-->
+      
+
         {% block content %}
         {% endblock %}
-        <!--**********************************
-            Sidebar start
-        ***********************************-->
-        {% include 'side.html' %}
-        <!--**********************************
-            Sidebar end
-        ***********************************-->
-        <!--**********************************
-            Content body start
-        ***********************************-->
- 
-        <!--**********************************
-            Content body end
-        ***********************************-->
-        
-{% if request.user.is_authenticated %}
-{% if perms.accounts.inst %}
-        <center><li>
-            <a href="/accounts/instituicao_profile"> <button type="button" class="btn mb-1 btn-primary">usuario</button><i class="icon-user"></i> <span>Profile</span></a>
-        </li></center>
-       
-{% endif %}{% endif %}
 
-{% block perfil %}
+        {% include 'side.html' %} 
+
+        {% block perfil %}
         {% endblock %}
-        <!--**************
-        <!--**********************************
-            Footer start
-        ***********************************-->
-        {% include 'footer.html' %}
+        {% block newpost %}
+        {% endblock %}
+
+    
         <!--**********************************
             Footer end
         ***********************************-->

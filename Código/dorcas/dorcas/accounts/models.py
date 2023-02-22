@@ -29,24 +29,26 @@ def user_directory_path_banner(instance, filename):
 
     return banner_pic_name
 
-# model referente ao perfil de usuario simples
+# model referente ao diagrama de classes . TAB  USUARIO 
 class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete= models.CASCADE, null=True)
     nome = models.CharField(default = 'Dorcas(nome padrão)', max_length=100, null=True)
-    telefone = models.CharField(max_length=20, null=True)
-    formacao = models.CharField(max_length=100, null=True)
-    sexo = models.CharField(max_length=20, null=True)
-    idade = models.DateTimeField(auto_now_add= False, auto_now=False, null= True)
-    trabalho = models.CharField(max_length=150, null=True)
-    habilidades = models.CharField(max_length=150, null=True)
-    #created = models.DateInput(auto_now_add=True)
+    dtaDenascAdm = models.CharField(default = '00/00/0000', max_length=100, null=True, blank=True)
+    emailAdm = models.EmailField(default = 'email@gmail.com', max_length = 254, null=True, blank=True)
+    funcaoAdm = models.CharField(default = 'ex.: Leitor', max_length=100, null=True, blank=True)
+    dtaDeFuncaoAdm = models.CharField(default = '00/00/0000', max_length=100, null=True, blank=True)
+    telefone = models.CharField(default = '55 DDD 000000000', max_length=25, null=True, blank=True)
+    formacao = models.CharField(default = 'ex.: Letras', max_length=100, null=True, blank=True)
+    sexo = models.CharField(default = 'ex.: Feminino', max_length=20, null=True,blank=True)
+    trabalho = models.CharField(default = 'ex.: Professora', max_length=150, null=True, blank=True)
+    habilidades = models.CharField(default = 'ex.: Contar histórias', max_length=150, null=True, blank=True)
     cidade = models.CharField(max_length=150, null=True)
     estado = models.CharField(max_length=150, null=True)
     rua = models.CharField(max_length=150, null=True)
     numero = models.CharField(max_length=10, null=True)
     bairro = models.CharField(max_length=150, null=True)
-    cpf = models.IntegerField(null=True)
+    cpf = models.IntegerField(default = '000000000', null=True, blank=True)
     picture = models.ImageField(upload_to=user_directory_path_profile, blank=True, null=True, verbose_name='Picture')
     banner = models.ImageField(upload_to=user_directory_path_banner, blank=True, null=True, verbose_name='Banner')
 
@@ -86,39 +88,27 @@ def user_directory_path_instbanner(instance, filename):
 
     return banner_pic_name
 
-
-# model referente ao perfil das instituições
+# model referente ao diagrama de classes . TAB  INSTITUIÇÃO
 class Instituicao(models.Model):
-
     user = models.OneToOneField(User, on_delete= models.CASCADE, null=True)
-    nomeAdm = models.CharField(default = 'Dorcas(nome padrão)', max_length=100, null=True)
-    nomeInst= models.CharField(default = 'Dorcas(nome padrão)', max_length=100, null=True)
-    telefonedoAdm = models.CharField(default = 'Telefone do Adiministrador', max_length=20, null=True)
-    telefonedoInst = models.CharField(default = 'Telefone de contato do instituição', max_length=20, null=True)
-    funcaoAdm = models.CharField(default = 'Função do Administrador na instituição', max_length=100, null=True)
-    dtaDeFuncaoAdm = models.DateField(auto_now_add= False, auto_now=False, null= True)
-    dtaDenascAdm = models.DateTimeField(auto_now_add= False, auto_now=False, null= True)
-    emailAdm = models.EmailField(default = 'Email do Adiministrador', max_length = 254, null=True)
-    emailInst = models.EmailField(default = 'Email do Instituiçao', max_length = 254, null =True)
-    cidadeAdm = models.CharField(default = 'Cidade do Adiministrador', max_length=150, null=True)
-    estadoAdm = models.CharField(default = 'Estado do Adiministrador', max_length=150, null=True)
-    ruaAdm = models.CharField(default = 'Rua do Adiministrador', max_length=150, null=True)
-    numeroAdm = models.CharField(default = 'Número da casa do Adiministrador', max_length=10, null=True)
-    bairroAdm = models.CharField(default = 'Bairro do Adiministrador', max_length=150, null=True)
-    cpfAdm = models.IntegerField(null=True)
-    cidadeInst = models.CharField(default = 'Cidade da Instituição', max_length=150, null=True)
-    estadoInst = models.CharField(default = 'Estado da Instituição', max_length=150, null=True)
-    ruaInst = models.CharField(default = 'Rua da Instituição', max_length=150, null=True)
+    bio = models.TextField(max_length=50000, null=True, blank= True)
+    nome = models.CharField(default = 'Dorcas(nome padrão)', max_length=100, null=True)
     eixoInst = models.CharField(default = 'Eixo da Instituição', max_length=150, null=True)
     categoriaInst = models.CharField(default = 'Categoria da Instituição', max_length=150, null=True)
-    numeroInst = models.CharField(default = 'Número da cede da Instituição', max_length=10, null=True)
-    bairroInst = models.CharField(default = 'Bairro da Instituição', max_length=150, null=True)
+    cidade = models.CharField(max_length=150, null=True)
+    estado = models.CharField(max_length=150, null=True)
+    rua = models.CharField(max_length=150, null=True)
+    numero = models.CharField(max_length=10, null=True)
+    bairro = models.CharField(max_length=150, null=True)
+    telefone = models.CharField(default = '55 DDD 000000000', max_length=25, null=True, blank=True)
+    email = models.EmailField(default = 'email@gmail.com', max_length = 254, null=True, blank=True)
     cnpj = models.IntegerField(null=True)
     picture = models.ImageField(upload_to=user_directory_path_profile, blank=True, null=True, verbose_name='Picture')
     banner = models.ImageField(upload_to=user_directory_path_banner, blank=True, null=True, verbose_name='Banner')
-
+    def __str__(self):
+       return self.user.username
     class Meta:
-         permissions = (("inst", "inst"), ("atual", "atual"), ("exc", "exc"))
+         permissions = (("inst", "inst"), ("atualizar", "atualizar"), ("exclude", "exclude"))
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -129,6 +119,4 @@ class Instituicao(models.Model):
             pic.thumbnail(SIZE, Image.LANCZOS)
             pic.save(self.picture.path)   
 
-    def __str__(self):
-       return self.user.username
-    
+

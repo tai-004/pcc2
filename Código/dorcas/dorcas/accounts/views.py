@@ -15,7 +15,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from django.views.generic import TemplateView
 
-
+#login e register#############################################################################################
 
 def UserProfile(request, username):
 	user = get_object_or_404(User, username=username)
@@ -71,10 +71,15 @@ class InstituicaoCreate(CreateView):
         context['botao'] = "Cadastrar"
 
         return context
+#########################################################################################
 
 
-@login_required
-@permission_required('profile.use')
+
+
+
+
+#perfil########################
+
 def profile(request):
             if request.method == 'POST':
                 form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -89,6 +94,8 @@ def profile(request):
             return render(request, 'registration/profile.html', context)
 
 
+@login_required
+@permission_required('accounts.inst')
 
 def instituicao(request):
     if request.method == 'POST':
@@ -108,3 +115,4 @@ def instituicao(request):
 
 def apresenteprofile(request):
     return render(request, "registration/apresenteprofile.html", {})
+
