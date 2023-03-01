@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 
 from django.contrib.auth.models import User
@@ -19,3 +20,11 @@ class Responsavel(models.Model):
 
     def __str__(self):
         return self.nome
+
+class M(models.Model):
+    birth_date = models.DateField()
+    #other fields
+
+    def get_age(self):
+        age = datetime.date.today()-self.birth_date
+        return int((age).days/365.25)

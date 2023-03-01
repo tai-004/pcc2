@@ -60,3 +60,4 @@ class InstituicaoForm(ModelForm):
          'picture': FileInput(),
          'banner': FileInput(),
          }
+        

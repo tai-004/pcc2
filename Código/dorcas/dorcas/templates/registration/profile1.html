@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tutorial de Alert em JavaScript - Linha de Código</title>
+</head>
+<body>
+
+  
+<p>Clique para exibir.</p>
+<p id="anos">idade menor de 18</p>
+
+
+<script>
+   window.alert("redirecionando", menor());
+
+function menor(){
+    var y;
+    var idade = prompt("digite sua idade: ");
+
+ 
+
+    if (idade < 18 && confirm('deseja ser redirecionado')){
+        y = "vc tem menos de 18 anos, sua idade é:" + idade + "anos.";
+        document.getElementById("anos").innerHTML=y;
+        window.location="/responsavel/responsavel";
+      
+    }
+    else if (idade >= 18 && confirm('deseja ser redirecionado')){
+        y = "vc é de maior" + idade + "anos";
+        document.getElementById("anos").innerHTML=y;
+	    window.location="/responsavel/responsavel";
+    }
+    else{
+        y = "Sua idade encontra-se incorreta, repita o processo!";
+        document.getElementById("anos").innerHTML=y;
+	 
+    }
+}
+
+
+</script>
+</body>
+</html>

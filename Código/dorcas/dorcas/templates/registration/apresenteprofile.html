@@ -30,7 +30,7 @@
                         <img  class="mr-3"  width="80" height="80" alt="" src="{% static 'images/user/dorcas.jpg'%}">
                       {% endif %}
                             <div class="media-body">
-                                <h3 class="mb-0">{{ user.instituicao.nome }}</h3>
+                                <h3 class="mb-0">{{ user.profile.get_age}}</h3>
                                 <p class="text-muted mb-0">{{ user.instituicao.cidade }}</p>
                             </div>
                         </div>

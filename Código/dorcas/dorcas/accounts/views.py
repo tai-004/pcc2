@@ -75,9 +75,6 @@ class InstituicaoCreate(CreateView):
 
 
 
-
-
-
 #perfil########################
 
 def profile(request):
@@ -92,7 +89,6 @@ def profile(request):
                 form = ProfileForm(instance=request.user.profile)
             context = {'form':form}
             return render(request, 'registration/profile.html', context)
-
 
 @login_required
 @permission_required('accounts.inst')
@@ -115,4 +111,11 @@ def instituicao(request):
 
 def apresenteprofile(request):
     return render(request, "registration/apresenteprofile.html", {})
+
+
+
+def profilealert(request):
+    return render(request, "registration/profile1.html", {})
+
+
 

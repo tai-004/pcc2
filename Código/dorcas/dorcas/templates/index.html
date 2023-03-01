@@ -243,6 +243,40 @@
                                     </ul>
                                 </div>
                             </div>
+                              <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>        
+                                        {% if request.user.is_authenticated %}
+                                        {% if perms.accounts.inst %}
+                                        <li>
+                                            <a href="/accounts/apresenteprofile"><i class="icon-user"></i> <span>apresente perfil</span></a>
+                                        </li>
+                                               
+                                        {% endif %}{% endif %}
+                                        <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+                                            <div class="dropdown-content-body">
+                                        <li>
+                                            <a href="/accounts/apresenteprofile"><i class="icon-user"></i> <span>apresente perfil</span></a>
+                                        </li>
+                                               
+                                    </div></div>
+                                       
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <i class="icon-envelope-open"></i> <span>Inbox</span> <div class="badge gradient-3 badge-pill gradient-1">3</div>
+                                            </a>
+                                        </li>
+                                        
+                                        <hr class="my-2">
+                                        {% if request.user.is_authenticated %}
+                                        {% if perms.accounts.atual %}
+                                        <li>
+                                            <a href="/accounts/instituicao_profile/"><i class="icon-people"></i> <span>Cadastre sua instituição</span></a></
+                                        </li>   {% endif %}{% endif %}
+                                        <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -298,6 +332,7 @@
     <script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
     <script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
 
+    <script src="{% static '/js/dashboard/menor.js' %}"></script>
 
 
     <script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>

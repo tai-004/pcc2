@@ -1,9 +1,10 @@
+
 from django.db import models
 from responsavel.models import Responsavel
 # Create your models here.
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-
+from datetime import datetime
 from PIL import Image
 from django.conf import settings
 import os
@@ -34,7 +35,6 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete= models.CASCADE, null=True)
     nome = models.CharField(default = 'Dorcas(nome padrão)', max_length=100, null=True)
-    dtaDenascAdm = models.CharField(default = '00/00/0000', max_length=100, null=True, blank=True)
     emailAdm = models.EmailField(default = 'email@gmail.com', max_length = 254, null=True, blank=True)
     funcaoAdm = models.CharField(default = 'ex.: Leitor', max_length=100, null=True, blank=True)
     dtaDeFuncaoAdm = models.CharField(default = '00/00/0000', max_length=100, null=True, blank=True)
@@ -51,7 +51,13 @@ class Profile(models.Model):
     cpf = models.IntegerField(default = '000000000', null=True, blank=True)
     picture = models.ImageField(upload_to=user_directory_path_profile, blank=True, null=True, verbose_name='Picture')
     banner = models.ImageField(upload_to=user_directory_path_banner, blank=True, null=True, verbose_name='Banner')
+    #birth_date = models.DateTimeField(null=True)
 
+    #def get_age(self):
+     #  age = datetime.date.today()-self.birth_date
+      # return int((age).days/365.25)
+        
+    
     class Meta:
          permissions = (("use", "use"), ("atual", "atual"), ("exc", "exc"))
 
@@ -105,6 +111,7 @@ class Instituicao(models.Model):
     cnpj = models.IntegerField(null=True)
     picture = models.ImageField(upload_to=user_directory_path_profile, blank=True, null=True, verbose_name='Picture')
     banner = models.ImageField(upload_to=user_directory_path_banner, blank=True, null=True, verbose_name='Banner')
+    
     def __str__(self):
        return self.user.username
     class Meta:
@@ -119,4 +126,10 @@ class Instituicao(models.Model):
             pic.thumbnail(SIZE, Image.LANCZOS)
             pic.save(self.picture.path)   
 
+class M(models.Model):
+    birth_date = models.DateField()
+    #other fields
 
+    def get_age(self):
+        age = datetime.date.today()-self.birth_date
+        return int((age).days/365.25)

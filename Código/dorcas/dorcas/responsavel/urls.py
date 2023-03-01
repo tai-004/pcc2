@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import EditResponsavel
+from . import views
+
 
 urlpatterns = [
- path('Editresponsavel', EditResponsavel, name='Editresponsavel'),
-]
+ path('responsavel/', views.newresponsavel, name='responsavel'),
+]    
