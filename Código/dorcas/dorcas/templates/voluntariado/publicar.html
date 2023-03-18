@@ -1,0 +1,51 @@
+
+{% for voluntariado in voluntario %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    {{ voluntariado.titulo }}
+<br>
+{{ voluntariado.horario}}
+<br>
+{{ voluntariado.funcao }}
+<br>
+{{ voluntariado.qnt }}
+<br>
+{{ voluntariado.tempo }}
+<br>
+{{ voluntariado.idademin }}
+<br>
+{{ voluntariado.cidade }}
+<br>
+{{ voluntariado.rua }}
+<br>
+{{ voluntariado.numero }}
+<br>
+{{ voluntariado.bairro }}<br>
+{{ voluntariado.telefone }}<br><br>
+                </div></div>
+        </div>
+    </div>
+</div>    
+<br>  
+ <div class="card-action">
+        {% if liked == True %}
+          <a class="red-text tooltipped" data-position="bottom" data-tooltip="Remove like" href="{% url 'postlikes' voluntario.id %}"><i class="material-icons left">thumb_down</i>{{ post.likes_count }} Likes</a>
+        {% else %}
+          <a href="{% url 'postlikes' voluntario.id %}"><i class="material-icons left">thumb_up</i>{{ post.likes_count }} Likes</a>
+        {% endif %}
+
+{% if request.user.is_authenticated %}
+
+{% if user == voluntariado.user or perms.voluntariado.inst%}
+<a href="/voluntariado/excluir/{{ voluntariado.id}}"><button type="submit">EXCLUIR</button></a>
+{%endif%}{%endif%}
+{% if request.user.is_authenticated %}
+
+{% if user == voluntariado.user or perms.voluntariado.inst%}
+<a href="/voluntariado/editar/{{ voluntariado.id}}"><button type="submit">EDITAR</button></a>
+{%endif%}{%endif%}
+{% endfor %}

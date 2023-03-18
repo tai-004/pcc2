@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'index',
     'responsavel',
     'voluntariado',
+    'noti',
 ]
 
 MIDDLEWARE = [

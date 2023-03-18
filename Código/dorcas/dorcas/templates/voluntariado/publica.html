@@ -1,0 +1,40 @@
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    {{ voluntario.titulo }}
+<br>
+{{ voluntario.horario}}
+<br>
+{{ voluntario.funcao }}
+<br>
+{{ voluntario.qnt }}
+<br>
+{{ voluntario.tempo }}
+<br>
+{{ voluntario.idademin }}
+<br>
+{{ voluntario.cidade }}
+<br>
+{{ voluntario.rua }}
+<br>
+{{ voluntario.numero }}
+<br>
+{{ voluntario.bairro }}<br>
+{{ voluntario.telefone }}<br><br>
+                </div></div>
+        </div>
+    </div>
+</div>    
+<br>  
+ <div class="card-action">
+        {% if liked == True %}
+          <a class="red-text tooltipped" data-position="bottom" data-tooltip="Remove like" href="{% url 'postlikes' voluntario.id %}"><i class="material-icons left">thumb_down</i>{{ voluntario.likes_count }} Likes</a>
+        {% else %}
+          <a href="{% url 'postlikes' voluntario.id %}"><i class="material-icons left">thumb_up</i>{{ voluntario.likes_count }} Likes</a>
+        {% endif %}
+

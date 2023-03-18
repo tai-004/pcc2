@@ -5,13 +5,12 @@
 {% block newpost %}
 
 
-
 <div class="container-fluid">
   <div class="row">
       <div class="col-lg-12">
           <div class="card">
               <div class="card-body">
-                  <h4 class="card-title">Novo voluntariado</h4>
+                  <h4 class="card-title">Editar voluntariado</h4>
                   <form method="post" enctype="multipart/form-data" action="" role="form">
                     {% csrf_token %}
                    
@@ -55,6 +54,7 @@
     </div>
   </div>
 
+
       <div class="field">
       <p class="control">
         <button type="submit">Enviar</button> 
@@ -65,5 +65,6 @@
   </div>
 </div>
 </div>
+
 
 {% endblock %}

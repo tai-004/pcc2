@@ -8,7 +8,7 @@ from django.shortcuts import render,  get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.dispatch import receiver
-from accounts.models import Profile
+from accounts.models import Profile, Instituicao
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm, InstituicaoForm
 from django.contrib import messages
@@ -76,7 +76,7 @@ class InstituicaoCreate(CreateView):
 
 
 #perfil########################
-
+@login_required
 def profile(request):
             if request.method == 'POST':
                 form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -105,9 +105,6 @@ def instituicao(request):
         form = InstituicaoForm(instance=request.user.instituicao)
     context = {'form':form}
     return render(request, 'registration/instituicaoprofile.html', context)
-
-
-
 
 def apresenteprofile(request):
     return render(request, "registration/apresenteprofile.html", {})

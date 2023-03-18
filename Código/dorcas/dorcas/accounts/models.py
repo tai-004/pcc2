@@ -7,7 +7,9 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from PIL import Image
 from django.conf import settings
+from datetime import date
 import os
+
 
 
 def user_directory_path_profile(instance, filename):
@@ -51,11 +53,13 @@ class Profile(models.Model):
     cpf = models.IntegerField(default = '000000000', null=True, blank=True)
     picture = models.ImageField(upload_to=user_directory_path_profile, blank=True, null=True, verbose_name='Picture')
     banner = models.ImageField(upload_to=user_directory_path_banner, blank=True, null=True, verbose_name='Banner')
-    #birth_date = models.DateTimeField(null=True)
+    birth_date = models.DateTimeField(null=True, blank = True)
 
-    #def get_age(self):
-     #  age = datetime.date.today()-self.birth_date
-      # return int((age).days/365.25)
+    def gage(self):
+        datetime.date.today()
+        date.today()
+        age = datetime.date.today()-self.birth_date
+        return int((age).days/365.25)
         
     
     class Meta:
@@ -126,10 +130,3 @@ class Instituicao(models.Model):
             pic.thumbnail(SIZE, Image.LANCZOS)
             pic.save(self.picture.path)   
 
-class M(models.Model):
-    birth_date = models.DateField()
-    #other fields
-
-    def get_age(self):
-        age = datetime.date.today()-self.birth_date
-        return int((age).days/365.25)

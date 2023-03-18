@@ -1,0 +1,35 @@
+
+
+{% for voluntariado in voluntario %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    {{ voluntariado.titulo }}
+<br>
+{{ voluntariado.horario}}
+<br>
+{{ voluntariado.funcao }}
+<br>
+{{ voluntariado.qnt }}
+<br>
+{{ voluntariado.tempo }}
+<br>
+{{ voluntariado.idademin }}
+<br>
+{{ voluntariado.cidade }}
+<br>
+{{ voluntariado.rua }}
+<br>
+{{ voluntariado.numero }}
+<br>
+{{ voluntariado.bairro }}<br>
+{{ voluntariado.telefone }}<br><br>
+                </div></div>
+        </div>
+    </div>
+</div>    
+<br>  
+{% endfor %}

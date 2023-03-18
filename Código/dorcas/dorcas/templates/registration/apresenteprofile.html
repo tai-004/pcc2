@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'templade.html' %}
 {% load bootstrap %}
 {% load static %}
 
@@ -9,10 +9,7 @@
 
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
-            </ol>
+           
         </div>
     </div>
     <!-- row -->
@@ -23,14 +20,14 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="media align-items-center mb-4"> 
-                            {% if user.profile.picture %}
+                            {% if user.instituicao.picture %}
                          
-                    <img class="mr-3"  width="80" height="80" alt="" src="{{ user.profile.picture.url }}" class="circle responsive-img">
+                    <img class="mr-3"  width="80" height="80" alt="" src="{{ user.instituicao.picture.url }}" class="circle responsive-img">
                       {% else %}
                         <img  class="mr-3"  width="80" height="80" alt="" src="{% static 'images/user/dorcas.jpg'%}">
                       {% endif %}
                             <div class="media-body">
-                                <h3 class="mb-0">{{ user.profile.get_age}}</h3>
+                                <h4 class="mb-0">{{ user.instituicao.nome }}</h4>
                                 <p class="text-muted mb-0">{{ user.instituicao.cidade }}</p>
                             </div>
                         </div>
@@ -50,10 +47,6 @@
                                     <p class="text-muted">Followers</p>
                                 </div>
                             </div>
-                            
-
-
-
                             {% if request.user.is_authenticated %}
                             {% if perms.accounts.inst %}
                             <div class="col-12 text-center">
@@ -76,39 +69,6 @@
    
 <!--VOLUNTARIADO####################;##################################################-->
 
-                <div class="col-lg-8 col-xl-9">
-                    <div class="card">
-                        <div class="card-body"><h5 class="mb-sm-0">Vagas de voluntario</h5><br>
-                            <form action="#" class="form-profile">
-                                <div class="form-group">
-                                    <textarea class="form-control" name="textarea" id="textarea" cols="30" rows="2" placeholder="Post a new message"></textarea>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <ul class="mb-0 form-profile__icons">
-                                        <li class="d-inline-block">
-                                            <button class="btn btn-transparent p-0 mr-3"><i class="fa fa-user"></i></button>
-                                        </li>
-                                        <li class="d-inline-block">
-                                            <button class="btn btn-transparent p-0 mr-3"><i class="fa fa-paper-plane"></i></button>
-                                        </li>
-                                        <li class="d-inline-block">
-                                            <button class="btn btn-transparent p-0 mr-3"><i class="fa fa-camera"></i></button>
-                                        </li>
-                                        <li class="d-inline-block">
-                                            <button class="btn btn-transparent p-0 mr-3"><i class="fa fa-smile"></i></button>
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary px-3 ml-4">Send</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                
-
-
-
-              
-
 
 <br><br><br>
 
@@ -118,35 +78,28 @@
 <div class="col-lg-8 col-xl-9">
     <div class="card">
         <div class="card-body">
-            <form action="#" class="form-profile">
-                <div class="form-group">
-                    <textarea class="form-control" name="textarea" id="textarea" cols="30" rows="2" placeholder="Post a new message"></textarea>
-                </div>
-                <div class="d-flex align-items-center">
-                    <ul class="mb-0 form-profile__icons">
-                        <li class="d-inline-block">
-                            <button class="btn btn-transparent p-0 mr-3"><i class="fa fa-user"></i></button>
-                        </li>
-                        <li class="d-inline-block">
-                            <button class="btn btn-transparent p-0 mr-3"><i class="fa fa-paper-plane"></i></button>
-                        </li>
-                        <li class="d-inline-block">
-                            <button class="btn btn-transparent p-0 mr-3"><i class="fa fa-camera"></i></button>
-                        </li>
-                        <li class="d-inline-block">
-                            <button class="btn btn-transparent p-0 mr-3"><i class="fa fa-smile"></i></button>
-                        </li>
-                    </ul>
-                    <button class="btn btn-primary px-3 ml-4">Send</button>
-                </div>
-            </form>
+            <h4>Novo Voluntario</h4>
+            <br>
+            <a href="/voluntariado/newpost/"><button type="button" class="btn mb-1 btn-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Novo Voluntario</font></font></button></a>
         </div>
-   
-
+           
+        </div>
+    
+<div class="col-lg-8 col-xl-9">
+    <div class="card">
+        <div class="card-body">
+            <h4>Ver Voluntario</h4>
+            <br>
+            <a href="/voluntariado/publicar/"><button type="button" class="btn mb-1 btn-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ver Voluntario</font></font></button></a>
+        </div>
+           
+        </div>
 
    
 </div>
-    </div>
+
+
+</div>
 </div>
 
              
