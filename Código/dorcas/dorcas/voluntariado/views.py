@@ -3,11 +3,11 @@ from voluntariado.forms import NewVoluntarioForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
-from .models import Voluntario, Likes
+from .models import Voluntario, Likes, BlogPost, Favo
 from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from django.views.generic import ListView, DetailView
 
 
 @login_required
@@ -106,19 +106,40 @@ def editar(request, voluntario_id):
 
 def like(request, voluntario_id):
     user = request.user
-    post = get_object_or_404(Voluntario, id=voluntario_id)
-    current_likes = post.likes_count
+    voluntario = get_object_or_404(Voluntario, id=voluntario_id)
+    current_likes = Voluntario.likes_count
 
-    liked = Likes.objects.filter(user=user, post=post).count()
+    liked = Likes.objects.filter(user=user, voluntario=voluntario).count()
 
     if not liked:
-        like = Likes.objects.create(user=user, post=post)
+        like = Likes.objects.create(user=user, voluntario=voluntario)
         current_likes = current_likes + 1
-    else:
-        Likes.objects.filter(user=user, post=post).delete()
-        current_likes = current_likes - 1
-    
-    post.likes_count = current_likes
-    post.save()
 
-    return HttpResponseRedirect(reverse('postlike', args=[post_id]))
+    
+    voluntario.likes_count = current_likes
+    voluntario.save()
+
+    return HttpResponseRedirect(reverse('postlike', args=[voluntario_id]))
+
+
+
+@login_required
+def favo(request, voluntario_id):
+    user = request.user
+    voluntario = get_object_or_404(Voluntario, id=voluntario_id)
+    cfavo = voluntario.favoC
+
+    favod = Favo.objects.filter(user=user, voluntario=voluntario).count()
+
+    if not favod:
+        favo = Favo.objects.create(user=user, voluntario=voluntario)
+        cfavo = cfavo + 1
+    else:
+        Favo.objects.filter(user=user, voluntario=voluntario).delete()
+        cfavo = cfavo - 1
+    
+    voluntario.favoC = cfavo
+    voluntario.save()
+
+    return HttpResponseRedirect(reverse('postlike', args=[voluntario_id]))
+

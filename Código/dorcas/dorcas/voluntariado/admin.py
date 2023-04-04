@@ -1,5 +1,5 @@
 from django.contrib import admin
-from voluntariado.models import Likes, Voluntario
+from voluntariado.models import Likes,BlogPost, Favo ,Voluntario
 
 
 # Register your models here.
@@ -7,3 +7,6 @@ from voluntariado.models import Likes, Voluntario
 admin.site.register(Voluntario)
 
 admin.site.register(Likes)
+
+admin.site.register(BlogPost)
+admin.site.register(Favo)

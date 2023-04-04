@@ -29,12 +29,15 @@
                 </div></div>
         </div>
     </div>
+     
 </div>    
 <br>  
  <div class="card-action">
+   
         {% if liked == True %}
-          <a class="red-text tooltipped" data-position="bottom" data-tooltip="Remove like" href="{% url 'postlikes' voluntario.id %}"><i class="material-icons left">thumb_down</i>{{ voluntario.likes_count }} Likes</a>
+          <a class="red-text tooltipped" data-position="bottom" data-tooltip="Remove like" href="{% url 'favo' voluntario.id %}"><i class="material-icons left">thumb_down</i>{{ voluntario.favoC }} Likes</a>
         {% else %}
-          <a href="{% url 'postlikes' voluntario.id %}"><i class="material-icons left">thumb_up</i>{{ voluntario.likes_count }} Likes</a>
+          <a href="{% url 'favo' voluntario.id %}"><i class="material-icons left">thumb_up</i>{{ voluntario.favoC }} Likes</a>
         {% endif %}
+
 

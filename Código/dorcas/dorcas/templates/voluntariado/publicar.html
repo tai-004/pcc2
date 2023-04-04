@@ -32,11 +32,8 @@
 </div>    
 <br>  
  <div class="card-action">
-        {% if liked == True %}
-          <a class="red-text tooltipped" data-position="bottom" data-tooltip="Remove like" href="{% url 'postlikes' voluntario.id %}"><i class="material-icons left">thumb_down</i>{{ post.likes_count }} Likes</a>
-        {% else %}
-          <a href="{% url 'postlikes' voluntario.id %}"><i class="material-icons left">thumb_up</i>{{ post.likes_count }} Likes</a>
-        {% endif %}
+         <a href="/voluntariado/{{ voluntariado.id}}/favo">ver vaga   {{ voluntario.favoC }}</a>
+      
 
 {% if request.user.is_authenticated %}
 

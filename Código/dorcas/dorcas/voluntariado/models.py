@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from accounts.models import Instituicao
 
 from django.db.models.signals import post_save, post_delete
+
 class Voluntario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     titulo = models.CharField(max_length=100, null=True, blank=True)
@@ -20,6 +21,8 @@ class Voluntario(models.Model):
     telefone = models.IntegerField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     likes_count = models.IntegerField(default=0)
+    favoC = models.IntegerField(default=0)
+    likes = models.ManyToManyField(User, related_name='likes')
     class Meta:
          permissions = (("inst", "inst"), ("usua", "usua"))
 
@@ -44,5 +47,34 @@ class Likes(models.Model):
         notify = Notifications.objects.filter(voluntario=voluntario, sender=sender, noti=1)
         notify.delete()
 
+
+
+class Favo(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_favo')
+    voluntario = models.ForeignKey(Voluntario, on_delete=models.CASCADE, related_name='post_favo')
+     
+    def user_favod_post(sender, instance, *args, **kwargs):
+        favo = instance
+        voluntario = favo.voluntario
+        sender = favo.user
+        notify = Notifications(voluntario=voluntario, sender=sender, user=voluntario.user, noti=1)
+        notify.save()
+    def user_unfavo_post(sender, instance, *args, **kwargs):
+        favo = instance
+        voluntario = favo.voluntario
+        sender = favo.user
+        notify = Notifications.objects.filter(voluntario=voluntario, sender=sender, noti=1)
+        notify.delete()
+
+post_save.connect(Favo.user_favod_post, sender=Favo)
+post_delete.connect(Favo.user_unfavo_post, sender=Favo)
 post_save.connect(Likes.user_liked_post, sender=Likes)
 post_delete.connect(Likes.user_unlike_post, sender=Likes)
+
+
+
+class BlogPost(models.Model):
+    likes = models.ManyToManyField(User, related_name='blogpost_like')
+
+    def number_of_likes(self):
+        return self.likes.count()
