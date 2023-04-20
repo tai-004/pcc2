@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 
 class Responsavel(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     nome = models.CharField(max_length=100, null=True, blank=True)
     idade = models.DateTimeField(auto_now_add= False, auto_now=False, blank=True, null= True)
     parentesco= models.CharField(max_length=100, null=True, blank=True)
@@ -16,6 +16,7 @@ class Responsavel(models.Model):
     numero = models.IntegerField(null=True, blank=True)
     bairro = models.CharField(max_length=150, null=True, blank=True)
     telefone = models.IntegerField(null=True, blank=True)
+
 
 
     def __str__(self):

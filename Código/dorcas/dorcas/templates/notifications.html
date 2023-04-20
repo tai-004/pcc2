@@ -2,25 +2,36 @@
 {% load static %}
 
 {% block content %}
+  
 
 <ul class="collection">
 {% for notification in notifications %}
 
     {% if notification.noti == 1 %}
-        <li class="collection-item avatar">
-        {% noti.sender.profile.picture %}
-        @{{ notification.sender.username }}
-            <img src="{{ notification.sender.profile.picture.url }}" class="circle responsive-img">
+
+       <li class="collection-item avatar">
+        {% if perms.accounts.foto  %}
+               {% if notification.sender.instituicao.banner %}
+                    <img src="{{  notification.sender.instituicao.banner.url }}" width="80" height="80" class="circle responsive-img">
+              {% endif %}
+              {% if notification.sender.profile.banner %}
+                    <img src="{{  notification.sender.profile.banner.url }}" width="80" height="80"  class="circle responsive-img">
+              {% endif %}
+
         {% else %}
-            <img src="{% static 'img/no_avatar.jpg' %}" class="circle responsive-img">
-        {% endif %}
+                <img src="{% static 'images/imgs/1.jpg' %}" class="circle responsive-img">
+    {% endif %}
+
+
             <span class="title">{{ notification.sender.first_name }} {{ notification.sender.last_name }}</span>
-            <p><b>@{{ notification.sender.username }}
+            <p><b><a href="{{ notification.id }}">
+        @{{ notification.sender.username }}</a> 
             </b></p>
-          
+        
             <p>Commented: </p>
-            <p style="font-style: italic;"><b>"interessados em voluntariado"</b></p>
-           
+            <p style="font-style: italic;"><b>"interessados em voluntariado"</b> </p>
+            
+            <a href="/voluntariado/">See post</a>
         </li>
     {% else %}
     <li class="collection-item avatar">
@@ -31,7 +42,8 @@
         {% endif %}
             <span class="title">{{ notification.sender.first_name }} {{ notification.sender.last_name }}</span>
             <p><b>@{{ notification.sender.username }}</b></p>
-           
+
+          
         </li>
     {% endif %}
 
@@ -43,6 +55,8 @@
         <h5>Your inbox is empty</h5>
         <br><br><br><br><br>
     </div>
+
+    
 {% endfor %}
 </ul>
 

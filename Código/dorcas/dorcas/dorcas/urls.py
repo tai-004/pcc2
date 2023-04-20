@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import  static
 from django.conf import settings
+from accounts.views import  perfilInstituicao
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,5 +12,8 @@ urlpatterns = [
     path('responsavel/', include ('responsavel.urls')), #url do app do responsavel menor de idade
     path('voluntariado/', include ('voluntariado.urls')), 
     path('noti/', include ('noti.urls')), #url do app do responsavel menor de idade
+   # path('<username>/', perfil, name='profile'),
+    path('<username>/', perfilInstituicao, name='profile'),
+    path('instituicao/', include ('instituicao.urls')), 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

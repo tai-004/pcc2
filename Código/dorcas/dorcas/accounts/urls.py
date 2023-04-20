@@ -9,6 +9,5 @@ urlpatterns = [
     path('profile/', views.profile, name = 'profile'),
     path('apresenteprofile/', views.apresenteprofile, name = 'apresenteprofile'),
     path('instituicao_profile/', views.instituicao, name = 'instituicao_profile'),
-    path('alert/', views.profilealert, name = 'alert'),
-   
+    path('alert/', views.profilealert, name = 'alert'),  
 ]

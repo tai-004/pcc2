@@ -2,12 +2,13 @@ from django.contrib.auth.forms import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django import forms
+from responsavel.models import Responsavel
 from .models import Profile, Instituicao
 from django.forms.widgets import FileInput
 from django.forms.models import ModelForm
 
 
-
+      
 
 class UsuarioForm(UserCreationForm):
     email = forms.EmailField(max_length=100)
@@ -41,6 +42,7 @@ class InstituicaoForm(UserCreationForm):
 
 #class de formulario referente ao perfil do user comum
 class ProfileForm(ModelForm):
+    
     class Meta:
         model = Profile
         fields = '__all__'

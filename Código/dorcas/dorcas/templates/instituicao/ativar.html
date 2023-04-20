@@ -1,0 +1,7 @@
+<br>
+@{{ tabela.sender.username }}
+<br> {% if curtir == True %}
+          <a href="{% url 'aceites' tabela.id %}"><i class="material-icons left">thumb_down</i> Likes</a>
+        {% else %}
+          <a href="{% url 'aceites' tabela.id %}"><i class="material-icons left">thumb_up</i>Likes</a>
+        {% endif %}

@@ -1,0 +1,24 @@
+
+{% for notification in notifications %}
+
+    {% if notification.noti == 2 %}
+    <br>
+  {{notification.date}}
+  <br>
+      {{notification.sender.username}}
+<br>
+
+      {{notification.user.username}}
+      <br>
+      {{notification.voluntario}}
+      <br>
+       {{notification.voluntario.funcao}}
+  
+      <br>
+       {{notification.sender.profile.birth_date}}
+      <br>
+    {% endif %}
+
+   
+    
+{% endfor %}

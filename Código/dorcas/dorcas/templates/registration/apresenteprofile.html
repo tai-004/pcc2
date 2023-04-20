@@ -20,9 +20,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="media align-items-center mb-4"> 
-                            {% if user.instituicao.picture %}
+                            {% if user.instituicao.banner %}
                          
-                    <img class="mr-3"  width="80" height="80" alt="" src="{{ user.instituicao.picture.url }}" class="circle responsive-img">
+                    <img class="mr-3"  width="80" height="80" alt="" src="{{ user.instituicao.banner.url }}" class="circle responsive-img">
                       {% else %}
                         <img  class="mr-3"  width="80" height="80" alt="" src="{% static 'images/user/dorcas.jpg'%}">
                       {% endif %}
@@ -84,7 +84,17 @@
         </div>
            
         </div>
-    
+     
+<div class="col-lg-8 col-xl-9">
+    <div class="card">
+        <div class="card-body">
+            <h4>Vagas disponiveis</h4>
+            <br>
+            <a href="/voluntariado/postudo/"><button type="button" class="btn mb-1 btn-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vagas de voluntariado disponiveis</font></font></button></a>
+        </div>
+           
+        </div>
+
 <div class="col-lg-8 col-xl-9">
     <div class="card">
         <div class="card-body">

@@ -18,6 +18,9 @@
                   <h4 class="card-title">Perfil</h4>
                   <form method="post" enctype="multipart/form-data" action="" role="form">
                     {% csrf_token %}
+                     <div class="form-group">
+                                          {{ form.responsavel }}<span>Nome</span>
+                                       </div>
                    
                     <div class="form-group">
                                           {{ form.nome }}<span>Nome</span>

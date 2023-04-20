@@ -3,7 +3,7 @@ from voluntariado.forms import NewVoluntarioForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
-from .models import Voluntario, Likes, BlogPost, Favo
+from .models import Voluntario, BlogPost, Favo, Informar
 from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -12,7 +12,7 @@ from django.views.generic import ListView, DetailView
 
 @login_required
 @permission_required('voluntariado.inst')
-def NewVoluntario(request):
+def NovoVoluntariar(request):
     if request.method == 'POST':
         form = NewVoluntarioForm(request.POST)
         if form.is_valid():
@@ -32,27 +32,27 @@ def publicar(request):
    
     return render(request, "voluntariado/publicar.html", {'voluntario': voluntario})
 
-def postlike(request, voluntario_id):
-    user = request.user
-    voluntario = get_object_or_404(Voluntario, id=voluntario_id)
+#def postlike(request, voluntario_id):
+ #   user = request.user
+  #  voluntario = get_object_or_404(Voluntario, id=voluntario_id)
 
-    if Likes.objects.filter(voluntario=voluntario, user=user).exists():
-        liked = True
-    else:
-        liked = False
-    context = {
-        'voluntario': voluntario,
-        'liked': liked,
-    }
+   # if Likes.objects.filter(voluntario=voluntario, user=user).exists():
+    #    liked = True
+    #else:
+    #    liked = False
+    #context = {
+     #   'voluntario': voluntario,
+      #  'liked': liked,
+    #}
 
-    return render(request, 'voluntariado/publica.html', context)
+    #return render(request, 'voluntariado/publica.html', context)
 
 
-def posttudo(request):
+def postarTudo(request):
  
     voluntario = Voluntario.objects.all().order_by('-date')
    
-    return render(request, "home.html", {'voluntario': voluntario})
+    return render(request, "voluntariado/volunt.html", {'voluntario': voluntario})
 
 
 @login_required
@@ -62,28 +62,29 @@ def excluir(request, voluntario_id):
     Voluntario.objects.filter(id=voluntario_id, user=user).delete()
     return redirect('publicar')
 
-
+ 
 @login_required
-
 @permission_required('voluntariado.inst')
 def editar(request, voluntario_id):
-    edit = Voluntario.objects.get(id=voluntario_id)
+    user = request.user
+    edit = Voluntario.objects.get(id=voluntario_id, user=user)
     form = NewVoluntarioForm(instance=edit)
-
-    if request.method == "POST":
-        form = NewVoluntarioForm(request.POST, request.FILES, instance=edit)
-        if form.is_valid():
-            form.save()
-            return redirect('publicar')
-        
+    if form:
+        if request.method == "POST":
+                form = NewVoluntarioForm(request.POST, request.FILES, instance=edit)
+                if form.is_valid():
+                    form.save()
+                    return redirect('publicar')
+    
+    else:
+        return redirect('login')
     context = {
             'form': form,
             'edit' : edit
         }
     return render(request, 'voluntariado/edit.html', context)
 
-
-@login_required
+#@login_required
 #def like(request, voluntario_id):
  #   user = request.user
  #   voluntario = get_object_or_404(Voluntario, id=voluntario_id)
@@ -104,24 +105,37 @@ def editar(request, voluntario_id):
     #return HttpResponseRedirect(reverse('postlike', args=[voluntario_id]))
 
 
-def like(request, voluntario_id):
-    user = request.user
-    voluntario = get_object_or_404(Voluntario, id=voluntario_id)
-    current_likes = Voluntario.likes_count
+#def like(request, voluntario_id):
+#    user = request.user
+ #   voluntario = get_object_or_404(Voluntario, id=voluntario_id)
+  #  current_likes = Voluntario.likes_count
 
-    liked = Likes.objects.filter(user=user, voluntario=voluntario).count()
+   # liked = Likes.objects.filter(user=user, voluntario=voluntario).count()
 
-    if not liked:
-        like = Likes.objects.create(user=user, voluntario=voluntario)
-        current_likes = current_likes + 1
+    #if not liked:
+     #   like = Likes.objects.create(user=user, voluntario=voluntario)
+      #  current_likes = current_likes + 1
 
     
-    voluntario.likes_count = current_likes
-    voluntario.save()
+    #voluntario.likes_count = current_likes
+    #voluntario.save()
 
-    return HttpResponseRedirect(reverse('postlike', args=[voluntario_id]))
+    #return HttpResponseRedirect(reverse('postlike', args=[voluntario_id]))
 
+def postlike(request, voluntario_id):
+    user = request.user
+    voluntario = get_object_or_404(Voluntario, id=voluntario_id)
 
+    if Favo.objects.filter(voluntario=voluntario, user=user).exists():
+        liked = True
+    else:
+        liked = False
+    context = {
+        'voluntario': voluntario,
+        'liked': liked,
+    }
+
+    return render(request, 'voluntariado/vagas.html', context)
 
 @login_required
 def favo(request, voluntario_id):
@@ -141,5 +155,49 @@ def favo(request, voluntario_id):
     voluntario.favoC = cfavo
     voluntario.save()
 
+   
     return HttpResponseRedirect(reverse('postlike', args=[voluntario_id]))
+
+
+
+def curtir(request, voluntario_id):
+    user = request.user
+    voluntario = get_object_or_404(Voluntario, id=voluntario_id)
+
+    if Informar.objects.filter(voluntario=voluntario, user=user).exists():
+        aceitar = True
+    else:
+        aceitar = False
+    context = {
+        'voluntario': voluntario,
+        'aceitar': aceitar,
+    }
+
+    return render(request, 'voluntariado/vagas.html', context)
+
+@login_required
+def pedir(request, voluntario_id):
+    user = request.user
+    voluntario = get_object_or_404(Voluntario, id=voluntario_id)
+    cfavo = voluntario.aceitar_count
+
+    favod = Informar.objects.filter(user=user, voluntario=voluntario).count()
+
+    if not favod:
+        favo = Informar.objects.create(user=user, voluntario=voluntario)
+        cfavo = cfavo + 1
+    
+    
+    voluntario.aceitar_count = cfavo
+    voluntario.save()
+
+   
+    return HttpResponseRedirect(reverse('curtir', args=[voluntario_id]))
+
+
+
+
+
+
+    #return render(request, "voluntariado/volunt.html", {'voluntario': voluntario_id})
 

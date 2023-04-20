@@ -8,32 +8,57 @@ from django.shortcuts import render,  get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.dispatch import receiver
+
 from accounts.models import Profile, Instituicao
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm, InstituicaoForm
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from django.views.generic import TemplateView
+from responsavel.models import Responsavel
+from django.urls import resolve
 
 #login e register#############################################################################################
 
-def UserProfile(request, username):
-	user = get_object_or_404(User, username=username)
-	profile = Profile.objects.get(user=user)
-	template = loader.get_template('profile.html')
 
-	context = {
-		'profile':profile,
 
-	}
+def perfilInstituicao(request, username):
+    user = get_object_or_404(User, username=username)
+    profile = Instituicao.objects.get(user=user)
+    template = loader.get_template('registration/apresenteprofile.html')
 
-	return HttpResponse(template.render(context, request))
+    if request.user != user:
 
+        return render(request, "registration/ficha.html")
+    else:
+
+        context = {
+            'profile':profile,
+
+        }
+        return HttpResponse(template.render(context, request))
+        
+
+def perfil(request, username):
+    user = get_object_or_404(User, username=username)
+    profile = Profile.objects.get(user=user)
+    template = loader.get_template('registration/apresenteprofile.html')
+
+    context = {
+        'profile':profile,
+
+    }
+
+    return HttpResponse(template.render(context, request))
+
+    
 #registro de usuario comum
 class UsuarioCreate(CreateView):
     template_name = "registration/register.html"
     form_class = UsuarioForm
     success_url = reverse_lazy('login')
+    
+    
 
     def form_valid(self, form):
         grupo = get_object_or_404(Group, name="usuarios")
@@ -41,10 +66,17 @@ class UsuarioCreate(CreateView):
         self.object.groups.add(grupo)
         self.object.save()
         return url
-
+    def respo(request, author_id):
+        user = request.author
+        respon = Profile.objects.get(id=author_id)
+        
+        context = {
+            'respon': respon,
+    
+        }
+        return context
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-
         context['titulo'] = "Registro de novo usuário"
         context['botao'] = "Cadastrar"
 
@@ -87,7 +119,10 @@ def profile(request):
                     return redirect('/home')
             else:
                 form = ProfileForm(instance=request.user.profile)
-            context = {'form':form}
+            
+            context = {
+              'form':form
+            }
             return render(request, 'registration/profile.html', context)
 
 @login_required
@@ -113,6 +148,35 @@ def apresenteprofile(request):
 
 def profilealert(request):
     return render(request, "registration/profile1.html", {})
+
+
+
+#def profile(request):
+ #   user = request.user
+  #  files_objs = []
+   # if request.method == "POST":
+    #    form = ProfileForm(request.POST, request.FILES)
+#
+    #   if form.is_valid():
+     #       responsavel = form.cleaned_data.get('responsavel')
+      #      responsavels = get_object_or_404(Responsavel, id=responsavel.id)
+       #     for file in files:
+        #        file_instance = R(file=file, user=user, resposavel=responsavels)
+         #       file_instance.save()
+          #      files_objs.append(file_instance)
+            
+           # p, created = Profile.objects.get_or_create(user=user, responsavel=responsavels)
+        #    p.content.set(files_objs)       
+         #   p.save()
+         #   return redirect('/home')
+  #  else:
+   #     form = ProfileForm()
+       
+    #    form.fields['respo'].queryset = Responsavel.objects.filter(user=user)
+    #context = {
+     #   'form': form,
+   # }
+   # return render(request, 'registration/profile.html', context)
 
 
 

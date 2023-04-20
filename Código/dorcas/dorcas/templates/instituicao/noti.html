@@ -1,0 +1,21 @@
+
+{% load static %}
+
+{% block content %}
+  
+
+<ul class="collection">
+{% for tabela in tabelares %}
+
+sssssssssss{{tabela.user.username}}<br>
+
+{{tabela.notificacao.user.username}}
+<br>
+{{tabela.notificacao.sender.username}}
+<br>
+{% endfor %}
+</ul>
+
+
+   
+{% endblock %}

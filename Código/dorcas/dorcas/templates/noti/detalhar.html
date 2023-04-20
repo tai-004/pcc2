@@ -1,0 +1,17 @@
+
+        @{{ notifi.sender.username }}
+        @{{ notifi.sender.profile.nome }}
+        @{{ responsavel.nome }}
+<br><br>
+
+<button class="btn login-form__btn submit w-100" type="submit"><a href="/voluntariado/<voluntario_id>/pedir">aceitar   {{ voluntario.aceitar_count }}</a>   </button>
+
+
+ {% if aceitar == False %}
+    
+<button class="btn login-form__btn submit w-100" type="submit"><a class="red-text tooltipped" data-position="bottom" data-tooltip="Remove like" href="{% url 'pedir' voluntario.id %}"><i class="material-icons left"></i></a> Aceitar voluntario       </button>
+          {% endif %}
+
+
+<button class="btn login-form__btn submit w-100" type="submit">Gerar tabela
+                                </button>

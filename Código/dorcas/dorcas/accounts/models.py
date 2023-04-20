@@ -1,7 +1,5 @@
-
 from django.db import models
-from responsavel.models import Responsavel
-# Create your models here.
+
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from datetime import datetime
@@ -9,7 +7,6 @@ from PIL import Image
 from django.conf import settings
 from datetime import date
 import os
-
 
 
 def user_directory_path_profile(instance, filename):
@@ -34,8 +31,7 @@ def user_directory_path_banner(instance, filename):
 
 # model referente ao diagrama de classes . TAB  USUARIO 
 class Profile(models.Model):
-
-    user = models.OneToOneField(User, on_delete= models.CASCADE, null=True)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     nome = models.CharField(default = 'Dorcas(nome padrão)', max_length=100, null=True)
     emailAdm = models.EmailField(default = 'email@gmail.com', max_length = 254, null=True, blank=True)
     funcaoAdm = models.CharField(default = 'ex.: Leitor', max_length=100, null=True, blank=True)
@@ -54,7 +50,8 @@ class Profile(models.Model):
     picture = models.ImageField(upload_to=user_directory_path_profile, blank=True, null=True, verbose_name='Picture')
     banner = models.ImageField(upload_to=user_directory_path_banner, blank=True, null=True, verbose_name='Banner')
     birth_date = models.DateTimeField(null=True, blank = True)
-
+    #menor = models.BooleanField(default=False)
+ 
     def gage(self):
         datetime.date.today()
         date.today()
@@ -63,7 +60,7 @@ class Profile(models.Model):
         
     
     class Meta:
-         permissions = (("use", "use"), ("atual", "atual"), ("exc", "exc"))
+         permissions = (("use", "use"), ("atual", "atual"), ("exc", "exc"), ("foto", "foto"))
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -119,7 +116,7 @@ class Instituicao(models.Model):
     def __str__(self):
        return self.user.username
     class Meta:
-         permissions = (("inst", "inst"), ("atualizar", "atualizar"), ("exclude", "exclude"))
+         permissions = (("inst", "inst"), ("atualizar", "atualizar"), ("exclude", "exclude"), ("foto", "foto"))
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from accounts.models import Responsavel
+from .models import Responsavel
 
 
 # Register your models here.
