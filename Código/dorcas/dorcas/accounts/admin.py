@@ -1,5 +1,5 @@
 from django.contrib import admin
-from accounts.models import Profile, Instituicao
+from accounts.models import Profile, Instituicao, idade
 
 
 # Register your models here.
@@ -7,3 +7,5 @@ from accounts.models import Profile, Instituicao
 admin.site.register(Profile)
 
 admin.site.register(Instituicao)
+
+admin.site.register(idade)

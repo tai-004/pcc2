@@ -1,12 +1,18 @@
-
+{% extends 'templade.html' %}
 {% load static %}
 
-{% block content %}
+{% block noti %}
   
 
 <ul class="collection">
 {% for notification in notifications %}
-
+<br><br>
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-lg-4">
+          <div class="card">
+              <div class="card-body">
+                  <h4 class="card-title">Noti.</h4><h6> <i>data: {{ notification.date}}</i></h6>
     {% if notification.noti == 1 %}
 
        <li class="collection-item avatar">
@@ -28,10 +34,11 @@
         @{{ notification.sender.username }}</a> 
             </b></p>
         
-            <p>Commented: </p>
-            <p style="font-style: italic;"><b>"interessados em voluntariado"</b> </p>
+          <p>Comentou: </p>
+            <p style="font-style: italic;"><b>"interessados em voluntariado da vaga : <i>
+                <a href="/voluntariado/{{ notification.voluntario.id }}">{{ notification.voluntario.titulo }}</i>"</b> </p>
             
-            <a href="/voluntariado/">See post</a>
+              <!--<a href="/voluntariado/">Veja o post</a>-->
         </li>
     {% else %}
     <li class="collection-item avatar">
@@ -45,18 +52,18 @@
 
           
         </li>
-    {% endif %}
+    {% endif %}   </div></div></div></div></div>
 
     {% empty %}
     <div class="center-align">
         <br><br><br><br><br>
         <i class="material-icons large">inbox</i>
-        <h3>No notifications</h3>
-        <h5>Your inbox is empty</h5>
+        <h3>Sem notificações</h3>
+      
         <br><br><br><br><br>
     </div>
 
-    
+ 
 {% endfor %}
 </ul>
 

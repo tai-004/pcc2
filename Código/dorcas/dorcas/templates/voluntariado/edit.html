@@ -1,13 +1,15 @@
-
+{% extends 'templade.html' %}
+{% load bootstrap %}
 
 {% load static %}
 {% load crispy_forms_tags %}
-{% block newpost %}
+{% block editar %}
 
+<br><br>
 
 <div class="container-fluid">
   <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-6">
           <div class="card">
               <div class="card-body">
                   <h4 class="card-title">Editar voluntariado</h4>
@@ -57,7 +59,7 @@
 
       <div class="field">
       <p class="control">
-        <button type="submit">Enviar</button> 
+        <button type="submit" class="btn mb-1 btn-rounded btn-success">Enviar</button> 
       </p>
     </div>
 

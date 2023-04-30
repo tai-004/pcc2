@@ -8,7 +8,6 @@ from django.shortcuts import render,  get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.dispatch import receiver
-
 from accounts.models import Profile, Instituicao
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm, InstituicaoForm
@@ -141,42 +140,13 @@ def instituicao(request):
     context = {'form':form}
     return render(request, 'registration/instituicaoprofile.html', context)
 
+
 def apresenteprofile(request):
     return render(request, "registration/apresenteprofile.html", {})
 
 
+def perfilapresente(request):
+    return render(request, "registration/perfilapresente.html", {})
 
 def profilealert(request):
     return render(request, "registration/profile1.html", {})
-
-
-
-#def profile(request):
- #   user = request.user
-  #  files_objs = []
-   # if request.method == "POST":
-    #    form = ProfileForm(request.POST, request.FILES)
-#
-    #   if form.is_valid():
-     #       responsavel = form.cleaned_data.get('responsavel')
-      #      responsavels = get_object_or_404(Responsavel, id=responsavel.id)
-       #     for file in files:
-        #        file_instance = R(file=file, user=user, resposavel=responsavels)
-         #       file_instance.save()
-          #      files_objs.append(file_instance)
-            
-           # p, created = Profile.objects.get_or_create(user=user, responsavel=responsavels)
-        #    p.content.set(files_objs)       
-         #   p.save()
-         #   return redirect('/home')
-  #  else:
-   #     form = ProfileForm()
-       
-    #    form.fields['respo'].queryset = Responsavel.objects.filter(user=user)
-    #context = {
-     #   'form': form,
-   # }
-   # return render(request, 'registration/profile.html', context)
-
-
-

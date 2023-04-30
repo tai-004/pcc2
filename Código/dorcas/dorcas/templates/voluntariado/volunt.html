@@ -1,38 +1,52 @@
-
+{% extends 'templade.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block voluntario %}
 {% for voluntariado in voluntario %}
+
 <br>
 <div class="container">
     <div class="row">
+
+<div class="col-lg-8 col-xl-9">
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    {{ voluntariado.titulo }}
+                <b> <center>   {{ voluntariado.titulo }}</center></b>
+                <br>
 <br>
-{{ voluntariado.horario}}
+<b>Horário:</b>{{ voluntariado.horario}}
 <br>
-{{ voluntariado.funcao }}
+<b>Função:</b>{{ voluntariado.funcao }}
 <br>
-{{ voluntariado.qnt }}
+<b>Quantidade de vagas:</b>{{ voluntariado.qnt }}
 <br>
-{{ voluntariado.tempo }}
+<b>Tempo necessario:</b>{{ voluntariado.tempo }}
 <br>
-{{ voluntariado.idademin }}
+<b>Idade mínima:</b>{{ voluntariado.idademin }}
 <br>
-{{ voluntariado.cidade }}
+<b>Cidade:</b>{{ voluntariado.cidade }}
 <br>
-{{ voluntariado.rua }}
+<b>Rua:</b>{{ voluntariado.rua }}
 <br>
-{{ voluntariado.numero }}
+<b>Número:</b>{{ voluntariado.numero }}
 <br>
-{{ voluntariado.bairro }}<br>
-{{ voluntariado.telefone }}<br><br>
+<b>Bairro:</b>{{ voluntariado.bairro }}<br>
+<b>Telefone:</b>{{ voluntariado.telefone }}<br><br>
+                
+<br>                
+
+    
+      <b>   <a href="/voluntariado/{{ voluntariado.id}}/favo">Cadastrar   {{ voluntario.favoC }}</a></b>
+      
+    </div></div>
                 </div></div>
-                 <div class="card-action">
-         <a href="/voluntariado/{{ voluntariado.id}}/favo">ver vaga   {{ voluntario.favoC }}</a>
-        </div>
-    </div>
+       
+    </div></div>
 </div>  
-<br>  
+
 
 
 {% endfor %}
+
+{% endblock %}

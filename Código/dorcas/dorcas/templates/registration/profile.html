@@ -1,18 +1,12 @@
+{% extends 'templade.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block content %}
+{% block profile %}
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>Perfil </title>
-</head>
-<body>
-
-
+<br><br>
 <div class="container-fluid">
   <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-6">
           <div class="card">
               <div class="card-body">
                   <h4 class="card-title">Perfil</h4>
@@ -88,7 +82,7 @@
 
   {% else %}
   <div class="form-group">
-   {{ form.picture }} <span>Foto </span>
+   {{ form.banner }} <span>Foto </span>
 </div>
   {% endif %}
   <div class="row">
@@ -110,7 +104,6 @@
   </div>
 </div>
 </div>
-
-</body></html>
+</div></div>
 
 {% endblock %}

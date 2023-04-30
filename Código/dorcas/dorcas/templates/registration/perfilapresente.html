@@ -2,7 +2,7 @@
 {% load bootstrap %}
 {% load static %}
 
-{% block perfil %}
+{% block user %}
 
 
 <div class="content-body">
@@ -20,15 +20,15 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="media align-items-center mb-4"> 
-                            {% if user.instituicao.picture %}
+                            {% if user.profile.banner %}
                          
-                    <img class="mr-3"  width="80" height="80" alt="" src="{{ user.instituicao.picture.url }}" class="circle responsive-img">
+                    <img class="mr-3"  width="80" height="80" alt="" src="{{ user.profile.banner.url }}" class="circle responsive-img">
                       {% else %}
                         <img  class="mr-3"  width="80" height="80" alt="" src="{% static 'images/user/dorcas.jpg'%}">
                       {% endif %}
                             <div class="media-body">
-                                <h4 class="mb-0">{{ user.instituicao.nome }}</h4>
-                                <p class="text-muted mb-0">{{ user.instituicao.cidade }}</p>
+                                <h4 class="mb-0">{{ user.profile.nome }}</h4>
+                                <p class="text-muted mb-0">{{ user.profile.cidade }}</p>
                             </div>
                         </div>
                         
@@ -48,9 +48,9 @@
                                 </div>
                             </div>
                             {% if request.user.is_authenticated %}
-                            {% if perms.accounts.inst %}
+                            {% if perms.accounts.atual %}
                             <div class="col-12 text-center">
-                            <a href="/accounts/instituicao_profile" > <button type="button" class="btn btn-danger px-5">Editar Perfil</button></a>
+                            <a href="/accounts/profile" > <button type="button" class="btn btn-danger px-5">Editar Perfil</button></a>
                             </div>
                             {% endif %}{% endif %}
     
@@ -58,10 +58,10 @@
                    
 
                         <h4>Sobre mim</h4>
-                        <p class="text-muted">{{ user.instituicao.bio }}</p>
+                       
                         <ul class="card-profile__info">
-                            <li class="mb-1"><strong class="text-dark mr-4">Telefone</strong> <span>{{ user.instituicao.telefone }}</span></li>
-                            <li><strong class="text-dark mr-4">Email</strong> <span>{{ user.instituicao.email }}</span></li>
+                            <li class="mb-1"><strong class="text-dark mr-4">Eu sou bom em:</strong> <span>{{ user.profile.habilidades }}</span></li>
+                            <li><strong class="text-dark mr-4">Méu trabalho é:</strong> <span>{{ user.profile.formacao }}</span></li>
                         </ul>
                     </div>
                 </div>  
@@ -75,14 +75,31 @@
 <!--DOAÇÃO##########################################-->
 
 
-<div class="col-lg-8 col-xl-9">
+<!--<div class="col-lg-8 col-xl-9">
     <div class="card">
         <div class="card-body">
             <h4>Voluntario</h4>
             <br>
             <a href="/voluntariado/newpost/"><button type="button" class="btn mb-1 btn-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Novo Voluntario</font></font></button></a>
             <a href="/voluntariado/"><button type="button" class="btn mb-1 btn-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vagas de voluntariado disponiveis</font></font></button></a>
-             <a href="/voluntariado/publicar/"><button type="button" class="btn mb-1 btn-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Minhas vagas de Voluntario</font></font></button></a>
+             <a href="/voluntariado/publicar/"><button type="button" class="btn mb-1 btn-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ver Voluntario</font></font></button></a>
+        </div>
+           
+        </div>
+ 
+   
+
+
+</div>-->
+
+<div class="col-lg-8 col-xl-9">
+    <div class="card">
+        <div class="card-body">
+            <h4>Voluntario</h4>
+            <br>
+         
+            <a href="/voluntariado/"><button type="button" class="btn mb-1 btn-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vagas de voluntariado disponiveis</font></font></button></a>
+           
         </div>
            
         </div>

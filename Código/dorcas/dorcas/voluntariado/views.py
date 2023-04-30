@@ -32,21 +32,6 @@ def publicar(request):
    
     return render(request, "voluntariado/publicar.html", {'voluntario': voluntario})
 
-#def postlike(request, voluntario_id):
- #   user = request.user
-  #  voluntario = get_object_or_404(Voluntario, id=voluntario_id)
-
-   # if Likes.objects.filter(voluntario=voluntario, user=user).exists():
-    #    liked = True
-    #else:
-    #    liked = False
-    #context = {
-     #   'voluntario': voluntario,
-      #  'liked': liked,
-    #}
-
-    #return render(request, 'voluntariado/publica.html', context)
-
 
 def postarTudo(request):
  

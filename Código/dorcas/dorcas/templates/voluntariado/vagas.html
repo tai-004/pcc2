@@ -1,23 +1,43 @@
-{{ voluntario.titulo }}
-<br>
-{{ voluntario.horario}}
-<br>
-{{ voluntario.funcao }}
-<br>
-{{ voluntario.qnt }}
-<br>
-{{ voluntario.tempo }}
-<br>
-{{ voluntario.idademin }}
-<br>
-{{ voluntario.cidade }}
-<br>
-{{ voluntario.rua }}
-<br>
-{{ voluntario.numero }}
-<br>
-{{ voluntario.bairro }}<br>
-{{ voluntario.telefone }}<br><br>
-  {{ voluntario.favoC }}<br>
+{% extends 'templade.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block detalhar %}
 
-  {{ voluntario.aceitar_count }}
+<br>
+<div class="container">
+    <div class="row">
+
+<div class="col-lg-8 col-xl-9">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                <b> <center>   {{ voluntario.titulo }}</center></b>
+                <br>
+<br>
+<b>Horário:</b>{{ voluntario.horario}}
+<br>
+<b>Função:</b>{{ voluntario.funcao }}
+<br>
+<b>Quantidade de vagas:</b>{{ voluntario.qnt }}
+<br>
+<b>Tempo necessario:</b>{{ voluntario.tempo }}
+<br>
+<b>Idade mínima:</b>{{ voluntario.idademin }}
+<br>
+<b>Cidade:</b>{{ voluntario.cidade }}
+<br>
+<b>Rua:</b>{{ voluntario.rua }}
+<br>
+<b>Número:</b>{{ voluntario.numero }}
+<br>
+<b>Bairro:</b>{{ voluntario.bairro }}<br>
+<b>Telefone:</b>{{ voluntario.telefone }}<br><br>
+                
+  {{ voluntario.favoC }} - Cadastrados<br><b>Aguarde a resposta da intituição!</b>
+
+  <!--{{ voluntario.aceitar_count }}-->
+
+
+
+
+{% endblock %}

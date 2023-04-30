@@ -1,4 +1,7 @@
-
+{% extends 'templade.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block publicar %}
 {% for voluntariado in voluntario %}
 <br>
 <div class="container">
@@ -6,31 +9,29 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    {{ voluntariado.titulo }}
+                   <b> <center>   {{ voluntariado.titulo }}</center></b>
+                <br>
 <br>
-{{ voluntariado.horario}}
+<b>Horário:</b>{{ voluntariado.horario}}
 <br>
-{{ voluntariado.funcao }}
+<b>Função:</b>{{ voluntariado.funcao }}
 <br>
-{{ voluntariado.qnt }}
+<b>Quantidade de vagas:</b>{{ voluntariado.qnt }}
 <br>
-{{ voluntariado.tempo }}
+<b>Tempo necessario:</b>{{ voluntariado.tempo }}
 <br>
-{{ voluntariado.idademin }}
+<b>Idade mínima:</b>{{ voluntariado.idademin }}
 <br>
-{{ voluntariado.cidade }}
+<b>Cidade:</b>{{ voluntariado.cidade }}
 <br>
-{{ voluntariado.rua }}
+<b>Rua:</b>{{ voluntariado.rua }}
 <br>
-{{ voluntariado.numero }}
+<b>Número:</b>{{ voluntariado.numero }}
 <br>
-{{ voluntariado.bairro }}<br>
-{{ voluntariado.telefone }}<br><br>
-                </div></div>
-        </div>
-    </div>
-</div>    
-<br>  
+<b>Bairro:</b>{{ voluntariado.bairro }}<br>
+<b>Telefone:</b>{{ voluntariado.telefone }}<br><br>
+                
+
  <div class="card-action">
          <a href="/voluntariado/{{ voluntariado.id}}/favo">ver vaga   {{ voluntario.favoC }}</a>
       
@@ -40,11 +41,19 @@
 {% if request.user.is_authenticated %}
 
 {% if user == voluntariado.user or perms.voluntariado.inst%}
-<a href="/voluntariado/excluir/{{ voluntariado.id}}"><button type="submit">EXCLUIR</button></a>
+<a href="/voluntariado/excluir/{{ voluntariado.id}}"><button type="submit"  class="btn mb-1 btn-rounded btn-success">EXCLUIR</button></a>
 {%endif%}{%endif%}
 {% if request.user.is_authenticated %}
 
 {% if user == voluntariado.user or perms.voluntariado.inst%}
-<a href="/voluntariado/editar/{{ voluntariado.id}}"><button type="submit">EDITAR</button></a>
+<a href="/voluntariado/editar/{{ voluntariado.id}}"><button type="submit" class="btn mb-1 btn-rounded btn-success">EDITAR</button></a>
 {%endif%}{%endif%}
+                </div></div>
+        </div>
+    </div>
+</div>    
+<br>  
+
 {% endfor %}
+
+{% endblock %}

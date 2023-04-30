@@ -9,5 +9,5 @@ def templates(request):
 
 
 def dorcas(request):
-    return render(request, "dorcas.html", {})
+    return render(request, "semlogin.html", {})
 

@@ -48,7 +48,7 @@ class ProfileForm(ModelForm):
         fields = '__all__'
         exclude = ['user']
         widgets = {
-         'picture': FileInput(),
+         'banner': FileInput(),
          }
 
 
