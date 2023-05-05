@@ -1,5 +1,5 @@
 from django.db import models
-from noti.models import Notification
+from noti.models import Notificacao
 from django.contrib.auth.models import User
 # Create your models here.
 from accounts.models import Instituicao
@@ -9,17 +9,17 @@ from django.db.models.signals import post_save, post_delete
 class Voluntario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     titulo = models.CharField(max_length=100, null=True, blank=True)
-    horario = models.IntegerField(null=True, blank=True)
+    horario = models.CharField(max_length=100, null=True, blank=True)
     funcao= models.CharField(max_length=100, null=True, blank=True)
-    qnt = models.IntegerField(null=True, blank=True)
+    quantidadepessoas = models.IntegerField(null=True, blank=True)
     tempo = models.IntegerField(null=True, blank=True)
-    idademin = models.IntegerField(null=True, blank=True)
+    idademinima = models.IntegerField(null=True, blank=True)
     cidade = models.CharField(max_length=150, null=True, blank=True)
     rua = models.CharField(max_length=150, null=True, blank=True)
     numero = models.IntegerField(null=True, blank=True)
     bairro = models.CharField(max_length=150, null=True, blank=True)
-    telefone = models.IntegerField(null=True, blank=True)
-    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    telefone = models.CharField(max_length=150, null=True, blank=True)
+    data = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     aceitar_count = models.IntegerField(default=0)
     favoC = models.IntegerField(default=0)
   
@@ -30,63 +30,37 @@ class Voluntario(models.Model):
     def __str__(self):
         return self.titulo
 
-#class Likes(models.Model):
- #   user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_likes')
-  #  voluntario = models.ForeignKey(Voluntario, on_delete=models.CASCADE, related_name='voluntario_likes')
-     
-   # def user_liked_post(sender, instance, *args, **kwargs):
-    #    like = instance
-     #   voluntario = like.voluntario
-      #  sender = like.user
-       # notify = Notifications(voluntario=voluntario, sender=sender, user=voluntario.user, noti=1)
-       # notify.save()
-   # def user_unlike_post(sender, instance, *args, **kwargs):
-       # like = instance
-    #    voluntario = like.voluntario
-     #   sender = like.user
-      #  notify = Notifications.objects.filter(voluntario=voluntario, sender=sender, noti=1)
-       # notify.delete()
-
 
 class Informar(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    voluntario = models.ForeignKey(Voluntario, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_infor')
+    voluntario = models.ForeignKey(Voluntario, on_delete=models.CASCADE, related_name='post_infor')
      
-    def curtir(sender, instance, *args, **kwargs):
+    def avisarCurtir(sender, instance, *args, **kwargs):
         favori = instance
         voluntario = favori.voluntario
         sender = favori.user
-        noti = Notification(voluntario=voluntario, sender=sender, user=voluntario.user, noti=2)
+        noti = Notificacao(voluntario=voluntario, sender=sender, user=voluntario.sender, noti=2)
         noti.save()
 
-post_save.connect(Informar.curtir, sender=Informar)
+post_save.connect(Informar.avisarCurtir, sender=Informar)
 
 class Favo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_favo')
     voluntario = models.ForeignKey(Voluntario, on_delete=models.CASCADE, related_name='post_favo')
      
-    def user_liked_post(sender, instance, *args, **kwargs):
+    def curtir(sender, instance, *args, **kwargs):
         favo = instance
         voluntario = favo.voluntario
         sender = favo.user
-        notify = Notification(voluntario=voluntario, sender=sender, user=voluntario.user, noti=1)
+        notify = Notificacao(voluntario=voluntario, sender=sender, user=voluntario.user, noti=1)
         notify.save()
-    def user_unfavo_post(sender, instance, *args, **kwargs):
+    def descurtir(sender, instance, *args, **kwargs):
         favo = instance
         voluntario = favo.voluntario
         sender = favo.user
-        notify = Notification.objects.filter(voluntario=voluntario, sender=sender, noti=1)
+        notify = Notificacao.objects.filter(voluntario=voluntario, sender=sender, noti=1)
         notify.delete()
 
-post_save.connect(Favo.user_liked_post, sender=Favo)
-post_delete.connect(Favo.user_unfavo_post, sender=Favo)
-#post_save.connect(Likes.user_liked_post, sender=Likes)
-#post_delete.connect(Likes.user_unlike_post, sender=Likes)
+post_save.connect(Favo.curtir, sender=Favo)
+post_delete.connect(Favo.descurtir, sender=Favo)
 
-
-
-class BlogPost(models.Model):
-    likes = models.ManyToManyField(User, related_name='blogpost_like')
-
-    def number_of_likes(self):
-        return self.likes.count()

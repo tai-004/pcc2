@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render,  get_object_or_404
-from noti.models import Notification, Tabela_notis
+from noti.models import Notificacao
 from instituicao.models import Tabela
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from instituicao.forms import NovaTabelaForm
 # Create your views here.
 
-def noti(request):
+def apresentaNoti(request):
     user = request.user
-    notifications = Notification.objects.filter(user=user).order_by('-date')
+    notifications = Notificacao.objects.filter(user=user).order_by('-data')
 
 
     context = {
@@ -21,7 +21,7 @@ def noti(request):
 
 def notiTabelar(request, noti_id):
     user = request.user
-    notifications = Notification.objects.filter(user=user).order_by('-date')
+    notifications = Notificacao.objects.filter(user=user).order_by('-data')
 
 
     context = {
@@ -32,9 +32,9 @@ def notiTabelar(request, noti_id):
 
 
 
-def morrer(request):
+def apresentaNoti2(request):
     user = request.user
-    tabela = Notification.objects.filter(user=user).order_by('-data')
+    tabela = Notificacao.objects.filter(user=user).order_by('-data')
 
 
     context = {
@@ -44,20 +44,10 @@ def morrer(request):
     return render(request, 'notifications.html', context)
 
 
-#def detalhar(request, noti_id):
-
-#    notifi = Notification.objects.get(id=noti_id)
-#    context = {
-#        'notifi': notifi
-#    }
-    
- #   return render(request, 'noti/detalhar.html', context)
-
-
 def detalhar(request, noti_id):
     user = request.user
-    notifications = Notification.objects.filter(user=user).order_by('-date')
-    notifi= get_object_or_404(Notification, id=noti_id, user=user)
+    notifications = Notificacao.objects.filter(user=user).order_by('-data')
+    notifi= get_object_or_404(Notificacao, id=noti_id, user=user)
 
     context = {
         'notifi': notifi,
@@ -65,13 +55,13 @@ def detalhar(request, noti_id):
     }
     return render(request, "noti/detalhar.html", context)
 
-def apresentar(request, notiTabelar_id):
-    user = request.user
-    tabelarnoti = TabelaNoti.objects.filter(user=user).order_by('-date')
-    notifi= get_object_or_404(TabelaNoti, id=notiTabelar_id, user=user)
+#def apresentar(request, notiTabelar_id):
+  #  user = request.user
+ #   tabelarnoti = TabelaNoti.objects.filter(user=user).order_by('-data')
+   # notifi= get_object_or_404(TabelaNoti, id=notiTabelar_id, user=user)
 
-    context = {
-        'notifi': notifi,
-        'tabelarnoti': tabelarnoti
-    }
-    return render(request, "instituicao/noti.html", context)
+    #context = {
+     #   'notifi': notifi,
+      #  'tabelarnoti': tabelarnoti
+    #}
+    #return render(request, "instituicao/noti.html", context)

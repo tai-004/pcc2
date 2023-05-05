@@ -7,7 +7,7 @@ from PIL import Image
 from django.conf import settings
 
 import os
-from datetime import date
+
 
 def user_directory_path_profile(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
@@ -49,8 +49,8 @@ class Profile(models.Model):
     cpf = models.IntegerField(default = '000000000', null=True, blank=True)
     picture = models.ImageField(upload_to=user_directory_path_profile, blank=True, null=True, verbose_name='Picture')
     banner = models.ImageField(upload_to=user_directory_path_banner, blank=True, null=True, verbose_name='Banner')
-    birth_date = models.DateTimeField(null=True, blank = True)
-    #menor = models.BooleanField(default=False)
+    dataNascimento = models.DateTimeField(null=True, blank = True)
+    
  
     
     class Meta:
@@ -64,6 +64,15 @@ class Profile(models.Model):
             pic = Image.open(self.picture.path)
             pic.thumbnail(SIZE, Image.LANCZOS)
             pic.save(self.picture.path)   
+
+    def salva(self, *args, **kwargs):
+        super().salva(*args, **kwargs)
+        SIZE = 250, 250
+
+        if self.banner:
+            pic = Image.open(self.banner.path)
+            pic.thumbnail(SIZE, Image.LANCZOS)
+            pic.salva(self.banner.path) 
 
     def __str__(self):
        return self.user.username
@@ -94,10 +103,9 @@ class Instituicao(models.Model):
     EIXO_CHOICES = (('animais', 'animais'), ('crianças', 'crianças'), ('idosos', 'idosos'), ('religiosa', 'religiosa'), ('outra', 'outra'))
 
     user = models.OneToOneField(User, on_delete= models.CASCADE, null=True)
-    bio = models.TextField(max_length=50000, null=True, blank= True)
+    bio = models.CharField(max_length=500, null=True, blank= True)
     nome = models.CharField(default = 'Dorcas(nome padrão)', max_length=100, null=True)
-    eixoInst = models.CharField(max_length=15, choices=EIXO_CHOICES,  null=True)
-    #categoriaInst = models.CharField(default = 'Categoria da Instituição', max_length=150, null=True)
+    eixoAtuacao = models.CharField(max_length=15, choices=EIXO_CHOICES,  null=True)
     cidade = models.CharField(max_length=150, null=True)
     estado = models.CharField(max_length=150, null=True)
     rua = models.CharField(max_length=150, null=True)
@@ -121,16 +129,14 @@ class Instituicao(models.Model):
         if self.picture:
             pic = Image.open(self.picture.path)
             pic.thumbnail(SIZE, Image.LANCZOS)
-            pic.save(self.picture.path)   
+            pic.save(self.picture.path) 
 
-class idade(models.Model):
-    birth_date =  models.DateTimeField(null=True, blank = True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-#    def gage(self):
- #       datetime.date.today()
-  #      date.today()
-   #     age = datetime.date.today()-self.birth_date
-    #    return int((age).days/365.25)
-        
-    def __str__(self):
-       return self.birth_date
+    def salva(self, *args, **kwargs):
+        super().salva(*args, **kwargs)
+        SIZE = 250, 250
+
+        if self.banner:
+            pic = Image.open(self.banner.path)
+            pic.thumbnail(SIZE, Image.LANCZOS)
+            pic.salva(self.banner.path)   
+

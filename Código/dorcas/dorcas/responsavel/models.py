@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class Responsavel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     nome = models.CharField(max_length=100, null=True, blank=True)
-    idade = models.DateTimeField(auto_now_add= False, auto_now=False, blank=True, null= True)
+    idade = models.IntegerField(null=True, blank=True)
     parentesco= models.CharField(max_length=100, null=True, blank=True)
     cpf = models.IntegerField(null=True, blank=True)
     cidade = models.CharField(max_length=150, null=True, blank=True)

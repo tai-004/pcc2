@@ -3,7 +3,7 @@ from voluntariado.forms import NewVoluntarioForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
-from .models import Voluntario, BlogPost, Favo, Informar
+from .models import Voluntario, Favo, Informar
 from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -12,7 +12,7 @@ from django.views.generic import ListView, DetailView
 
 @login_required
 @permission_required('voluntariado.inst')
-def NovoVoluntariar(request):
+def criarVoluntariar(request):
     if request.method == 'POST':
         form = NewVoluntarioForm(request.POST)
         if form.is_valid():
@@ -28,14 +28,14 @@ def NovoVoluntariar(request):
 
 def publicar(request):
     user = request.user
-    voluntario = Voluntario.objects.filter(user=user).order_by('-date')
+    voluntario = Voluntario.objects.filter(user=user).order_by('-data')
    
     return render(request, "voluntariado/publicar.html", {'voluntario': voluntario})
 
 
 def postarTudo(request):
  
-    voluntario = Voluntario.objects.all().order_by('-date')
+    voluntario = Voluntario.objects.all().order_by('-data')
    
     return render(request, "voluntariado/volunt.html", {'voluntario': voluntario})
 
@@ -69,45 +69,7 @@ def editar(request, voluntario_id):
         }
     return render(request, 'voluntariado/edit.html', context)
 
-#@login_required
-#def like(request, voluntario_id):
- #   user = request.user
- #   voluntario = get_object_or_404(Voluntario, id=voluntario_id)
- #   current_likes = voluntario.likes_count
-
-  #  liked = Likes.objects.filter(user=user, voluntario=voluntario).count()
-
-   # if not liked:
-    #    like = Likes.objects.create(user=user, voluntario=voluntario)
-     #   current_likes = current_likes + 1
-   # else:
-    #    Likes.objects.filter(user=user, voluntario=voluntario).delete()
-     #   current_likes = current_likes - 1
-    
-    #voluntario.likes_count = current_likes
-    #post.save()
-
-    #return HttpResponseRedirect(reverse('postlike', args=[voluntario_id]))
-
-
-#def like(request, voluntario_id):
-#    user = request.user
- #   voluntario = get_object_or_404(Voluntario, id=voluntario_id)
-  #  current_likes = Voluntario.likes_count
-
-   # liked = Likes.objects.filter(user=user, voluntario=voluntario).count()
-
-    #if not liked:
-     #   like = Likes.objects.create(user=user, voluntario=voluntario)
-      #  current_likes = current_likes + 1
-
-    
-    #voluntario.likes_count = current_likes
-    #voluntario.save()
-
-    #return HttpResponseRedirect(reverse('postlike', args=[voluntario_id]))
-
-def postlike(request, voluntario_id):
+def postCurtir(request, voluntario_id):
     user = request.user
     voluntario = get_object_or_404(Voluntario, id=voluntario_id)
 
@@ -182,7 +144,4 @@ def pedir(request, voluntario_id):
 
 
 
-
-
-    #return render(request, "voluntariado/volunt.html", {'voluntario': voluntario_id})
 

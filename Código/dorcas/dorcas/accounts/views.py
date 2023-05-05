@@ -108,7 +108,7 @@ class InstituicaoCreate(CreateView):
 
 #perfil########################
 @login_required
-def profile(request):
+def criarprofile(request):
             if request.method == 'POST':
                 form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
                 if form.is_valid():
@@ -127,7 +127,7 @@ def profile(request):
 @login_required
 @permission_required('accounts.inst')
 
-def instituicao(request):
+def criarinstituicao(request):
     if request.method == 'POST':
         form = InstituicaoForm(request.POST, request.FILES, instance=request.user.instituicao)
         if form.is_valid():
@@ -141,11 +141,11 @@ def instituicao(request):
     return render(request, 'registration/instituicaoprofile.html', context)
 
 
-def apresenteprofile(request):
+def lerprofile(request):
     return render(request, "registration/apresenteprofile.html", {})
 
 
-def perfilapresente(request):
+def lerperfil(request):
     return render(request, "registration/perfilapresente.html", {})
 
 def profilealert(request):

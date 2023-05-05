@@ -10,23 +10,7 @@ from django.urls import reverse
 
 
 
-#def novaTabelar(request):
- #   if request.method == 'POST':
-  #      form = NovaTabelaForm(request.POST)
-   #     if form.is_valid():
-    #        tabela = form.save(commit=False)
-     #       tabela.user = request.user
-      #      tabela.save()
-       #     return redirect("/accounts/apresenteprofile/")
-  #  else:
-   #     form = NovaTabelaForm()
-#
- #   return render(request, "instituicao/novatabela.html", {"form": form})
-
-
-
-
-def tabelar(request):
+def lertabelar(request):
     user = request.user
     tabelares = Tabela.objects.filter(user=user).order_by('-data')
 

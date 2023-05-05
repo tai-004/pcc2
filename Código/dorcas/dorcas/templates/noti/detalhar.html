@@ -1,17 +1,76 @@
+{% extends 'templade.html' %}
+{% load static %}
 
-        @{{ notifi.sender.username }}
-        @{{ notifi.sender.profile.nome }}
-        @{{ responsavel.nome }}
+{% block curriculo %}
+
 <br><br>
 
-<button class="btn login-form__btn submit w-100" type="submit"><a href="/voluntariado/<voluntario_id>/pedir">aceitar   {{ voluntario.aceitar_count }}</a>   </button>
 
+  <div class="row">
+                    <div class="col-6">
+                         <div class="card card-widget">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <h4 class="card-title">Perfil - Currículo </h4>
+                                    {% if notifi.sender.profile.banner %}
+                                <img src="{{ notifi.sender.profile.banner.url }}" class="circle responsive-img">
+                              {% else %}
+                                {% if notifi.sender.instituicao.picture %}
+                                <img src="{{ notifi.sender.instituicao.picture.url }}" class="circle responsive-img">
+                              {% endif %}
+                              {% endif %}
+                                    <h4 class="card-widget__title text-dark mt-3"> {{ notifi.sender.profile.nome }}</h4>
+                                    <p class="text-muted"> @{{ notifi.sender.username }}</p>
 
- {% if aceitar == False %}
-    
-<button class="btn login-form__btn submit w-100" type="submit"><a class="red-text tooltipped" data-position="bottom" data-tooltip="Remove like" href="{% url 'pedir' voluntario.id %}"><i class="material-icons left"></i></a> Aceitar voluntario       </button>
-          {% endif %}
+                                    <a class="btn gradient-4 btn-lg border-0 btn-rounded px-5" href="/voluntariado/{{ notifi.voluntario.id }}/pedir">Aceitar</a>
+                                </div>
+                            </div>
+                            <div class="card-footer border-0 bg-transparent">
+                                <div class="row">
+                                    <div class="col-4 border-right-1 pt-3">
+                                        <a class="text-center d-block text-muted" href="javascript:void()">
+                                           <b><h6>Idade</h6></b>
+                                            <p class="">{{ notifi.sender.profile.dataNascimento }}</p>
+                                        </a>
+                                    </div>
 
+                                    <div class="col-4 border-right-1 pt-3"><a class="text-center d-block text-muted" href="javascript:void()">
+                                      <b><h6>Telefone</h6></b>
+                                            <p class="">{{ notifi.sender.profile.telefone }}</p>
+                                        </a>
+                                    </div>
+                                    <div class="col-4 pt-3"><a class="text-center d-block text-muted" href="javascript:void()">
+                                        <i class="fa fa-envelope gradient-4-text"></i>
+                                            <p class="">{{ notifi.sender.profile.emailAdm }}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card-footer border-0 bg-transparent">
+                                <div class="row">
+                                    <div class="col-4 border-right-1 pt-3">
+                                        <a class="text-center d-block text-muted" href="javascript:void()">
+                                           <b><h6>Habilidades</h6></b>
+                                            <p class="">{{ notifi.sender.profile.habilidades }}</p>
+                                        </a>
+                                    </div>
 
-<button class="btn login-form__btn submit w-100" type="submit">Gerar tabela
-                                </button>
+                                    <div class="col-4 border-right-1 pt-3"><a class="text-center d-block text-muted" href="javascript:void()">
+                                      <b><h6>Sexo</h6></b>
+                                            <p class="">{{ notifi.sender.profile.sexo }}</p>
+                                        </a>
+                                    </div>
+                                    <div class="col-4 pt-3"><a class="text-center d-block text-muted" href="javascript:void()">
+                                        <b><h6>Formação</h6></b>
+                                            <p class="">{{ notifi.sender.profile.formacao }}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+      
+
+<br><br>
+
+{% endblock %}

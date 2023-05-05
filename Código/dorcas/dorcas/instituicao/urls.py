@@ -7,6 +7,6 @@ from . import views
 
 urlpatterns = [
     #path('novatabela/', views.novaTabelar, name='newtable'),  
-    path('tabela/', views.tabelar, name='tabelar'),  #url de registro 
+    path('tabela/', views.lertabelar, name='tabelar'),  #url de registro 
 
 ] 

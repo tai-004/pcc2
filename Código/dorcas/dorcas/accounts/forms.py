@@ -15,7 +15,7 @@ class UsuarioForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'last_name', 'first_name', 'email', 'password1', 'password2']
 
     def clean_email(self):
         e = self.cleaned_data['email']
@@ -29,7 +29,7 @@ class InstituicaoForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username','last_name', 'first_name', 'email', 'password1', 'password2']
 
     def clean_email(self):
         ins = self.cleaned_data['email']
@@ -48,7 +48,8 @@ class ProfileForm(ModelForm):
         fields = '__all__'
         exclude = ['user']
         widgets = {
-         'banner': FileInput(),
+        'picture': FileInput(),
+        'banner': FileInput(),
          }
 
 
