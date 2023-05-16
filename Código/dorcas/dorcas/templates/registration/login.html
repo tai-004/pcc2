@@ -1,4 +1,4 @@
-
+<!--Trabalho Feito-->
 {% load static %}
 
 {%load bootstrap%}
@@ -12,15 +12,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>dorcas</title>
+    <title>Sistema Dorcas</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/images/favicon.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     
 </head>
 
-<body class="h-100">
+<body class="h-100" style="background-color: #fcf4f0;">
     
     <!--*******************
         Preloader start
@@ -42,24 +42,22 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                <a class="text-center" href="index.html"> <h4>Bem vindo a Dorcas City</h4></a>
+                                <a class="text-center" href="index.html"> <h4>Bem-vindo ao Sistema Dorcas</h4></a>
                                 <form action="." method="post">
                                   {% csrf_token %}
                                   {{ form|bootstrap }}
                                 
-                                  <button class="btn login-form__btn submit w-100" type="submit">Entrar
+                                  <button class="btn login-form__btn submit w-100" style="background-color: #dd1727;" type="submit">Entrar
                                 </button>
                               </form>
                               <p class="mt-4">
                                 <a
-                                class="text-primary"
+                                class="text-danger"
                                   href="/accounts/password_reset/"
                                 >
                                   Esqueceu a senha?
                                 </a>
                               </p>
-
-                              
                             </div>
                         </div>
                     </div>

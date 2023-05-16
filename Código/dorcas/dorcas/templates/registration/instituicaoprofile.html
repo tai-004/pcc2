@@ -1,95 +1,116 @@
-{% extends 'templade.html' %}
 
+<!--Trabalho Feito-->
 {% load static %}
 
 {% load crispy_forms_tags %}
 {% load bootstrap %}
 
 {% block instiprofile %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Dorcas</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+    <!-- Pignose Calender -->
+    <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+    <!-- Custom Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
 
+  <body style="background-color: #fcf4f0;">
 
-<br><br><br>
-<div class="container-fluid">
-  <div class="row">
-      <div class="col-lg-6">
-          <div class="card">
-              <div class="card-body">
-                  <h4 class="card-title">Cadastro da Instituição</h4>
-                  <form method="post" enctype="multipart/form-data" action="" role="form">
-                    {% csrf_token %}
-                   
-                    <div class="form-group">
-                                          {{ form.nome }}<span>Nome</span>
-                                       </div>
-                    <div class="form-group">
-                                    {{ form.estado }}<span>Estado</span>
-                                       </div>
-                    <div class="form-group">
-                                       {{ form.cidade }}<span>Cidade</span>
-                                    </div>
-                    <div class="form-group">
-                                       {{ form.bairro }}<span>Bairro</span>
-                                    </div>
-                    <div class="form-group">
-                                       {{ form.rua }}<span>Rua</span>
-                                    </div>
-                    <div class="form-group">
-                                        {{ form.numero }}<span>Número da instituição</span>
-                                    </div>
-             
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #dd1727;">
+      <div class="container">
+        <a class="navbar-brand" href="#">Sistema Dorcas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/home/"> <span class="mdi mdi-home-outline" style="font-size: 24px;" title="Home"></span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Perfil">
+                  {% if user.profile.banner %}
+                      <img src="{{ user.profile.banner.url }}" alt="Foto de Perfil" class="mr-2 rounded-circle"  widht="30" height="40">
+                      {% else %}
+                      {% if user.instituicao.picture %}
+                          <img src="{{ user.instituicao.picture.url }}" alt="Foto de Perfil" class="mr-2 rounded-circle"  widht="30" height="40">
+                      {% endif %}
+                  {% endif %}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% if request.user.is_authenticated %}
+                  {% if perms.accounts.inst %}
+                      <a class="dropdown-item" href="/accounts/apresenteprofile"><i class="mdi mdi-account" style="font-size: 20px;"></i> Ver Perfil</a>
+                  {% endif %}
+              {% endif %}
+                <a class="dropdown-item" href="/accounts/login"><i class="mdi mdi-logout" style="font-size: 20px;"></i> Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Editar perfil da Instituição</h4>
+                        <form method="post" enctype="multipart/form-data" action="" role="form">
+                            {% csrf_token %}
+                            {{ form|bootstrap }}
+                          
+                            
 
-       <div class="form-group">
-                             {{ form.eixoAtuacao }}<span>Eixo da instituição </span>
-                          </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <span style="color: #dd2717; font-weight: bold;">{{ form.errors }}</span>
+                                </div>
+                            </div>
 
-      
-     <!-- <div class="form-group">
-                             {{ form.categoriaInst }}<span>Categoria da Instituição </span>
-                         </div>-->
+                            <div class="field">
+                                <p class="control">
+                                    <button type="submit" class="btn mb-1 btn-rounded btn-success">
+                                        Enviar
+                                    </button>
+                                </p> 
+                            </div>
 
-      
-     <div class="form-group">
-                            {{ form.telefone }} <span>Telefone da Instituição </span>
-                        </div>
-
-   
-    <div class="form-group">
-                    {{ form.cnpj }}<span>Cnpj</span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-   
-    <div class="form-group">
-                      {{ form.email }}<span>Email </span>
-                       </div>
-                       <div class="form-group">
-                        {{ form.bio }}<span>Bio </span>
-                         </div>
-  
+    <br><br><br>
+    <footer style="background-color: #dd1727;" class="text-center py-3"  >
+      <p class="text-white">Copyright © 
+          <script>
+              document.write(new Date().getFullYear());
+          </script> 
+          Sistema Dorcas. Todos os direitos reservados.
+      </p>
+    </footer>
+  </body>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <div class="form-group">
-   {{ form.picture }} <span>Foto </span>
-</div>
-<div class="form-group">
-  {{ form.banner }} <span>Banner </span>
-</div>
-  <div class="row">
-    <div class="col s12">
-      <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
-    </div>
-  </div>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-
-      <div class="field">
-      <p class="control">
-        <button type="submit" class="btn mb-1 btn-rounded btn-success"><span class="btn-icon-left"><i class="fa fa-upload color-success"></i> </span>Enviar</button> 
-    </div>
-
-    </form>
-  </div>
-</div>
-</div>
-
+</html>
 
 {% endblock %}
-
-
-  

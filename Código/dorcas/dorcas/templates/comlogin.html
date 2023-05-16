@@ -1,56 +1,50 @@
- <li class="icons dropdown">
-                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
-                                <span class="activity active"></span>
-                                {% if user.profile.picture %}
-                                <img src="{{ user.profile.picture.url }}" class="circle responsive-img">
-                              {% else %}
-                                <img src="{% static 'images/user/dorcas.jpg'%}">
-                              {% endif %}
-                              <!--<img src="{% static 'images/user/dorcas.jpg' %}" height="40" width="40" alt="">-->
-                            </div>
-                            <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
-                                <div class="dropdown-content-body">
-                                    <ul>        
-                                        {% if request.user.is_authenticated %}
-                                        {% if perms.accounts.inst %}
-                                        <li>
-                                            <a href="/accounts/instituicao_profile/"><i class="icon-user"></i> <span>criar perfil</span></a>
-                                        </li>
-                                               
-                                        {% endif %}{% endif %}
+<!--Não entendi foi nada!!-->
 
-                                              {% if request.user.is_authenticated %}
-                                                {% if perms.accounts.atual %}
-            <li><button onclick="menor()"  type="button" class="btn mb-1 btn-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Criar perfil</font></font></button></li>
-            <p id="anos">null</p>
-                   
-            {% endif %}{% endif %}
-                                       
-                                        <li>
-                                            <a href="/accounts/apresenteprofile"><i class="icon-user"></i> <span>apresente perfil</span></a>
-                                        </li>
-                                        
-                                      
-                                        <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
-                                    </ul>
-                                </div>
-
-                                  {% if request.user.is_authenticated %}
-                                        {% if perms.accounts.atual %}
-                                        <li>
-                                            <a href="/accounts/instituicao_profile/"><i class="icon-people"></i> <span>Cadastre sua instituição</span></a></
-                                        </li>   {% endif %}{% endif %}
-
-                                           {% block text %}
-        {% endblock %}      
-
-        {% block content %}
-        {% endblock %}
-        {% block voluntario %}
-        {% endblock %}
-        <!--{% block perfil %}
-        {% endblock %}-->
-        {% block newpost %}
-        {% endblock %}
-        {% block instiprofile %}
-        {% endblock %}
+<li class="icons dropdown">
+  <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+     <span class="activity active"></span>
+     {% if user.profile.picture %}
+     <img src="{{ user.profile.picture.url }}" class="circle responsive-img">
+     {% else %}
+     <img src="{% static 'images/user/dorcas.jpg'%}">
+     {% endif %}
+     <!--<img src="{% static 'images/user/dorcas.jpg' %}" height="40" width="40" alt="">-->
+  </div>
+  <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+  <div class="dropdown-content-body">
+     <ul>
+        {% if request.user.is_authenticated %}
+        {% if perms.accounts.inst %}
+        <li>
+           <a href="/accounts/instituicao_profile/"><i class="icon-user"></i> <span>criar perfil</span></a>
+        </li>
+        {% endif %}{% endif %}
+        {% if request.user.is_authenticated %}
+        {% if perms.accounts.atual %}
+        <li><button onclick="menor()"  type="button" class="btn mb-1 btn-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Criar perfil</font></font></button></li>
+        <p id="anos">null</p>
+        {% endif %}{% endif %}
+        <li>
+           <a href="/accounts/apresenteprofile"><i class="icon-user"></i> <span>apresente perfil</span></a>
+        </li>
+        <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+     </ul>
+  </div>
+  {% if request.user.is_authenticated %}
+  {% if perms.accounts.atual %}
+<li>
+  <a href="/accounts/instituicao_profile/"><i class="icon-people"></i> <span>Cadastre sua instituição</span></a></
+</li>
+{% endif %}{% endif %}
+{% block text %}
+{% endblock %}      
+{% block content %}
+{% endblock %}
+{% block voluntario %}
+{% endblock %}
+<!--{% block perfil %}
+  {% endblock %}-->
+{% block newpost %}
+{% endblock %}
+{% block instiprofile %}
+{% endblock %}

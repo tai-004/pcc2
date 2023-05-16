@@ -1,109 +1,115 @@
+<!--Trabalho Não mexi nessa-->
 {% extends 'templade.html' %}
+{% load bootstrap %}
 {% load static %}
+{% load crispy_forms_field %}
 {% load crispy_forms_tags %}
 {% block profile %}
 
+
 <br><br>
 <div class="container-fluid">
-  <div class="row">
-      <div class="col-lg-6">
-          <div class="card">
-              <div class="card-body">
-                  <h4 class="card-title">Perfil</h4>
-                  <form method="post" enctype="multipart/form-data" action="" role="form">
-                    {% csrf_token %}
-                     <div class="form-group">
-                                          {{ form.responsavel }}<span>Nome</span>
-                                       </div>
-                   
-                    <div class="form-group">
-                                          {{ form.nome }}<span>Nome</span>
-                                       </div>
-                    <div class="form-group">
-                                    {{ form.estado }}<span>Estado</span>
-                                       </div>
-                    <div class="form-group">
-                                       {{ form.cidade }}<span>Cidade</span>
-                                    </div>
-                    <div class="form-group">
-                                       {{ form.bairro }}<span>Bairro</span>
-                                    </div>
-                    <div class="form-group">
-                                       {{ form.rua }}<span>Rua</span>
-                                    </div>
-                    <div class="form-group">
-                                        {{ form.numero }}<span>Número da casa</span>
-                                    </div>
-             
-      {% if perms.accounts.inst %}
-       <div class="form-group">
-                             {{ form.funcaoAdm }}<span>Função na instituição </span>
-                          </div>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="card mx-auto">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Perfil</h2>
+                    <form method="post" enctype="multipart/form-data" action="" role="form">
+                        {% csrf_token %}                      
 
-      {% else %}
-      <div class="form-group">
-       {{ form.trabalho }}<span>Trabalho </span>
-    </div>
-      {% endif %}
-      {% if perms.accounts.inst %}
-      <div class="form-group">
-                             {{ form.dtaDeFuncaoAdm }}<span>Data de inicio da função </span>
-                         </div>
-
-     {% else %}
-     <div class="form-group">
-                    {{ form.formacao }}<span>Formação</span>
-    </div>
-     {% endif %}
-     {% if perms.accounts.inst %}
-     <div class="form-group">
-                            {{ form.idade}} <span>Data de nascimento </span>
+                        <div class="form-group">
+                            <span>Nome: </span>{{ form.responsavel}}
                         </div>
 
-    {% else %}
-    <div class="form-group">
-                    {{ form.sexo }}<span>Sexo</span>
+                        <div class="form-group">
+                            <span>Nome: </span>{{ form.nome }}
+                        </div>
+                        <div class="form-group">
+                            <span>Estado: </span>{{ form.estado }}
+                        </div>
+                        <div class="form-group">
+                            <span>Cidade: </span>{{ form.cidade }}
+                        </div>
+                        <div class="form-group">
+                            <span>Bairro: </span>{{ form.bairro }}
+                        </div>
+                        <div class="form-group">
+                            <span>Rua: </span>{{ form.rua }}
+                        </div>
+                        <div class="form-group">
+                            <span>Número da casa: </span>{{ form.numero }}
+                        </div>
+
+                        {% if perms.accounts.inst %}
+                            <div class="form-group">
+                                <span>Função na instituição: </span>{{ form.funcaoAdm }}
+                            </div>
+                        {% else %}
+                            <div class="form-group">
+                                <span>Trabalho: </span>{{ form.trabalho }}
+                            </div>
+                        {% endif %}
+
+                        {% if perms.accounts.inst %}
+                            <div class="form-group">
+                                <span>Data de inicio da função: </span>{{ form.dtaDeFuncaoAdm }}
+                            </div>
+                        {% else %}
+                            <div class="form-group">
+                                <span>Formação: </span>{{ form.formacao }}
+                            </div>
+                        {% endif %}
+
+                        {% if perms.accounts.inst %}
+                            <div class="form-group">
+                                <span>Data de nascimento: </span>{{ form.idade}} 
+                            </div>
+                        {% else %}
+                            <div class="form-group">
+                                <span>Sexo: </span>{{ form.sexo }}
+                            </div>
+                        {% endif %}
+
+                        {% if perms.accounts.inst %}
+                            <div class="form-group">
+                                <span>Email: </span>{{ form.emailAdm }}
+                            </div>
+                        {% else %}
+                            <div class="form-group">
+                                <span>Habilidades: </span>{{ form.habilidades }}
+                            </div>
+                        {% endif %}
+
+                        {% if perms.accounts.inst %}
+                            <div class="form-group">
+                                <span>Cpf: </span>{{ form.cpf }}
+                            </div>
+                        {% else %}
+                            <div class="form-group">
+                                <span>Foto: </span>{{ form.banner }} 
+                            </div>
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="col s12">
+                                <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="field">
+                            <p class="control">
+                                <button type="submit" class="btn mb-1 btn-rounded btn-success"><span class="btn-icon-left"><i class="fa fa-upload color-success"></i> </span>Enviar</button> 
+                            </p>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+
     </div>
-    {% endif %}
-    {% if perms.accounts.inst %}
-    <div class="form-group">
-                      {{ form.emailAdm }}<span>Email </span>
-                       </div>
-
-   {% else %}
-   <div class="form-group">
-                    {{ form.habilidades }}<span>Habilidades </span>
+    <br> <br><br> <br>
 </div>
-   {% endif %}
-   {% if perms.accounts.inst %}
-   <div class="form-group">
-           {{ form.cpf }}<span>Cpf </span>
-                      </div>
 
-  {% else %}
-  <div class="form-group">
-   {{ form.banner }} <span>Foto </span>
-</div>
-  {% endif %}
-  <div class="row">
-    <div class="col s12">
-      <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
-    </div>
-  </div>
-
-      <div class="field">
-      <p class="control">
-        <button type="submit" class="btn mb-1 btn-rounded btn-success"><span class="btn-icon-left"><i class="fa fa-upload color-success"></i> </span>Enviar</button> 
-      </p>
-    </div>
-  
-
-
-
-    </form>
-  </div>
-</div>
-</div>
-</div></div>
 
 {% endblock %}

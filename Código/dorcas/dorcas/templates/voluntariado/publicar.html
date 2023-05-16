@@ -1,58 +1,46 @@
+<!--Trabalho Feito-->
 {% extends 'templade.html' %}
 {% load bootstrap %}
 {% load static %}
 {% block publicar %}
-{% for voluntariado in voluntario %}
-<br>
-<div class="container">
-    <div class="row">
-        <div class="col-6">
-            <div class="card">
+    {% for voluntariado in voluntario %}
+    <br> <br>
+        <div class="container">
+            <div class="card col-lg-6 col-xl-6 mx-auto mb-3">
                 <div class="card-body">
-                   <b> <center>   {{ voluntariado.titulo }}</center></b>
+                <h5 class="card-title text-center">{{ voluntariado.titulo }}</h5>
                 <br>
-<br>
-<b>Horário:</b>{{ voluntariado.horario}}
-<br>
-<b>Função:</b>{{ voluntariado.funcao }}
-<br>
-<b>Quantidade de vagas:</b>{{ voluntariado.qnt }}
-<br>
-<b>Tempo necessario:</b>{{ voluntariado.tempo }}
-<br>
-<b>Idade mínima:</b>{{ voluntariado.idademin }}
-<br>
-<b>Cidade:</b>{{ voluntariado.cidade }}
-<br>
-<b>Rua:</b>{{ voluntariado.rua }}
-<br>
-<b>Número:</b>{{ voluntariado.numero }}
-<br>
-<b>Bairro:</b>{{ voluntariado.bairro }}<br>
-<b>Telefone:</b>{{ voluntariado.telefone }}<br><br>
-                
-
- <div class="card-action">
-         <a href="/voluntariado/{{ voluntariado.id}}/favo">ver vaga   {{ voluntario.favoC }}</a>
-      
-
-
-{% if request.user.is_authenticated %}
-
-{% if user == voluntariado.user or perms.voluntariado.inst%}
-<a href="/voluntariado/excluir/{{ voluntariado.id}}"><button type="submit"  class="btn mb-1 btn-rounded btn-success">EXCLUIR</button></a>
-{%endif%}{%endif%}
-{% if request.user.is_authenticated %}
-
-{% if user == voluntariado.user or perms.voluntariado.inst%}
-<a href="/voluntariado/editar/{{ voluntariado.id}}"><button type="submit" class="btn mb-1 btn-rounded btn-success">EDITAR</button></a>
-{%endif%}{%endif%}
-                </div></div>
+                <ul class="list-unstyled">
+                    <li class="list-group-item"><b>Horário:</b> {{ voluntariado.horario }}</li>
+                    <li class="list-group-item"><b>Função:</b> {{ voluntariado.funcao }}</li>
+                    <li class="list-group-item"><b>Quantidade de vagas:</b> {{ voluntariado.qnt }}</li>
+                    <li class="list-group-item"><b>Tempo necessário:</b> {{ voluntariado.tempo }}</li>
+                    <li class="list-group-item"><b>Idade mínima:</b> {{ voluntariado.idademin }}</li>
+                    <li class="list-group-item"><b>Cidade:</b> {{ voluntariado.cidade }}</li>
+                    <li class="list-group-item"><b>Rua:</b> {{ voluntariado.rua }}</li>
+                    <li class="list-group-item"><b>Número:</b> {{ voluntariado.numero }}</li>
+                    <li class="list-group-item"><b>Bairro:</b> {{ voluntariado.bairro }}</li>
+                    <li class="list-group-item"><b>Telefone:</b> {{ voluntariado.telefone }}</li>
+                </ul>
+                {% if request.user.is_authenticated %}
+                    {% if user == voluntariado.user or perms.voluntariado.inst %}
+                    <a href="/voluntariado/excluir/{{ voluntariado.id }}">
+                        <button type="button" class="btn btn-outline-danger text-whiter">Excluir</button>
+                    </a>
+                    <a href="/voluntariado/editar/{{ voluntariado.id }}">
+                        <button type="button" class="btn btn-outline-success">Editar</button>
+                    </a>
+                    {% endif %}
+                {% endif %}
+                <a href="/voluntariado/{{ voluntariado.id }}/favo" class="btn btn-outline-primary">
+                    Ver vaga {{ voluntariado.favoC }}
+                </a>
+                </div>
+            </div>
+            <br> <br><br>
         </div>
-    </div>
-</div>    
-<br>  
+        <br> <br> 
 
-{% endfor %}
-
+    {% endfor %}
 {% endblock %}
+

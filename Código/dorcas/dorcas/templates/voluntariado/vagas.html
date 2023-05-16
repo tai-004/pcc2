@@ -1,43 +1,78 @@
+<!--Trabalho Feito-->
 {% extends 'templade.html' %}
 {% load bootstrap %}
 {% load static %}
 {% block detalhar %}
 
-<br>
-<div class="container">
+  <br><br>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-6 col-xl-6 mx-auto">
+              <div class="card text-center">
+                  <div class="card-body">
+                      <h2 class="card-title text-center">{{ voluntario.titulo }}</h2>
+                      <br>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item"><b>Horário:</b> {{ voluntario.horario}}</li>
+                          <li class="list-group-item"><b>Função:</b> {{ voluntario.funcao }}</li>
+                          <li class="list-group-item"><b>Quantidade de vagas:</b> {{ voluntario.qnt }}</li>
+                          <li class="list-group-item"><b>Tempo necessário:</b> {{ voluntario.tempo }}</li>
+                          <li class="list-group-item"><b>Idade mínima:</b> {{ voluntario.idademin }}</li>
+                          <li class="list-group-item"><b>Cidade:</b> {{ voluntario.cidade }}</li>
+                          <li class="list-group-item"><b>Rua:</b> {{ voluntario.rua }}</li>
+                          <li class="list-group-item"><b>Número:</b> {{ voluntario.numero }}</li>
+                          <li class="list-group-item"><b>Bairro:</b> {{ voluntario.bairro }}</li>
+                          <li class="list-group-item"><b>Telefone:</b> {{ voluntario.telefone }}</li>
+                      </ul>
+                      <p class="card-text mt-3">{{ voluntario.favoC }} voluntários cadastrados. Aguarde a resposta da instituição!</p>
+                      <p class="card-text mt-3">{{ voluntario.aceitar_count }} voluntários Aceitos.</p>
+                  </div>
+                  
+              </div>
+              <br> <br><br>
+          </div>
+          <br><br>
+      </div>
+  </div>
+
+{% endblock %}
+
+
+  
+<!-- <div class="container">
     <div class="row">
 
 <div class="col-lg-8 col-xl-9">
         <div class="col-6">
+
             <div class="card">
                 <div class="card-body">
                 <b> <center>   {{ voluntario.titulo }}</center></b>
                 <br>
 <br>
-<b>Horário:</b>{{ voluntario.horario}}
+<b>Horário: </b>{{ voluntario.horario}}
 <br>
-<b>Função:</b>{{ voluntario.funcao }}
+<b>Função: </b>{{ voluntario.funcao }}
 <br>
-<b>Quantidade de vagas:</b>{{ voluntario.qnt }}
+<b>Quantidade de vagas: </b>{{ voluntario.qnt }}
 <br>
-<b>Tempo necessario:</b>{{ voluntario.tempo }}
+<b>Tempo necessario: </b>{{ voluntario.tempo }}
 <br>
-<b>Idade mínima:</b>{{ voluntario.idademin }}
+<b>Idade mínima: </b>{{ voluntario.idademin }}
 <br>
-<b>Cidade:</b>{{ voluntario.cidade }}
+<b>Cidade: </b>{{ voluntario.cidade }}
 <br>
-<b>Rua:</b>{{ voluntario.rua }}
+<b>Rua: </b>{{ voluntario.rua }}
 <br>
-<b>Número:</b>{{ voluntario.numero }}
+<b>Número: </b>{{ voluntario.numero }}
 <br>
-<b>Bairro:</b>{{ voluntario.bairro }}<br>
-<b>Telefone:</b>{{ voluntario.telefone }}<br><br>
+<b>Bairro: </b>{{ voluntario.bairro }}<br>
+<b>Telefone: </b>{{ voluntario.telefone }}<br><br>
                 
-  {{ voluntario.favoC }} - Cadastrados<br><b>Aguarde a resposta da intituição!</b>
+  {{ voluntario.favoC }} - Cadastrados<br><b>Aguarde a resposta da instituição!</b>
 
-  <!--{{ voluntario.aceitar_count }}-->
-
-
+{{ voluntario.aceitar_count }}-->
 
 
-{% endblock %}
+
+

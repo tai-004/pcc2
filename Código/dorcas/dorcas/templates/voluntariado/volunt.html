@@ -1,51 +1,41 @@
+<!--Trabalho Feito-->
 {% extends 'templade.html' %}
 {% load bootstrap %}
 {% load static %}
 {% block voluntario %}
 {% for voluntariado in voluntario %}
 
-<br>
-<div class="container">
-    <div class="row">
-
-<div class="col-lg-8 col-xl-9">
-        <div class="col-6">
+    <br> <br> <br>
+    <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-9">
             <div class="card">
-                <div class="card-body">
-                <b> <center>   {{ voluntariado.titulo }}</center></b>
-                <br>
-<br>
-<b>Horário:</b>{{ voluntariado.horario}}
-<br>
-<b>Função:</b>{{ voluntariado.funcao }}
-<br>
-<b>Quantidade de vagas:</b>{{ voluntariado.qnt }}
-<br>
-<b>Tempo necessario:</b>{{ voluntariado.tempo }}
-<br>
-<b>Idade mínima:</b>{{ voluntariado.idademin }}
-<br>
-<b>Cidade:</b>{{ voluntariado.cidade }}
-<br>
-<b>Rua:</b>{{ voluntariado.rua }}
-<br>
-<b>Número:</b>{{ voluntariado.numero }}
-<br>
-<b>Bairro:</b>{{ voluntariado.bairro }}<br>
-<b>Telefone:</b>{{ voluntariado.telefone }}<br><br>
-                
-<br>                
-
-    
-      <b>   <a href="/voluntariado/{{ voluntariado.id}}/favo">Cadastrar   {{ voluntario.favoC }}</a></b>
-
-
-    </div></div>
-                </div></div>
-       
-    </div></div>
-</div>  
-
+              <div class="card-body">
+                <h4 class="text-center mb-4">{{ voluntariado.titulo }}</h4>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Horário:</b> {{ voluntariado.horario }}</li>
+                  <li class="list-group-item"><b>Função:</b> {{ voluntariado.funcao }}</li>
+                  <li class="list-group-item"><b>Quantidade de vagas:</b> {{ voluntariado.qnt }}</li>
+                  <li class="list-group-item"><b>Tempo necessário:</b> {{ voluntariado.tempo }}</li>
+                  <li class="list-group-item"><b>Idade mínima:</b> {{ voluntariado.idademin }}</li>
+                  <li class="list-group-item"><b>Cidade:</b> {{ voluntariado.cidade }}</li>
+                  <li class="list-group-item"><b>Rua:</b> {{ voluntariado.rua }}</li>
+                  <li class="list-group-item"><b>Número:</b> {{ voluntariado.numero }}</li>
+                  <li class="list-group-item"><b>Bairro:</b> {{ voluntariado.bairro }}</li>
+                  <li class="list-group-item"><b>Telefone:</b> {{ voluntariado.telefone }}</li>
+                </ul>
+                <div class="text-center my-4">
+                  <a href="/voluntariado/{{ voluntariado.id }}/favo" class="btn btn-outline-danger"><i class="mdi mdi-heart-outline"></i>
+                    Cadastrar <span class="badge bg-light">{{ voluntario.favoC }}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <br> <br> <br>
+          </div>
+        </div>
+      </div>
+      
 
 
 {% endfor %}

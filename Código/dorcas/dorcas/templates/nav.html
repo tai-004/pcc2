@@ -1,11 +1,108 @@
-<div class="nav-header">
-    <div class="brand-logo">
-        <a href="index.html">
-            <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-            <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
-            <span class="brand-title">
-                <img src="images/logo-text.png" alt="">
-            </span>
-        </a>
+<!--Criei uma navbar propria-->
+
+<!--<nav class="navbar p-4 navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4">
+        <a class="navbar-brand" href="#">Sistema Dorcas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
+                <div class="header-right">
+                    <ul class="clearfix">
+                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
+                                <i class="mdi mdi-email-outline"></i></a>
+                            <div class="drop-down animated fadeIn dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(410px, 66px, 0px);">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li class="notification-unread">
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="images/avatar/2.jpg" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Adam Smith</font></font></div>
+                                                    <div class="notification-timestamp"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">08 horas atrás</font></font></div>
+                                                    <div class="notification-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Você pode me fazer um favor?</font></font></div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>                                 
+                                </div>
+                            </div>
+                        </li>
+                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                                <i class="mdi mdi-bell-outline"></i>
+                            </a>
+                            <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
+                                <div class="dropdown-content-heading d-flex justify-content-between">
+                                </div>
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
+                                                <div class="notification-content">
+                                                    <h6 class="notification-heading"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Evento iniciado</font></font></h6>
+                                                    <span class="notification-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Uma hora atrás</font></font></span> 
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                        <li class="icons dropdown">
+                            <div class="user-img c-pointer position-relative" data-toggle="dropdown">
+                                <img src="images/user/1.png" height="40" width="40" alt="">
+                            </div>
+                            <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="app-profile.html"><i class="icon-user"></i> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Perfil</font></font></span></a>
+                                        </li>
+                                        <li><a href="page-login.html"><i class="icon-key"></i> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sair</font></font></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
     </div>
-</div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #dd1727;">
+    <div class="container">
+      <a class="navbar-brand" href="#">Sistema Dorcas</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/accounts/login">Login</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Cadastre-se
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/accounts/registrar">Usuário</a>
+              <a class="dropdown-item" href="/accounts/instituicao">Instituição</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Perfil
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/accounts/apresenteprofile"><i class="icon-user"></i> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apresentar Perfil</font></font></span></a>
+              <a class="dropdown-item" href="/accounts/instituicao_profile/"><i class="icon-user"></i> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cadastrar Instituição</font></font></span></a>
+              <a class="dropdown-item" href="/accounts/login"><i class="icon-key"></i> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sair</font></font></span></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>-->

@@ -1,4 +1,5 @@
-!-- LIKES -->
+<!--Não mexi ainda pq não consegui acessar-->
+<!-- LIKES -->
 {% if user.is_authenticated %}
   <form action="{% url 'blogpost_like' object.id %}" method="POST">
     {% csrf_token %}

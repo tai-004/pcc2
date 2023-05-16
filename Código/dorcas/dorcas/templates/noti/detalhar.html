@@ -1,3 +1,4 @@
+<!--Ainda falta mexer eu acho-->
 {% extends 'templade.html' %}
 {% load static %}
 
@@ -6,7 +7,7 @@
 <br><br>
 
 
-  <div class="row">
+ <!---- <div class="row">
                     <div class="col-6">
                          <div class="card card-widget">
                             <div class="card-body">
@@ -71,6 +72,63 @@
 
       
 
-<br><br>
+<br><br>-->
+
+<div class="col-12">
+    <div class="card border-0 shadow-sm ">
+      <div class="card-body ">
+        <div class="text-center">
+          <h4 class="card-title font-weight-bold mb-4">Perfil - Currículo</h4>
+          {% if notifi.sender.profile.banner %}
+            <img src="{{ notifi.sender.profile.banner.url }}" class="rounded-circle img-fluid mb-3" alt="Foto do perfil">
+          {% else %}
+            {% if notifi.sender.instituicao.picture %}
+              <img src="{{ notifi.sender.instituicao.picture.url }}" class="rounded-circle img-fluid mb-3" alt="Foto da instituição">
+            {% endif %}
+          {% endif %}
+          <h4 class="card-widget__title text-dark">{{ notifi.sender.profile.nome }}</h4>
+          <p class="text-muted">@{{ notifi.sender.username }}</p>
+          <a class="btn btn-outline-success btn-lg btn-rounded px-5" href="/voluntariado/{{ notifi.voluntario.id }}/pedir">Aceitar</a>
+        </div>
+      </div>
+      <div class="card-footer bg-transparent">
+        <div class="row">
+          <div class="col-4 border-right">
+           
+          </div>
+        
+         
+        </div>
+        <div class="row">
+          <div class="col-4 border-right">
+            <div class="py-3">
+              <h6 class="font-weight-bold">Habilidades</h6>
+              <p class="text-muted">{{ notifi.sender.profile.habilidades }}</p>
+            </div>
+          </div>
+          <div class="col-4 border-right">
+            <div class="py-3">
+              <h6 class="font-weight-bold">Sexo</h6>
+              <p class="text-muted">{{ notifi.sender.profile.sexo }}</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="py-3">
+              <h6 class="font-weight-bold">Formação</h6>
+              <p class="text-muted">{{ notifi.sender.profile.formacao }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer style="background-color: #dd1727;" class="footer text-center py-3" >
+    <p class="text-white">Copyright © 
+        <script>
+            document.write(new Date().getFullYear());
+        </script> 
+        Sistema Dorcas. Todos os direitos reservados.
+    </p>
+</footer>
 
 {% endblock %}
