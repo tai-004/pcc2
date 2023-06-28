@@ -1,0 +1,52 @@
+
+{% load bootstrap %}
+{% load static %}
+{% block tabela_notis %}
+    
+    <br> <br>
+         <br> <br>
+
+          <table class="table table-striped">
+  <thead>
+    <tr>
+    
+      <th scope="col">Usuario</th>
+      <th scope="col">Nome do Instituição</th>
+      <th scope="col">Telefone do voluntario</th>
+      <th scope="col">Data de aceite</th>
+      <th scope="col">Função na instituição</th>
+      <th scope="col">Desempenho</th>
+      <th scope="col">Nota</th>
+ 
+
+    </tr>
+  </thead>
+  <tbody>{% for tabela_notis in tabela_notis %}
+    <tr>
+      
+      <td>@{{tabela_notis.user.username  }}: {{tabela_notis.user.first_name  }} {{tabela_notis.user.last_name  }}</td>
+      <td>@{{tabela_notis.sender.username  }}: {{tabela_notis.sender.first_name  }} {{tabela_notis.sender.last_name  }} </td>
+      <td>{{ tabela_notis.user.curriculo.telefone }}</td>
+      <td>{{ tabela_notis.data }}</td>
+     
+      <td>{{ tabela_notis.cargo }}</td>
+      <td>{{  tabela_notis.desempenho }}</td>
+      <td>{{  tabela_notis.nota }}</td>
+
+    </tr>
+
+      {% if request.user.is_authenticated %}
+                    
+                    <a href="/noti/desempenho/{{ tabela_notis.id }}">
+
+                        <button type="button" class="btn btn-outline-danger text-whiter">Avalie seu voluntario.</button>
+                    </a>
+                   
+                 
+                {% endif %}
+       {% endfor %}
+  </tbody>
+</table>
+ 
+{% endblock %}
+

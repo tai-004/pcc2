@@ -1,0 +1,70 @@
+
+{% load bootstrap %}
+{% load static %}
+{% block publicarDoacao %}
+
+<style>
+  .column {
+    width: 30.33%;
+    float: left;
+    padding: 40px;
+
+  }
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+</style>
+
+<div class="clearfix">
+{% for doacao in doacao %}   
+ <div class="column">
+     
+   <b>Titulo:</b>   <h4>{{ doacao.titulo }}</h4>
+ <b>Categoria:</b>     <p>{{ doacao.categoria }}</p>
+ <b>Qual outro tipo?</b>     <p>{{ doacao.outro }}</p>
+  <b>Descrição:</b>    <p>{{ doacao.descricao }}</p>
+   <b>Finalidade:</b>   <p>{{ doacao.finalidade }}</p>
+    <b>Estado:</b>  <p>{{ doacao.estado }}</p>
+    <b>Cidade:</b>   <p>{{ doacao.cidade }}</p>
+   <b>Bairro:</b>    <p>{{ doacao.bairro }}</p>
+    <b>Rua:</b>    <p>{{ doacao.rua }}</p>
+    <b>Número:</b>   <p>{{ doacao.numero }}</p>
+    <b>Data:</b>   <p>{{ doacao.data }}</p>
+      <a href="/doacao/{{ doacao.id }}/pedir">ver vaga</a>
+    </div>
+  {% endfor %}
+</div>
+    
+ 
+ 
+      {% for dinheiro in dinheiro %}
+
+    <br> <br>
+        <div class="container">
+            <div class="card col-lg-6 col-xl-6 mx-auto mb-3">
+                <div class="card-body">
+                <h5 class="card-title text-center">{{ dinheiro.titulo }}</h5>
+                <br>
+                <ul class="list-unstyled">
+                    <li class="list-group-item"><b>Titulo:</b> {{ dinheiro.titulo }}</li>
+                    <li class="list-group-item"><b>Chave Pix:</b> {{ dinheiro.chavePix}}</li>
+                    <li class="list-group-item"><b>Nome da Chave:</b> {{ dinheiro.nomeChave }}</li>
+                    <li class="list-group-item"><b>Descrição:</b> {{ dinheiro.descricao }}</li>
+
+                    <li class="list-group-item"><b>Data:</b> {{ dinheiro.data }}</li>
+                </ul>
+               
+                <a href="/voluntariado/{{ voluntariado.id }}/favo" class="btn btn-outline-primary">
+                    Ver vaga {{ voluntariado.favoC }}
+                </a>
+                </div>
+            </div>
+            <br> <br><br>
+        </div>
+        <br> <br> 
+
+    {% endfor %}
+{% endblock %}
+

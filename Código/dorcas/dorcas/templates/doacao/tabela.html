@@ -1,0 +1,57 @@
+
+{% load bootstrap %}
+{% load static %}
+{% block publicarDoacao %}
+
+    {% for tabela in tabela %}
+          <br> <br>
+
+          <table class="table table-striped">
+  <thead>
+    <tr>
+    
+      <th scope="col">Titulo</th>
+      <th scope="col">Data de postagem da campanha</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Nome da Instituição</th>
+      <th scope="col">Data de doação</th>
+      <th scope="col">Data de entrega</th>
+      <th scope="col">Quantidade a ser doada</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td>{{ tabela.doacao.titulo }}</td>
+      <td>{{ tabela.doacao.data }}</td>
+      <td>{{ tabela.doacao.categoria }}</td>
+      <td>{{ tabela.doacao.descricao }}</td>
+      <td>{{ tabela.user.username }}</td>
+      <td>{{ tabela.data }}</td>
+      <td>{{ tabela.dataEntrega }}</td>
+      <td>{{ tabela.quantidade }}</td>
+    </tr>
+    
+  </tbody>
+</table>
+     
+                {% if request.user.is_authenticated %}
+                    {% if sender == doacao.sender %}
+                    <a href="/doacao/doeEdit/{{ tabela.id }}">
+
+                        <button type="button" class="btn btn-outline-danger text-whiter">Confirme a sua entrega.</button>
+                    </a>
+                   
+                    {% endif %}
+                {% endif %}
+               
+                </div>
+            </div>
+            <br> <br><br>
+        </div>
+        <br> <br> 
+
+    {% endfor %}
+{% endblock %}

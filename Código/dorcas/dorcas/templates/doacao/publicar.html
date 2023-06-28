@@ -1,0 +1,95 @@
+
+{% load bootstrap %}
+{% load static %}
+{% block publicarDoacao %}
+
+
+  {% for doacao in doacao %}
+   
+    <br> <br>
+        <div class="container">
+            <div class="card col-lg-6 col-xl-6 mx-auto mb-3">
+                <div class="card-body">
+                <h5 class="card-title text-center">{{ doacao.titulo }}</h5>
+                <br>
+                <ul class="list-unstyled">
+                    <li class="list-group-item"><b>Titulo:</b> {{ doacao.titulo }}</li>
+                    <li class="list-group-item"><b>Categoria:</b> {{ doacao.categoria}}</li>
+                    <li class="list-group-item"><b>Qual outro tipo?</b> {{ doacao.outro }}</li>
+                    <li class="list-group-item"><b>Descrição:</b> {{ doacao.descricao }}</li>
+                    <li class="list-group-item"><b>Finalidade:</b> {{ doacao.finalidade }}</li>
+                    <li class="list-group-item"><b>Estado:</b> {{ doacao.estado }}</li>
+                    <li class="list-group-item"><b>Cidade:</b> {{ doacao.cidade }}</li>
+                    <li class="list-group-item"><b>Bairro:</b> {{ doacao.bairro }}</li>
+                    <li class="list-group-item"><b>Rua:</b> {{ doacao.rua }}</li>
+                    <li class="list-group-item"><b>Número:</b> {{ doacao.numero }}</li>
+
+                    <li class="list-group-item"><b>Data:</b> {{ doacao.data }}</li>
+                </ul>
+                {% if request.user.is_authenticated %}
+                    {% if user == doacao.user %}
+                    <a href="/doacao/excluir/{{ doacao.id }}">
+
+                        <button type="button" class="btn btn-outline-danger text-whiter">Excluir</button>
+                    </a>
+                    <a href="/doacao/atualizar/{{ doacao.id }}">
+                        <button type="button" class="btn btn-outline-success">Editar</button>
+                    </a>
+                    {% endif %}
+                {% endif %}
+                <a href="/voluntariado/{{ voluntariado.id }}/favo" class="btn btn-outline-primary">
+                    Ver vaga {{ voluntariado.favoC }}
+                </a>
+                </div>
+            </div>
+            <br> <br><br>
+        </div>
+        <br> <br> 
+
+  {% endfor %}
+
+
+
+
+
+
+     {% for dinheiro in dinheiro %}
+
+    <br> <br>
+        <div class="container">
+            <div class="card col-lg-6 col-xl-6 mx-auto mb-3">
+                <div class="card-body">
+                <h5 class="card-title text-center">{{ dinheiro.titulo }}</h5>
+                <br>
+                <ul class="list-unstyled">
+                    <li class="list-group-item"><b>Titulo:</b> {{ dinheiro.titulo }}</li>
+                    <li class="list-group-item"><b>Chave Pix:</b> {{ dinheiro.chavePix}}</li>
+                    <li class="list-group-item"><b>Nome da Chave:</b> {{ dinheiro.nomeChave }}</li>
+                    <li class="list-group-item"><b>Descrição:</b> {{ dinheiro.descricao }}</li>
+
+                    <li class="list-group-item"><b>Data:</b> {{ dinheiro.data }}</li>
+                </ul>
+                     {% if request.user.is_authenticated %}
+                    {% if user == dinheiro.user %}
+                    <a href="/doacao/apagar/{{ dinheiro.id }}">
+
+                        <button type="button" class="btn btn-outline-danger text-whiter">Excluir</button>
+                    </a>
+                    <a href="/doacao/editar/{{ dinheiro.id }}">
+                        <button type="button" class="btn btn-outline-success">Editar</button>
+                    </a>
+                    {% endif %}
+                {% endif %}
+               
+                <a href="/voluntariado/{{ voluntariado.id }}/favo" class="btn btn-outline-primary">
+                    Ver vaga {{ voluntariado.favoC }}
+                </a>
+                </div>
+            </div>
+            <br> <br><br>
+        </div>
+        <br> <br> 
+
+    {% endfor %}
+{% endblock %}
+

@@ -11,9 +11,10 @@ urlpatterns = [
     path('', include ('index.urls')), #url da pagina index dlogo apos o login
     path('responsavel/', include ('responsavel.urls')), #url do app do responsavel menor de idade
     path('voluntariado/', include ('voluntariado.urls')), 
+    path('doacao/', include ('doacao.urls')),
     path('noti/', include ('noti.urls')), #url do app do responsavel menor de idade
    # path('<username>/', perfil, name='profile'),
-    path('<username>/', perfilInstituicao, name='profile'),
+    path('<username>/', perfilInstituicao, name='perfil_instituicao'),
     path('instituicao/', include ('instituicao.urls')), 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

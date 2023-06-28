@@ -1,11 +1,20 @@
-<!--Trabalho Feito-->
-{% extends 'templade.html' %}
 {% load bootstrap %}
 {% load static %}
-{% block voluntario %}
+{% block voluntario %} 
+
+
+<form method="get" action="{% url 'postarTudo' %}">
+  {{ form }}
+  <button type="submit">Pesquisar</button>
+</form>
+
+
 {% for voluntariado in voluntario %}
 
     <br> <br> <br>
+    
+
+
     <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-8 col-xl-9">
@@ -24,11 +33,15 @@
                   <li class="list-group-item"><b>Bairro:</b> {{ voluntariado.bairro }}</li>
                   <li class="list-group-item"><b>Telefone:</b> {{ voluntariado.telefone }}</li>
                 </ul>
+   {% if request.user.is_authenticated %}
+                    {% if  perms.accounts.atual %}
                 <div class="text-center my-4">
                   <a href="/voluntariado/{{ voluntariado.id }}/favo" class="btn btn-outline-danger"><i class="mdi mdi-heart-outline"></i>
                     Cadastrar <span class="badge bg-light">{{ voluntario.favoC }}</span>
                   </a>
                 </div>
+  {% endif %}  {% endif %}
+
               </div>
             </div>
             <br> <br> <br>

@@ -1,4 +1,3 @@
-<!--Não mexi nessa-->
 {% extends 'templade.html' %}
 {% load bootstrap %}
 {% load static %}
@@ -19,8 +18,16 @@
                         {% if perms.accounts.atual %}
                             <ul>
                                 <li><a href="/accounts/profile" > <button type="button" class="btn btn-outline-danger px-4">Editar Perfil</button></a></li>
+                               
                                 <li><a href="/voluntariado/"><button type="button" class="btn btn-outline-danger px-4">Vagas de voluntário disponivel</button></a></li>
+                                <li><a href="/doacao/tabela/"><button type="button" class="btn btn-outline-danger px-4">Minhas doações</button></a></li>
+                                <li><a href="/doacao/"><button type="button" class="btn btn-outline-danger px-4">Doações disponivel</button></a></li>
+                                <li><a href="/voluntariado/criarCurriculo"><button type="button" class="btn btn-outline-danger px-4">Criar Curriculo</button></a></li>
+
                             </ul>
+                        {% endif %}
+                        {% if perms.accounts.responsavelMenor %}
+                         <li><a href="/responsavel/responsavel"><button type="button" class="btn btn-outline-danger px-4">Preencher responsavel </button></a></li>
                         {% endif %}
                     {% endif %}
                     <br>

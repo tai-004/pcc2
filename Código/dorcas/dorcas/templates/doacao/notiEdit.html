@@ -1,0 +1,32 @@
+
+{% load bootstrap %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block criarDoacao %}
+<form method="post" enctype="multipart/form-data" action="" role="form">
+                    {% csrf_token %}
+                   
+                    <div class="form-group">
+                                          {{ form.dataEntrega }}<span>Data de entrega.</span>
+                                       </div>
+                    <div class="form-group">
+                                    {{ form.quantidade }}<span>Quantidade de doação.</span>
+                                       </div>
+                  
+  
+  <div class="row">
+    <div class="col s12">
+      <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
+    </div>
+  </div>
+
+
+      <div class="field">
+      <p class="control">
+        <button type="submit" class="btn mb-1 btn-rounded btn-success">Enviar</button> 
+      </p>
+    </div>
+
+    </form>
+
+{% endblock %}

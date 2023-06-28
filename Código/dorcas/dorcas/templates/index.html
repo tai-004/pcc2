@@ -1,7 +1,4 @@
-<!--PÁGINA APÓS O LOGINNNNNNNNNNNNNNNNNNNNNNNNNNN   ###############################################################################
-##########################################################
-#######################-->
-<!--Trabalho Feito - Duas páginas após o login??-->
+
 {% load static %}
 {%load bootstrap%}
 
@@ -36,6 +33,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #dd1727;">
         <div class="container">
             <a class="navbar-brand" href="#">Sistema Dorcas</a>
+
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -44,8 +43,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/home/"> <span class="mdi mdi-home-outline" style="font-size: 24px;" title="Home"></span></a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="/noti/"> <span class="mdi mdi-bell-outline" style="font-size: 24px;" title="Notificações"></span></a>
+                        <a class="nav-link" href="/noti/"> <span class="mdi mdi-bell-outline" style="font-size: 24px;" title="Notificações">{{som}}</span></a>
                     </li>
                     {% if request.user.is_authenticated %}
                         {% if perms.accounts.inst %}
@@ -55,8 +55,14 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/voluntariado/newpost/" ><i class="mdi mdi-account-plus" style="font-size: 20px;"></i> Novo Voluntário</a>
-                            <a class="dropdown-item" href="/voluntariado/"> <i class="mdi mdi-account-search" style="font-size: 20px;"></i> Vagas Disponíveis</a>
-                            <a class="dropdown-item" href="/voluntariado/publicar/"><i class="mdi mdi-account-multiple" style="font-size: 20px;"></i> Minhas Vagas</a>
+                             <a class="dropdown-item" href="/doacao/adiciona/" ><i class="mdi mdi-account-plus" style="font-size: 20px;"></i> Nova Doação em Dinheiro</a>
+                            <a class="dropdown-item" href="/doacao/criar/" ><i class="mdi mdi-account-plus" style="font-size: 20px;"></i> Nova Doação</a>
+                            <a class="dropdown-item" href="/doacao/"> <i class="mdi mdi-account-search" style="font-size: 20px;"></i> Realize Doações</a>
+                            <a class="dropdown-item" href="/voluntariado/"> <i class="mdi mdi-account-search" style="font-size: 20px;"></i> Vagas De voluntariado</a>
+                            <a class="dropdown-item" href="/voluntariado/publicar/"><i class="mdi mdi-account-multiple" style="font-size: 20px;"></i> Minhas Vagas de voluntariado</a>
+                             <a class="dropdown-item" href="/doacao/publicar/"><i class="mdi mdi-account-multiple" style="font-size: 20px;"></i> Minhas doações</a>
+                              <a class="dropdown-item" href="/doacao/tabela/intituicao/"><i class="mdi mdi-account-multiple" style="font-size: 20px;"></i> Doações realizadas</a>
+                              <a class="dropdown-item" href="/noti/tabela_notis/"><i class="mdi mdi-account-multiple" style="font-size: 20px;"></i> Voluntarios aceitos</a>
                             </div>
                         </li>
                         {% endif %}
@@ -75,21 +81,22 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {% if request.user.is_authenticated %}
-                                {% if perms.accounts.inst %}
-                                    <a class="dropdown-item" href="/accounts/apresenteprofile"><i class="mdi mdi-account" style="font-size: 20px;"></i> Ver Perfil</a>
+                                {% if perms.accounts.atual %} 
+                                    <a class="dropdown-item" href="/accounts/perfil_user_simples/"><i class="mdi mdi-account" style="font-size: 20px;"></i> Ver Perfil</a>
                                 {% endif %}
-                                <a  class="dropdown-item" href="/accounts/perfilapresente/"><i class="mdi mdi-account" style="font-size: 20px;"></i> <span>Ver perfil</span></a>
-                            {% endif %}
+                                {% if perms.accounts.inst %}
+                                <a  class="dropdown-item" href="/accounts/perfil_instituicao/"><i class="mdi mdi-account" style="font-size: 20px;"></i> <span>Ver Perfil</span></a>
+                            {% endif %}{% endif %}
                             {% if request.user.is_authenticated %}
                                 {% if perms.accounts.inst %}
                                     <a class="dropdown-item" href="/accounts/instituicao_profile/"><i class="mdi mdi-account-edit" style="font-size: 20px;"></i> Editar Perfil</a>
                                 {% endif %}
                             {% endif %}
-                            {% if request.user.is_authenticated %}
-                                {% if perms.accounts.atual %}
-                                {% endif %}
-                            {% endif %}
-                            <a class="dropdown-item" href="/accounts/login"><i class="mdi mdi-logout" style="font-size: 20px;"></i> Logout</a>
+                            
+                                                <a class="dropdown-item" href="/accounts/logout/"><i class="mdi mdi-logout" style="font-size: 20px;"></i> Sair</a>
+                                                <a class="dropdown-item" href="/accounts/pesquisar"><i class="mdi mdi-logout" style="font-size: 20px;"></i> Pesquisa</a>
+
+                                                <a class="dropdown-item" href="/accounts/sairConta/{{ user.id }}"><i class="mdi mdi-logout" style="font-size: 20px;"></i> Excluir conta</a>
                         </div>
                     </li>
                 </ul>
@@ -101,9 +108,6 @@
             </ul>
           </div>
         </div> 
-
-
-
       
 
 
@@ -131,8 +135,10 @@
         <!--*******************
             Preloader end
         ********************-->
+
         {% block text %}
-            <section class="container py-5">
+
+                       <section class="container py-5">
                 <div class="row">
                     <div class="col-md-8">
                         <h1 class="mb-4">Instituições de Caridade</h1>
@@ -149,20 +155,17 @@
             <br>
         {% endblock %}      
 
-                {% block content %}
-                {% endblock %}
-                {% block voluntario %}
-                {% endblock %}
-                <!--{% block perfil %}
-                {% endblock %}-->
-                {% block newpost %}
-                {% endblock %}
-                {% block instiprofile %}
-                {% endblock %}
-                {% block profile %}
-        {% endblock %}
+            
 
     </div>
+   
+
+    
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--
     <footer style="background-color: #dd1727;" class="text-center py-3" >
         <p class="text-white">Copyright © 
             <script>
@@ -171,7 +174,7 @@
             Sua empresa. Todos os direitos reservados.
         </p>
     </footer>
-    
+    -->
 
 </body>
 <script src="{% static 'plugins/common/common.min.js' %}"></script>

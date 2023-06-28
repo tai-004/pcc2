@@ -1,0 +1,49 @@
+
+{% load bootstrap %}
+{% load static %}
+{% block detalhar %}
+
+
+
+  <br><br>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-6 col-xl-6 mx-auto">
+              <div class="card text-center"> 
+                  <div class="card-body">
+                      <h2 class="card-title text-center">{{ doacao.titulo }}</h2>
+                      <br>
+                      <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><b>Titulo:</b> {{ doacao.titulo }}</li>
+				                    <li class="list-group-item"><b>Categoria:</b> {{ doacao.categoria}}</li>
+				                    <li class="list-group-item"><b>Qual outro tipo?</b> {{ doacao.outro }}</li>
+				                    <li class="list-group-item"><b>Descrição:</b> {{ doacao.descricao }}</li>
+				                    <li class="list-group-item"><b>Finalidade:</b> {{ doacao.finalidade }}</li>
+				                    <li class="list-group-item"><b>Estado:</b> {{ doacao.estado }}</li>
+				                    <li class="list-group-item"><b>Cidade:</b> {{ doacao.cidade }}</li>
+				                    <li class="list-group-item"><b>Bairro:</b> {{ doacao.bairro }}</li>
+				                    <li class="list-group-item"><b>Rua:</b> {{ doacao.rua }}</li>
+				                    <li class="list-group-item"><b>Número:</b> {{ doacao.numero }}</li>
+
+                    <li class="list-group-item"><b>Data:</b> {{ doacao.data }}</li>
+                      </ul>
+                     
+                      <p class="card-text mt-3">{{ doacao.cont }} Doações.</p>
+                         {% if user.is_authenticated and user == voluntariado.user %}
+                        <a href="/doacao/doeEdit/{{ doeuser.id }}">
+                        <button type="button" class="btn btn-outline-success">Editar</button>
+                    </a>{% endif %}
+                  </div>
+
+                  
+              </div> 
+              <br> <br><br>
+          </div>
+          <br><br>
+      </div>
+  </div>
+
+{% endblock %}
+
+
+  

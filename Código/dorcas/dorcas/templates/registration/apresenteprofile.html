@@ -101,48 +101,62 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/noti/"> <span class="mdi mdi-bell-outline" style="font-size: 24px;" title="Notificações"></span></a>
                 </li>
-                {% if request.user.is_authenticated %}
-                {% if perms.accounts.inst %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mdi mdi-account-multiple-plus" style="font-size: 28px;"     title="Voluntário"></span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="/voluntariado/newpost/" ><i class="mdi mdi-account-plus" style="font-size: 20px;"></i> Novo Voluntário</a>
-                      <a class="dropdown-item" href="/voluntariado/"> <i class="mdi mdi-account-search" style="font-size: 20px;"></i> Vagas Disponíveis</a>
-                      <a class="dropdown-item" href="/voluntariado/publicar/"><i class="mdi mdi-account-multiple" style="font-size: 20px;"></i> Minhas Vagas</a>
-                    </div>
-                </li>
-                {% endif %}
-            {% endif %}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Perfil">
-                    {% if user.profile.banner %}
-                        <img src="{{ user.profile.banner.url }}" alt="Foto de Perfil" class="mr-2 rounded-circle"  widht="30" height="40">
-                        {% else %}
-                        {% if user.instituicao.picture %}
-                            <img src="{{ user.instituicao.picture.url }}" alt="Foto de Perfil" class="mr-2 rounded-circle"  widht="30" height="40">
+             {% if request.user.is_authenticated %}
+                        {% if perms.accounts.inst %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mdi mdi-account-multiple-plus" style="font-size: 28px;"     title="Voluntário"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/voluntariado/newpost/" ><i class="mdi mdi-account-plus" style="font-size: 20px;"></i> Novo Voluntário</a>
+                             <a class="dropdown-item" href="/doacao/adiciona/" ><i class="mdi mdi-account-plus" style="font-size: 20px;"></i> Nova Doação em Dinheiro</a>
+                            <a class="dropdown-item" href="/doacao/criar/" ><i class="mdi mdi-account-plus" style="font-size: 20px;"></i> Nova Doação</a>
+                            <a class="dropdown-item" href="/doacao/"> <i class="mdi mdi-account-search" style="font-size: 20px;"></i> Doações Disponíveis</a>
+                            <a class="dropdown-item" href="/voluntariado/"> <i class="mdi mdi-account-search" style="font-size: 20px;"></i> Vagas Disponíveis</a>
+                            <a class="dropdown-item" href="/voluntariado/publicar/"><i class="mdi mdi-account-multiple" style="font-size: 20px;"></i> Minhas Vagas de voluntariado</a>
+                             <a class="dropdown-item" href="/doacao/publicar/"><i class="mdi mdi-account-multiple" style="font-size: 20px;"></i> Minhas doações</a>
+                              <a class="dropdown-item" href="/doacao/tabela/intituicao/"><i class="mdi mdi-account-multiple" style="font-size: 20px;"></i> Doações realizadas</a>
+                              <a class="dropdown-item" href="/noti/tabela_notis/"><i class="mdi mdi-account-multiple" style="font-size: 20px;"></i> Voluntarios aceitos</a>
+                            </div>
+                        </li>
                         {% endif %}
                     {% endif %}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {% if request.user.is_authenticated %}
-                    {% if perms.accounts.inst %}
-                        <a class="dropdown-item" href="/accounts/apresenteprofile"><i class="mdi mdi-account" style="font-size: 20px;"></i> Ver Perfil</a>
-                    {% endif %}
-                {% endif %}
-                {% if request.user.is_authenticated %}
-                    {% if perms.accounts.inst %}
-                        <a class="dropdown-item" href="/accounts/instituicao_profile/"><i class="mdi mdi-account-edit" style="font-size: 20px;"></i> Editar Perfil</a>
-                    {% endif %}
-                {% endif %}
-                  <a class="dropdown-item" href="/accounts/login"><i class="mdi mdi-logout" style="font-size: 20px;"></i> Logout</a>
-                </div>
-              </li>
+               <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Perfil">
+                            {% if user.profile.banner %}
+                                <img src="{{ user.profile.banner.url }}" alt="Foto de Perfil" class="mr-2 rounded-circle"  widht="30" height="40">
+                                {% else %}
+                                {% if user.instituicao.picture %}
+                                    <img src="{{ user.instituicao.picture.url }}" alt="Foto de Perfil" class="mr-2 rounded-circle"  widht="30" height="40">
+                                {% else %}
+                                    <img src="{% static 'images/user/dorcas.jpg'%}" alt="Foto de Perfil" class="mr-2 rounded-circle"  widht="30" height="40">
+                                {% endif %}
+                            {% endif %}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if request.user.is_authenticated %}
+                                {% if perms.accounts.atual %}
+                                    <a class="dropdown-item" href="/accounts/perfil_user_simples/"><i class="mdi mdi-account" style="font-size: 20px;"></i> Ver Perfil</a>
+                                {% endif %}
+                                {% if perms.accounts.inst %}
+                                <a  class="dropdown-item" href="/accounts/perfil_instituicao/"><i class="mdi mdi-account" style="font-size: 20px;"></i> <span>Ver Perfil</span></a>
+                            {% endif %}{% endif %}
+                            {% if request.user.is_authenticated %}
+                                {% if perms.accounts.inst %}
+                                    <a class="dropdown-item" href="/accounts/instituicao_profile/"><i class="mdi mdi-account-edit" style="font-size: 20px;"></i> Editar Perfil</a>
+                                {% endif %}
+                            {% endif %}
+                            
+                                                <a class="dropdown-item" href="/accounts/logout/"><i class="mdi mdi-logout" style="font-size: 20px;"></i> Sair</a>
+                                                <a class="dropdown-item" href="/accounts/pesquisar"><i class="mdi mdi-logout" style="font-size: 20px;"></i> Pesquisa</a>
+
+                                                <a class="dropdown-item" href="/accounts/sairConta/{{ user.id }}"><i class="mdi mdi-logout" style="font-size: 20px;"></i> Excluir conta</a>
+                        </div>
+                    </li>
             </ul>
           </div>
         </div>
-    </nav>
+    </nav> 
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -175,14 +189,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <footer" class="footer fixed-bottom py-3 text-center" style="background-color: #dd1727;">
+    <!--<footer" class="footer fixed-bottom py-3 text-center" style="background-color: #dd1727;">
         <p class="text-white center">Copyright © 
             <script>
                 document.write(new Date().getFullYear());
             </script> 
             Sistema Dorcas. Todos os direitos reservados.
         </p>
-    </footer>
+    </footer>-->
 </body>
 </html>
 

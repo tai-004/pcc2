@@ -1,0 +1,80 @@
+
+{% load static %}
+
+{% block noti %}
+<ul class="list-group">
+{% for notiTabe in notiTabes %}
+s
+    <li class="list-group-item">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Notificação</h4>
+                            <h6 > <i>Data: {{ notiTabe.data }}</i></h6>
+                            {% if notiTabe.tabe == 2 %}
+                                <div class="media">
+                                    {% if perms.accounts.foto  %}
+                                        {% if notification.sender.instituicao.banner %}
+                                            <img src="{{ notification.sender.instituicao.banner.url }}" width="80" height="80" class="mr-3 rounded-circle">
+                                        {% endif %}
+                                        {% if notification.sender.profile.banner %}
+                                            <img src="{{ notification.sender.profile.banner.url }}" width="80" height="80" class="mr-3 rounded-circle">
+                                        {% endif %}
+                                    {% else %}
+                                        <img src="{% static 'images/user/dorcas.jpg'%}" class="mr-3 rounded-circle">
+                                    {% endif %}
+                                    <div class="media-body">
+                                        <a href="{{ notification.id }}/noti"><h5 class="mt-0 ">@{{ notification.sender.username }} </h5></a>  {{ curriculo.id }}
+                                        <p>Comentou:</p>
+                                        <p style="font-style: italic;">"Interessado na vaga de voluntário: 
+                                            <a href="/voluntariado/{{ notification.voluntario.id }}">{{ notification.voluntario.titulo }}</a>"</p>
+                                    </div>
+                                </div>
+                                <br> <br>  
+                            {% elif notification.noti == 2 %}
+                                <div class="media">
+                                    {% if perms.accounts.foto  %}
+                                        {% if notification.sender.instituicao.banner %}
+                                            <img src="{{ notification.sender.instituicao.banner.url }}" width="80" height="80" class="mr-3 rounded-circle">
+                                        {% endif %}
+                                        {% if notification.sender.profile.banner %}
+                                            <img src="{{ notification.sender.profile.banner.url }}" width="80" height="80" class="mr-3 rounded-circle">
+                                        {% endif %}
+                                    {% else %}
+                                        <img src="{% static 'images/imgs/1.jpg' %}" class="mr-3 rounded-circle">
+                                    {% endif %}
+                                    <div class="media-body">
+                                        <h5 class="mt-0">{{ notification.sender.first_name }} {{ notification.sender.last_name }}</h5>
+                                        <p>Comentou:</p>
+                                        <p style="font-style: italic;">"Interessados em voluntariado da vaga: 
+                                            <a href="/voluntariado/{{ notification.voluntario.id }}">{{ notification.voluntario.titulo }}</a>"</p>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="media">
+                                    {% if notification.sender.profile.picture %}
+                                        <img src="{{ notification.sender.profile.picture.url }}" class="mr-3 rounded-circle">
+                                    {% else %}
+                                        <img src="{% static 'images/user/dorcas.jpg'%}" class="mr-3 rounded-circle">
+                                    {% endif %}
+                                    <div class="media-body">
+                                        <h5 class="mt-0">{{ notification.sender.first_name }} {{ notification.sender.last_name }}</h5>
+                                        <p><b>@{{ notification.sender.username }}</b></p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <br> <br>     <br> <br>
+
+   
+{% endfor %}
+
+
+{% endblock %}

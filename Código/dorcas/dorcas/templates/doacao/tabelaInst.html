@@ -1,0 +1,59 @@
+
+{% load bootstrap %}
+{% load static %}
+{% block tabelaInst %}
+ 
+   
+          <br> <br>
+
+          <table class="table table-striped">
+  <thead>
+    <tr>
+    
+      <th scope="col">Titulo</th>
+      <th scope="col">Data de postagem da campanha</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Nome do doador</th>
+      <th scope="col">Data de doação</th>
+      <th scope="col">Data de entrega</th>
+      <th scope="col">Quantidade a ser doada</th>
+
+    </tr>
+  </thead>
+  <tbody>
+           {% for tabela in tabela %}
+    <tr>
+
+      <td>{{ tabela.doacao.titulo }}</td>
+      <td>{{ tabela.doacao.data }}</td>
+      <td>{{ tabela.doacao.categoria }}</td>
+      <td>{{ tabela.doacao.descricao }}</td>
+      <td>{{ tabela.sender.first_name }} {{ tabela.sender.last_name }}: @{{ tabela.sender.username}} </td>
+      <td>{{ tabela.data }}</td>
+      <td>{{ tabela.dataEntrega }}</td>
+      <td>{{ tabela.quantidade }}</td>
+
+    </tr>
+            {% endfor %}
+  </tbody>
+</table>
+     
+                {% if request.user.is_authenticated %}
+                    {% if sender == doacao.sender %}
+                    <a href="/doacao/doeEdit/{{ tabela.id }}">
+
+                        <button type="button" class="btn btn-outline-danger text-whiter">Confirme a sua entrega.</button>
+                    </a>
+                   
+                    {% endif %}
+                {% endif %}
+               
+                </div>
+            </div>
+            <br> <br><br>
+        </div>
+        <br> <br> 
+
+  
+{% endblock %}

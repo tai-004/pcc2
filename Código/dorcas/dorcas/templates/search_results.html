@@ -1,0 +1,39 @@
+<!-- search_results.html -->
+{% load static %}
+
+{% if users %} 
+  <ul>
+    {% for user in users %}
+      <li>
+        {{ users.username }}
+        {% with instituicao=user.instituicao %}
+
+          
+     <a href="/{{ user }}" class="btn btn-outline-danger"><i class="mdi mdi-heart-outline"></i>   {{ user }}
+          <!-- Exiba outros campos do perfil do usuário -->{{ nome }}
+
+           {% if user.picture %}
+                                    <img src="{{ user.picture.url }}" alt="Foto de Perfil" class="mr-2 rounded-circle"  widht="30" height="40">
+            {% else %}
+                                    <img src="{% static 'images/user/dorcas.jpg'%}" alt="Foto de Perfil" class="mr-2 rounded-circle"  widht="30" height="40">
+            {% endif %}
+
+        {% endwith %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Nenhum usuário encontrado.</p>
+{% endif %}
+
+
+<!--{% if resultados %}
+    <h2>Resultados da pesquisa:</h2>
+    <ul>
+    {% for resultado in resultados %}
+        <li>{{ resultado }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Nenhum resultado encontrado.</p>
+{% endif %}-->

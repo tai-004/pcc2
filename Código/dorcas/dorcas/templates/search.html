@@ -1,0 +1,33 @@
+ <!--
+<form method="GET" action="{% url 'pesquisa' %}">
+    <input type="text" name="termo" placeholder="Digite sua pesquisa...">
+    <select name="tipo">
+        <option value="usuario">Usuário</option>
+        <option value="produto">Produto</option>
+        Adicione outras opções de pesquisa conforme necessário
+    </select>
+    <button type="submit">Pesquisar</button>
+</form>-->
+
+
+
+
+ <!-- search.html -->
+
+<form method="get" action="{% url 'search_users' %}">
+  {{ form }}
+  <button type="submit">Pesquisar</button>
+</form>
+
+ {% for instituicao in instituicao %}
+
+{% if instituicao.nome != none %}
+
+{{ instituicao.nome }} user: {{ instituicao.user.username }}<br>
+
+{{ instituicao.data }}
+
+{% endif %}
+
+
+  {% endfor %}

@@ -1,9 +1,7 @@
-<!--Trabalho Não mexi nessa-->
-{% extends 'templade.html' %}
+
 {% load bootstrap %}
 {% load static %}
-{% load crispy_forms_field %}
-{% load crispy_forms_tags %}
+
 {% block profile %}
 
 
@@ -17,13 +15,11 @@
                     <form method="post" enctype="multipart/form-data" action="" role="form">
                         {% csrf_token %}                      
 
-                        <div class="form-group">
-                            <span>Nome: </span>{{ form.responsavel}}
-                        </div>
 
                         <div class="form-group">
                             <span>Nome: </span>{{ form.nome }}
                         </div>
+                        <!--
                         <div class="form-group">
                             <span>Estado: </span>{{ form.estado }}
                         </div>
@@ -38,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <span>Número da casa: </span>{{ form.numero }}
-                        </div>
+                        </div>-->
 
                         {% if perms.accounts.inst %}
                             <div class="form-group">
@@ -85,9 +81,12 @@
                                 <span>Cpf: </span>{{ form.cpf }}
                             </div>
                         {% else %}
+                         <div class="form-group">
+                                <span>Foto2: </span>{{ form.picture }}
                             <div class="form-group">
                                 <span>Foto: </span>{{ form.banner }} 
                             </div>
+                           
                         {% endif %}
 
                         <div class="row">

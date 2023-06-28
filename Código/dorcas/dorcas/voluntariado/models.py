@@ -1,10 +1,25 @@
 from django.db import models
-from noti.models import Notificacao
+from noti.models import Notificacao, Tabela_notis
 from django.contrib.auth.models import User
 # Create your models here.
 from accounts.models import Instituicao
 
 from django.db.models.signals import post_save, post_delete
+
+
+class Curriculo(models.Model):
+    user= models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+   # user2 = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    data_nasc = models.CharField(max_length=100, null=True, blank=True)
+    telefone = models.CharField(max_length=100, null=True, blank=True)
+    email = models.CharField(max_length=100, null=True, blank=True)
+    tempo_disponivel  = models.CharField(max_length=100, null=True, blank=True)
+    motivacao = models.CharField(max_length=700, null=True, blank=True)
+    resumo = models.CharField(max_length=1000, null=True, blank=True)
+    aceitar_count = models.IntegerField(default=0)
+    
+ 
+
 
 class Voluntario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -30,20 +45,21 @@ class Voluntario(models.Model):
     def __str__(self):
         return self.titulo
 
-
+#class referencia de curriculo
 class Informar(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_infor')
-    voluntario = models.ForeignKey(Voluntario, on_delete=models.CASCADE, related_name='post_infor')
+    curriculo = models.ForeignKey(Curriculo, on_delete=models.CASCADE, null=True, related_name='post_infor')
      
     def avisarCurtir(sender, instance, *args, **kwargs):
         favori = instance
-        voluntario = favori.voluntario
+        curriculo = favori.curriculo
         sender = favori.user
-        noti = Notificacao(voluntario=voluntario, sender=sender, user=voluntario.sender, noti=2)
+        noti = Tabela_notis(curriculo=curriculo, sender=sender, user=curriculo.user, tabe=2)
         noti.save()
 
 post_save.connect(Informar.avisarCurtir, sender=Informar)
 
+#class referencia de voluntariado
 class Favo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_favo')
     voluntario = models.ForeignKey(Voluntario, on_delete=models.CASCADE, related_name='post_favo')
