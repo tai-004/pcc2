@@ -40,8 +40,8 @@ def countarNoti(request):
     if request.user.is_authenticated:
         contar = Notificacao.objects.filter(user=request.user, visto=False).count()
         somar = Tabela_notis.objects.filter(user=request.user, lido=False).count()
-        som = contar + somar
-    return {'contar': contar, 'somar': somar, 'som': som}
+
+    return {'contar': contar, 'somar': somar}
 
 #deleta a notificação: função inativa
 def apagar(request, noti_id):

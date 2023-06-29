@@ -56,7 +56,17 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/noti/"> <span class="mdi mdi-bell-outline" style="font-size: 24px;" title="Notificações">{{contar}}</span></a>
+                        <a class="nav-link" href="/noti/"> <span class="mdi mdi-bell-outline" style="font-size: 24px;" title="Notificações">
+                        {% if request.user.is_authenticated %}
+                        {% if perms.accounts.inst %}
+                    {{contar}}
+                    {% endif %}
+                    {% if perms.accounts.atual %}
+                    {{contar}}
+                    {% endif %}
+                    {% endif %}
+
+                </span></a>
                     </li>
                     {% if request.user.is_authenticated %}
                         {% if perms.accounts.inst %}
