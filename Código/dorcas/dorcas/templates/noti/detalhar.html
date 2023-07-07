@@ -1,4 +1,5 @@
 
+{% load bootstrap %}
 {% load static %}
 
 {% block curriculo %}
@@ -13,17 +14,17 @@
     <div class="card border-0 shadow-sm ">
       <div class="card-body "><br><br>
         <div class="text-center">
-          <h4 class="card-title font-weight-bold mb-4">Perfil - Currículo</h4>
+          <h4 class="card-title font-weight-bold mb-4">Currículo</h4>
           {% if notifi.sender.profile.banner %}
-            <img src="{{ notifi.sender.profile.banner.url }}" class="rounded-circle img-fluid mb-3" alt="Foto do perfil">
+            <img src="{{ notifi.sender.profile.banner.url }}" width="40" height="40" class="mr-3 rounded-circle" alt="Foto do perfil">
           {% else %}
             {% if notifi.sender.instituicao.picture %}
-              <img src="{{ notifi.sender.instituicao.picture.url }}" class="rounded-circle img-fluid mb-3" alt="Foto da instituição">
+              <img src="{{ notifi.sender.instituicao.picture.url }}" width="40" height="40" class="mr-3 rounded-circle" alt="Foto da instituição">
             {% endif %}
           {% endif %}
           <h4 class="card-widget__title text-dark">{{ notifi.sender.profile.nome }}</h4>
           <p class="text-muted">@{{ notifi.sender.username }}</p>
-          <a class="btn btn-outline-success btn-lg btn-rounded px-5" href="/noti/nto/">Aceitar</a>
+          <a class="btn btn-outline-danger btn-lg btn-rounded px-5" href="/noti/nto/">Aceitar</a>
         </div>
       </div>
       <div class="card-footer bg-transparent">

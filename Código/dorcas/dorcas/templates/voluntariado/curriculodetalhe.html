@@ -4,107 +4,110 @@
 {% load static %}
 {% block detalhar %}
 
+
 <br><br>
 
-  <div class="col-12">
-    <div class="card border-0 shadow-sm ">
-      <div class="card-body ">
-        <div class="text-center">
-          <h4 class="card-title font-weight-bold mb-4">Conheça mais o seu voluntario.</h4>
-          <img src="{{ curriculo.user.profile.banner.url }}" class="rounded-circle img-fluid mb-3" alt="Foto do perfil">
-          <h4 class="card-widget__title text-dark">{{ curriculo.user.nome }}</h4>
-          <p class="text-muted">@{{  curriculo.user.username }}</p>
+<div class="col-12">
+  <div class="card border-0 shadow-sm">
+    <div class="card-body">
+      <div class="text-center">
+        <h4 class="card-title font-weight-bold mb-4">Conheça mais o seu voluntário.</h4>
+        <img src="{{ curriculo.user.profile.banner.url }}" width="40" height="40" class="rounded-circle img-fluid mb-3" alt="Foto do perfil">
+        <h4 class="card-widget__title text-dark">{{ curriculo.user.nome }}</h4>
+        <p class="text-muted">@{{ curriculo.user.username }}</p>
+      </div>
+    </div>
 
+    <div class="card-footer bg-transparent">
+      <div class="row">
+        <div class="col-4 border-right">
+          <!-- Espaço vazio -->
         </div>
       </div>
-      <div class="card-footer bg-transparent">
-        <div class="row">
-          <div class="col-4 border-right">
-           
-          </div>
-        
-         
-        </div>
-        <div class="row">
-          <div class="col-4 border-right">
-            <div class="py-3">
-              <h6 class="font-weight-bold">Habilidades</h6>
-              <p class="text-muted">{{ curriculo.user.profile.habilidades }}</p>
-            </div>
-          </div> 
-          <div class="col-4 border-right">
-            <div class="py-3">
-              <h6 class="font-weight-bold">Sexo</h6>
-              <p class="text-muted">{{ curriculo.user.profile.sexo }}</p>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="py-3">
-              <h6 class="font-weight-bold">Formação</h6>
-              <p class="text-muted">{{ curriculo.user.profile.formacao }}</p>
-            </div>
 
-          <div class="col-4 border-right">
-            <div class="py-3">
-              <h6 class="font-weight-bold">Nome completo</h6>
-              <p class="text-muted">{{ curriculo.user.first_name }} {{ curriculo.user.last_name }}</p>
-            </div>
-          </div> 
-          <div class="col-4">
-            <div class="py-3">
-              <h6 class="font-weight-bold">Telefone</h6>
-              <p class="text-muted">{{ curriculo.telefone }}</p>
-            </div>
-          </div>
-        </div>
-          <div class="row">
-          <div class="col-4 border-right">
-            <div class="py-3">
-              <h6 class="font-weight-bold">Resumo</h6>
-              <p class="text-muted">{{ curriculo.resumo }}</p>
-            </div>
-          </div>
-
-          <div class="col-4 border-right">
-            <div class="py-3">
-              <h6 class="font-weight-bold">Data de nascimento</h6>
-              <p class="text-muted">{{ curriculo.data_nasc }}</p>
-            </div>
-          </div> 
-          <div class="col-4">
-            <div class="py-3">
-              <h6 class="font-weight-bold">Telefone</h6>
-              <p class="text-muted">{{ curriculo.telefone }}</p>
-            </div>
+      <div class="row">
+        <div class="col-4 border-right">
+          <div class="py-3">
+            <h6 class="font-weight-bold">Habilidades</h6>
+            <p class="text-muted">{{ curriculo.user.profile.habilidades }}</p>
           </div>
         </div>
 
-         <div class="row">
-          <div class="col-4 border-right">
-            <div class="py-3">
-              <h6 class="font-weight-bold">Email</h6>
-              <p class="text-muted">{{ curriculo.email }}</p>
-            </div>
-          </div>
-          
-          <div class="col-4 border-right">
-            <div class="py-3">
-              <h6 class="font-weight-bold">Tempo disponivel</h6>
-              <p class="text-muted">{{ curriculo.tempo_disponivel }}</p>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="py-3">
-              <h6 class="font-weight-bold">Motivação</h6>
-              <p class="text-muted">{{ curriculo.motivacao }}</p>
-            </div>{{ curriculo.id }}
+        <div class="col-4 border-right">
+          <div class="py-3">
+            <h6 class="font-weight-bold">Sexo</h6>
+            <p class="text-muted">{{ curriculo.user.profile.sexo }}</p>
           </div>
         </div>
 
+        <div class="col-4">
+          <div class="py-3">
+            <h6 class="font-weight-bold">Formação</h6>
+            <p class="text-muted">{{ curriculo.user.profile.formacao }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 border-right">
+          <div class="py-3">
+            <h6 class="font-weight-bold">Nome completo</h6>
+            <p class="text-muted">{{ curriculo.user.first_name }} {{ curriculo.user.last_name }}</p>
+          </div>
+        </div>
+
+        <div class="col-4 border-right">
+          <div class="py-3">
+            <h6 class="font-weight-bold">Telefone</h6>
+            <p class="text-muted">{{ curriculo.telefone }}</p>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="py-3">
+            <h6 class="font-weight-bold">Data de nascimento</h6>
+            <p class="text-muted">{{ curriculo.data_nasc }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 border-right">
+          <div class="py-3">
+            <h6 class="font-weight-bold">Resumo</h6>
+            <p class="text-muted">{{ curriculo.resumo }}</p>
+          </div>
+        </div>
+
+        <div class="col-4 border-right">
+          <div class="py-3">
+            <h6 class="font-weight-bold">Email</h6>
+            <p class="text-muted">{{ curriculo.email }}</p>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="py-3">
+            <h6 class="font-weight-bold">Tempo disponível</h6>
+            <p class="text-muted">{{ curriculo.tempo_disponivel }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+       <div class="col-4 border-right">
+          <div class="py-3">
+            <h6 class="font-weight-bold">Motivação</h6>
+            <p class="text-muted">{{ curriculo.motivacao }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-   <p class="card-text mt-3">{{ curriculo.aceitar_count }} voluntários cadastrados.</p>
+</div>
+
+<p class="card-text mt-3">{{ curriculo.aceitar_count }} voluntários cadastrados.</p>
+
                      
 
 {% endblock %}

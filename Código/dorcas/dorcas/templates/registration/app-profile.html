@@ -1,57 +1,133 @@
 {% load static %}
-@{{user.username}}
-   {% if user.instituicao.picture %}
-                            <img src= "{{ user.instituicao.picture.url }}" alt="Foto de Perfil" class="mr-2 rounded-circle"  widht="30" height="40">
-                        {% endif %}
+{% load bootstrap %}
 
+<html lang="pt-br">
 
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
 
+      <title>Sistema Dorcas</title>
+      <!-- Favicon icon -->
+      <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+      <!-- Pignose Calender -->
+      <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+      <!-- Chartist -->
+      <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+      <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+      <!-- Custom Stylesheet -->
+      <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-{% for voluntariado in voluntario %}
-    <br> <br>
-        <div class="container">
-            <div class="card col-lg-6 col-xl-6 mx-auto mb-3">
-                <div class="card-body">
-                <h5 class="card-title text-center">{{ voluntariado.titulo }}</h5>
-                <br>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #dd1727;">
+      <div class="container">
+        <a class="navbar-brand" href="#">Sistema Dorcas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item mb-0">
+              <a class="nav-link text-white" href="/home/"><span class="mdi mdi-home-outline" style="font-size: 24px;" title="Home"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/noti/"><span class="mdi mdi-bell-outline" style="font-size: 24px;" title="Notificações">
+                {% if request.user.is_authenticated %}
+                  {% if perms.accounts.inst %}
+                    {{ contar }}
+                  {% endif %}
+                  {% if perms.accounts.atual %}
+                    {{ somar }}
+                  {% endif %}
+                {% endif %}
+              </span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <div class="row justify-content-center">
+          {% for voluntariado in voluntario %}
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="card mt-4">
+              <div class="card-body">
+                <h5 class="text-center mb-4">Vaga de voluntário da instituição: <strong class="text-danger">@{{ user.username }}</strong></h5>
                 <ul class="list-unstyled">
-                    <li class="list-group-item"><b>Horário:</b> {{ voluntariado.horario }}</li>
-                    <li class="list-group-item"><b>Função:</b> {{ voluntariado.funcao }}</li>
-                    <li class="list-group-item"><b>Quantidade de vagas:</b> {{ voluntariado.qnt }}</li>
-                    <li class="list-group-item"><b>Tempo necessário:</b> {{ voluntariado.tempo }}</li>
-                    <li class="list-group-item"><b>Idade mínima:</b> {{ voluntariado.idademin }}</li>
-                    <li class="list-group-item"><b>Cidade:</b> {{ voluntariado.cidade }}</li>
-                    <li class="list-group-item"><b>Rua:</b> {{ voluntariado.rua }}</li>
-                    <li class="list-group-item"><b>Número:</b> {{ voluntariado.numero }}</li>
-                    <li class="list-group-item"><b>Bairro:</b> {{ voluntariado.bairro }}</li>
-                    <li class="list-group-item"><b>Telefone:</b> {{ voluntariado.telefone }}</li>
-                     <li class="list-group-item"><b>Data:</b> {{ voluntariado.data }}</li>
+                  <li class="list-group-item"><b>Horário:</b> {{ voluntariado.horario }}</li>
+                  <li class="list-group-item"><b>Função:</b> {{ voluntariado.funcao }}</li>
+                  <li class="list-group-item"><b>Quantidade de vagas:</b> {{ voluntariado.qnt }}</li>
+                  <li class="list-group-item"><b>Tempo necessário:</b> {{ voluntariado.tempo }}</li>
+                  <li class="list-group-item"><b>Idade mínima:</b> {{ voluntariado.idademin }}</li>
+                  <li class="list-group-item"><b>Cidade:</b> {{ voluntariado.cidade }}</li>
+                  <li class="list-group-item"><b>Rua:</b> {{ voluntariado.rua }}</li>
+                  <li class="list-group-item"><b>Número:</b> {{ voluntariado.numero }}</li>
+                  <li class="list-group-item"><b>Bairro:</b> {{ voluntariado.bairro }}</li>
+                  <li class="list-group-item"><b>Telefone:</b> {{ voluntariado.telefone }}</li>
+                  <li class="list-group-item"><b>Data:</b> {{ voluntariado.data }}</li>
                 </ul>
-
-
-    {% endfor %}
- 
-     {% for doacao in doacao %}
-    <br> <br>
-        <div class="container">
-            <div class="card col-lg-6 col-xl-6 mx-auto mb-3">
-                <div class="card-body">
-                <h5 class="card-title text-center">{{ doacao.titulo }}</h5>
-                <br>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+      
+          {% for doacao in doacao %}
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="card mt-4">
+              <div class="card-body">
+                <h5 class="text-center mb-4">Doação</h5>
                 <ul class="list-unstyled">
-                    <li class="list-group-item"><b>Titulo:</b> {{ doacao.titulo }}</li>
-                    <li class="list-group-item"><b>Categoria:</b> {{ doacao.categoria}}</li>
-                    <li class="list-group-item"><b>Qual outro tipo?</b> {{ doacao.outro }}</li>
-                    <li class="list-group-item"><b>Descrição:</b> {{ doacao.descricao }}</li>
-                    <li class="list-group-item"><b>Finalidade:</b> {{ doacao.finalidade }}</li>
-                    <li class="list-group-item"><b>Estado:</b> {{ doacao.estado }}</li>
-                    <li class="list-group-item"><b>Cidade:</b> {{ doacao.cidade }}</li>
-                    <li class="list-group-item"><b>Bairro:</b> {{ doacao.bairro }}</li>
-                    <li class="list-group-item"><b>Rua:</b> {{ doacao.rua }}</li>
-                    <li class="list-group-item"><b>Número:</b> {{ doacao.numero }}</li>
-
-                    <li class="list-group-item"><b>Data:</b> {{ doacao.data }}</li>
+                  <li class="list-group-item"><b>Título:</b> {{ doacao.titulo }}</li>
+                  <li class="list-group-item"><b>Categoria:</b> {{ doacao.categoria }}</li>
+                  <li class="list-group-item"><b>Qual outro tipo?</b> {{ doacao.outro }}</li>
+                  <li class="list-group-item"><b>Descrição:</b> {{ doacao.descricao }}</li>
+                  <li class="list-group-item"><b>Finalidade:</b> {{ doacao.finalidade }}</li>
+                  <li class="list-group-item"><b>Estado:</b> {{ doacao.estado }}</li>
+                  <li class="list-group-item"><b>Cidade:</b> {{ doacao.cidade }}</li>
+                  <li class="list-group-item"><b>Bairro:</b> {{ doacao.bairro }}</li>
+                  <li class="list-group-item"><b>Rua:</b> {{ doacao.rua }}</li>
+                  <li class="list-group-item"><b>Número:</b> {{ doacao.numero }}</li>
+                  <li class="list-group-item"><b>Data:</b> {{ doacao.data }}</li>
                 </ul>
+              </div>
+            </div</div>
+        </div>
+      </div>
+      {% endfor %}
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      
+  </body>
+</html>
+      
 
-    {% endfor %}
+    <script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+    <!-- Circle progress -->
+    <script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+    <!-- Datamap -->
+    <script src="{% static '/plugins/d3v3/index.js' %}"></script>
+    <script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+    <script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+    <!-- Morrisjs -->
+    <script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+    <script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+    <!-- Pignose Calender -->
+    <script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+    <script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+    <!-- ChartistJS -->
+    <script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+    <script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+    
+    <script src="{% static '/js/dashboard/menor.js' %}"></script>
+    
+    <script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>

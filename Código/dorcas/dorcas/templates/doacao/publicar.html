@@ -1,4 +1,4 @@
-
+<!--Não consegui entrar-->
 {% load bootstrap %}
 {% load static %}
 {% block publicarDoacao %}
@@ -33,11 +33,11 @@
                         <button type="button" class="btn btn-outline-danger text-whiter">Excluir</button>
                     </a>
                     <a href="/doacao/atualizar/{{ doacao.id }}">
-                        <button type="button" class="btn btn-outline-success">Editar</button>
+                        <button type="button" class="btn btn-outline-danger">Editar</button>
                     </a>
                     {% endif %}
                 {% endif %}
-                <a href="/voluntariado/{{ voluntariado.id }}/favo" class="btn btn-outline-primary">
+                <a href="/voluntariado/{{ voluntariado.id }}/favo" class="btn btn-outline-danger">
                     Ver vaga {{ voluntariado.favoC }}
                 </a>
                 </div>

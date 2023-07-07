@@ -1,4 +1,4 @@
-
+<!--Não consegui entrar-->
 {% load bootstrap %}
 {% load static %}
 {% block detalhar %}
@@ -31,7 +31,7 @@
                       <p class="card-text mt-3">{{ doacao.cont }} Doações.</p>
                          {% if user.is_authenticated and user == voluntariado.user %}
                         <a href="/doacao/doeEdit/{{ doeuser.id }}">
-                        <button type="button" class="btn btn-outline-success">Editar</button>
+                        <button type="button" class="btn btn-outline-danger">Editar</button>
                     </a>{% endif %}
                   </div>
 

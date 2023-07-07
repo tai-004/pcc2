@@ -5,7 +5,7 @@
 
 
 <!DOCTYPE html>
-<html class="h-100" lang="en">
+<html class="h-100" lang="pt-br">
 
 <head>
     <meta charset="utf-8">
@@ -19,7 +19,7 @@
     
 </head>
 
-<body class="h-100" style="background-color: #fcf4f0;">
+<body class="h-100" style="background-color: #fff;">
     <!--*******************
         Preloader start
     ********************-->
@@ -39,15 +39,15 @@
             <div class="row justify-content-center h-100">
                 <div class="col-xl-6">
                     <div class="form-input-content">
-                        <div class="card login-form mb-0">
+                        <div class="card border- danger login-form mb-0">
                             <div class="card-body pt-5">
                                 
                                     <a class="text-center" href="index.html"> <h4>Cadastre sua Instituição</h4></a>
         
-                                <form action="." method="post">
+                                <form action="." method="post" class="text-black">
                                     {% csrf_token %}
                                     {{ form|bootstrap }}
-                                    <button href="/accounts/login" class="btn login-form__btn submit w-100" style="background-color: #dd1727;" type="submit" href="">Entrar</button>
+                                    <button href="/accounts/login" class="btn login-form__btn submit w-100" style="background-color: #dd1727;" type="submit" href="">Cadastre-se</button>
                                 </form>
                                    
                                     <p class="mt-5 login-form__footer"><a href="/accounts/login" class="text-danger">Faça Login</a></p>

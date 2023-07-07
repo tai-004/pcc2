@@ -1,9 +1,43 @@
-
+<!--Não consegui entrar-->
 {% load bootstrap %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% block doe %}
+<!DOCTYPE html>
+<html lang="pt-br">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Dorcas</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+    <!-- Pignose Calender -->
+    <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+    <!-- Custom Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
 
-<h2>Voçê se consentizou a doar com a intituição </h2>
+<body>
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-6">
+        <div class="text-center">
+          <h2>Você se conscientizou a doar com a instituição</h2>
+          <h3 class="mt-4">Parabéns pela Doação!</h3>
+          <p>Seu gesto de generosidade faz a diferença.</p>
+          <p>Agradecemos por ajudar a causar um impacto positivo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
 {% endblock %}
