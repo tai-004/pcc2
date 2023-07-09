@@ -125,22 +125,53 @@
                 </div>
               </div>
             </form>
-            {% for instituicao in instituicao %}
-              {% if instituicao.nome %}
-                <p class="mb-0">
+         
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ 
+<div class="container">
+
+    {% for instituicao in instituicao %}
+ 
+    {% if forloop.counter0|divisibleby:4 %}
+
+    <div class="row">
+    {% endif %}
+
+   {% if instituicao.nome %}
+<div class="card" style="width: 18rem;">
+  {% if instituicao.picture %}
+                  <img  style="width: 10rem;" class="card-img-top" src="{{ instituicao.banner.url }}"  alt="Card image cap">
+                  {% else %}
+                  <img   style="width: 10rem;"class="card-img-top" src="{% static 'images/user/dorcas.jpg'%}" alt="Card image cap">
+                  {% endif %}
+  <div class="card-body">
+    <p class="card-text">  
                   <strong>{{ instituicao.nome }} -</strong>
                   
                   <small>User: {{ instituicao.user.username }}</small> 
                   <br>
                   {{ instituicao.data }}
                 </p>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-    </div>
+
+            </p>
   </div>
+</div>
+
+      {% if forloop.counter|divisibleby:4 or forloop.last %}
+    </div>
+    {% endif %}
+       {% endif %}
+    {% endfor %}
+  </div>
+
 </html>
 
 <script src="{% static 'plugins/common/common.min.js' %}"></script>

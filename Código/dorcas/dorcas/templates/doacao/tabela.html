@@ -103,12 +103,13 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav> 
 
     {% for tabela in tabela %}
+    <br><br>
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-8">
+        <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">{{ tabela.doacao.titulo }}</h4>
@@ -147,6 +148,16 @@
       </div>
     </div>
     <br><br>
+     {% empty %}
+    
+          <div class="container text-center mt-5">
+            <div class="row">
+              <div class="col">
+                <h3 class="mt-3">Você ainda não realizou doações!</h3>
+              </div>
+            </div>
+          </div>
+   
     {% endfor %}
     
   </body>

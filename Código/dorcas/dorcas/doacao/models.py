@@ -15,7 +15,7 @@ class DoacaoCampanhaObj(models.Model):
     titulo = models.CharField(max_length=150, null=True, blank=True)
     categoria = models.CharField(max_length=100,choices=CATEGORIA_CHOICES,  null=True)
     outro = models.CharField(max_length=150, null=True, blank=True)
-    descricao = models.TextField(max_length=1000, null=True, blank=True)
+    descricao = models.TextField(max_length=100, null=True, blank=True)
     finalidade = models.TextField(max_length=500, null=True, blank=True)
     cidade = models.CharField(max_length=150, null=True)
     estado = models.CharField(max_length=150, null=True)

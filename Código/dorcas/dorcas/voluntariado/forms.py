@@ -4,7 +4,7 @@ from django.forms.widgets import FileInput
 from django.contrib.auth.forms import User
 
 class voluntarioForm(forms.Form):
-    voluntario = forms.CharField(label='Digite o nome da instituição')
+    voluntario = forms.CharField(label='Digite o nome da vaga procurada.')
     
 class NewVoluntarioForm(forms.ModelForm):
      class Meta:

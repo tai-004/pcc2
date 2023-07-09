@@ -132,7 +132,7 @@
                           {% if request.user.is_authenticated %}
                             {% if perms.accounts.atual %}
                               <div class="text-center my-4">
-                                <a href="/voluntariado/{{ voluntariado.id }}/favo" class="btn btn-outline-danger">
+                                <a href="/voluntariado/{{ user.id }}/favo" class="btn btn-outline-danger">
                                   <i class="mdi mdi-heart-outline"></i> Cadastrar <span class="badge bg-light">{{ voluntario.favoC }}</span>
                                 </a>
                               </div>
