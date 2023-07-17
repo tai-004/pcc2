@@ -1,162 +1,119 @@
-{% load bootstrap %}
+<!--Tai-->
 {% load static %}
-{% block voluntario %} 
+{%load bootstrap%}
+<!DOCTYPE html>
 <html lang="pt-br">
 
-  <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Sistema Dorcas</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
-      <title>Sistema Dorcas</title>
-      <!-- Favicon icon -->
-      <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
-      <!-- Pignose Calender -->
-      <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
-      <!-- Chartist -->
-      <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
-      <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
-      <!-- Custom Stylesheet -->
-      <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
 
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head> 
 
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #dd1727;">
-      <div class="container">
-        <a class="navbar-brand" href="#">Sistema Dorcas</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item mb-0">
-              <a class="nav-link text-white" href="/home/"><span class="mdi mdi-home-outline" style="font-size: 24px;" title="Home"></span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/noti/"><span class="mdi mdi-bell-outline" style="font-size: 24px;" title="Notificações">
-                {% if request.user.is_authenticated %}
-                  {% if perms.accounts.inst %}
-                    {{ contar }}
-                  {% endif %}
-                  {% if perms.accounts.atual %}
-                    {{ somar }}
-                  {% endif %}
-                {% endif %}
-              </span></a>
-            </li>
-            {% if request.user.is_authenticated %}
-              {% if perms.accounts.inst %}
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mdi mdi-account-multiple-plus" style="font-size: 28px;" title="Voluntário"></span>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/voluntariado/newpost/"><i class="mdi mdi mdi-account-plus" style="font-size: 20px;"></i> Novo Voluntário</a>
-                    <a class="dropdown-item" href="/doacao/adiciona/"><i class="mdi mdi-cash-multiple" style="font-size: 20px;"></i>Doação em Dinheiro</a>
-                    <a class="dropdown-item" href="/doacao/criar/"><i class="mdi mdi-tag-plus" style="font-size: 20px;"></i> Nova Doação</a>
-                    <a class="dropdown-item" href="/doacao/"><i class="mdi mdi-tag-heart" style="font-size: 20px;"></i> Realize Doações</a>
-                    <a class="dropdown-item" href="/voluntariado/"><i class="mdi mdi-account-search" style="font-size: 20px;"></i> Vagas De voluntariado</a>
-                    <a class="dropdown-item" href="/voluntariado/publicar/"><i class="mdi mdi-account-multiple" style="font-size: 20px;"></i> Minhas Vagas de voluntariado</a>
-                    <a class="dropdown-item" href="/doacao/publicar/"><i class="mdi mdi-account-multiple" style="font-size: 20px;"></i> Minhas doações</a>
-                    <a class="dropdown-item" href="/doacao/tabela/intituicao/"><i class="mdi mdi-tag-heart" style="font-size: 20px;"></i> Doações realizadas</a>
-                    <a class="dropdown-item" href="/noti/tabela_notis/"><i class="mdi mdi-account-check" style="font-size: 20px;"></i> Voluntarios aceitos</a>
-                  </div>
-                </li>
-              {% endif %}
-            {% endif %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Perfil">
-                {% if user.profile.banner %}
-                  <img src="{{ user.profile.banner.url }}" alt="Foto de Perfil" width="40" height="40" class="mr-3 rounded-circle">
-                {% else %}
-                  {% if user.instituicao.picture %}
-                    <img src="{{ user.instituicao.picture.url }}" alt="Foto de Perfil" width="40" height="40" class="mr-3 rounded-circle">
-                  {% else %}
-                    <img src="{% static 'images/user/dorcas.jpg'%}" alt="Foto de Perfil" width="40" height="40" class="mr-3 rounded-circle">
-                  {% endif %}
-                {% endif %}
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {% if request.user.is_authenticated %}
-                  {% if perms.accounts.atual %}
-                    <a class="dropdown-item" href="/accounts/perfil_user_simples/"><i class="mdi mdi-account" style="font-size: 20px;"></i> Ver Perfil</a>
-                  {% endif %}
-                  {% if perms.accounts.inst %}
-                    <a class="dropdown-item" href="/accounts/perfil_instituicao/"><i class="mdi mdi-account" style="font-size: 20px;"></i> Ver Perfil</a>
-                  {% endif %}
-                {% endif %}
-                {% if request.user.is_authenticated %}
-                  {% if perms.accounts.inst %}
-                    <a class="dropdown-item" href="/accounts/instituicao_profile/"><i class="mdi mdi-account-edit" style="font-size: 20px;"></i> Editar Perfil</a>
-                  {% endif %}
-                {% endif %}
-                <a class="dropdown-item" href="/accounts/logout/"><i class="mdi mdi-logout" style="font-size: 20px;"></i> Sair</a>
-                <a class="dropdown-item" href="/accounts/pesquisar"><i class="mdi mdi-account-search" style="font-size: 20px;"></i> Pesquisa</a>
-                <a class="dropdown-item" href="/accounts/sairConta/{{ user.id }}"><i class="mdi mdi-delete-empty" style="font-size: 20px;"></i> Excluir conta</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6 col-xl-6 ">
-          <div class="card border-danger text-center mt-4">
-            <div class="card-body">
-              <h4 class="card-title">Pesquisar</h4>
-              <form method="get" action="{% url 'postarTudo' %}">
-                {{ form }}
-                <button type="submit" class="btn btn-danger">Pesquisar</button>
-              </form>
+    <body style="background-color: #fff;">
+
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
             </div>
-          </div>
         </div>
-      </div>
+        <!--*******************
+            Preloader end
+        ********************-->
+
+      {% include 'navBar.html' %} 
+<br><br>
+ <div class="container py-5">
+    <div class="row">
+     
     </div>
-    <br>
-    <div class="container">
-      <div class="row">
-        {% for voluntariado in voluntario %}
-          <div class="col-lg-4 col-md-4 col-sm-12">
-            <br>
-            <div class="card">
-              <div class="card-body">
-                <h4 class="text-center mb-4">{{ voluntariado.titulo }}</h4>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><b>Horário:</b> {{ voluntariado.horario }}</li>
-                  <li class="list-group-item"><b>Função:</b> {{ voluntariado.funcao }}</li>
-                  <li class="list-group-item"><b>Quantidade de vagas:</b> {{ voluntariado.qnt }}</li>
-                  <li class="list-group-item"><b>Tempo necessário:</b> {{ voluntariado.tempo }}</li>
-                  <li class="list-group-item"><b>Idade mínima:</b> {{ voluntariado.idademin }}</li>
-                  <li class="list-group-item"><b>Cidade:</b> {{ voluntariado.cidade }}</li>
-                  <li class="list-group-item"><b>Rua:</b> {{ voluntariado.rua }}</li>
-                  <li class="list-group-item"><b>Número:</b> {{ voluntariado.numero }}</li>
-                  <li class="list-group-item"><b>Bairro:</b> {{ voluntariado.bairro }}</li>
-                  <li class="list-group-item"><b>Telefone:</b> {{ voluntariado.telefone }}</li>
-                </ul>
-                {% if request.user.is_authenticated %}
-                  {% if  perms.accounts.atual %}
-                    <div class="text-center my-4">
-                      <a href="/voluntariado/{{ voluntariado.id }}/favo" class="btn btn-outline-danger"><i class="mdi mdi-heart-outline"></i>
-                        Cadastrar <span class="badge bg-light">{{ voluntario.favoC }}</span>
-                      </a>
-                    </div>
-                  {% endif %}
-                {% endif %}
-              </div>
-            </div>
-          </div> 
-        {% endfor %}
-      </div>
-    </div>
-    
+
+    <div class="row">
+
+  <div class="container">
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-12">
   
-  </body>
-</html>
+          <form method="get" action="{% url 'postarTudo' %}">
+              <div class="form-row align-items-center mb-3">
+                <div class="col">
+                  {{ form|bootstrap }}
+                </div>
+            
+                    
+                  <button type="submit" style="background-color: #705049; border: 0%; border-color: #705049; color: white; font-size: 15px; padding: 10px 10px;">Pesquisar</button>
+          
+              </div>
+            </form>
+      </div></div>
+    </div>
+  </div>
+
+
+<div class="container">
+    {% for voluntariado in voluntario %}
+    {% if forloop.counter0|divisibleby:2 %}
+      <div class="row">
+    {% endif %}
+   
+<div class="col-lg-6 col-sm-12">
+                   <div class="card">
+ 
+  <div class="card-body">
+    <center><h5 class="card-title" style="color: #F07054;">{{ voluntariado.titulo }}</h5></center><br>
+    <p class="card-text">A instituição <b style="color: #705049;">{{voluntariado.user.username}}</b> oferece {{ voluntariado.qnt }} vagas para: <b>{{ voluntariado.funcao }}</b>.  </p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Horário: {{ voluntariado.horario }}</li>
+    <li class="list-group-item">Idade minima: {{ voluntariado.idademinima }} anos</li>
+    <li class="list-group-item">Tempo necessário: {{ voluntariado.tempo }} dias</li>
+    <li class="list-group-item">Contato: {{ voluntariado.telefone }}</li>
+    <li class="list-group-item">Endereço: {{voluntariado.cidade}}, {{voluntariado.bairro}}, {{voluntariado.rua}}, {{voluntariado.numero}}</li>
+     <li class="list-group-item"> {{ voluntariado.data }}</li>
+  </ul>
+  <div class="card-body">
+    {% if request.user.is_authenticated %}
+    {% if  perms.accounts.atual %}
+    <b>    <a style="color: #F07054; float: right;" href="/voluntariado/{{ voluntariado.id }}/favo" class="card-link">
+
+Quero me voluntariar
+</b>
+ 
+ </a>
+    {% endif %}
+    {% endif %}
+   
+  </div>
+</div>
+</div>
+        
+    {% if forloop.counter|divisibleby:2 or forloop.last %}
+      </div>
+    {% endif %}
+  {% endfor %}
+                    </div></div>
+
+
 <script src="{% static 'plugins/common/common.min.js' %}"></script>
 <script src="{% static 'js/custom.min.js' %}"></script>
 <script src="{% static  'js/settings.js' %}"></script>
@@ -184,4 +141,5 @@
 <script src="{% static '/js/dashboard/menor.js' %}"></script>
 
 <script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
-{% endblock %}
+
+</html>

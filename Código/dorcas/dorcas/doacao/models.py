@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 from django.db.models.signals import post_save, post_delete
 
+#doação de campanha de objetos
 class DoacaoCampanhaObj(models.Model):
     CATEGORIA_CHOICES = [
         ["material de limpeza", "material de limpeza"],
@@ -12,7 +13,7 @@ class DoacaoCampanhaObj(models.Model):
         ["outros", "outros"]
     ]
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    titulo = models.CharField(max_length=150, null=True, blank=True)
+    titulo = models.CharField(max_length=100, null=True, blank=True)
     categoria = models.CharField(max_length=100,choices=CATEGORIA_CHOICES,  null=True)
     outro = models.CharField(max_length=150, null=True, blank=True)
     descricao = models.TextField(max_length=100, null=True, blank=True)
@@ -31,7 +32,7 @@ class DoacaoCampanhaObj(models.Model):
         return self.titulo
 
 
-
+#parte da notificação
 class DoeUser(models.Model):
     DOE = ((1, 'Doacao'), )
     doacao = models.ForeignKey(DoacaoCampanhaObj, on_delete=models.CASCADE, null=True)
@@ -49,7 +50,7 @@ class DoeUser(models.Model):
 
 
  
-
+#produto na notificação de doação
 class TabelarDoe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_doar')
     doacao = models.ForeignKey(DoacaoCampanhaObj,  null=True, on_delete=models.CASCADE, related_name='doe_indorma')
@@ -65,9 +66,10 @@ class TabelarDoe(models.Model):
 post_save.connect(TabelarDoe.DoaTabela, sender=TabelarDoe)
 
 
+#doação em dinheiro
 class DoacaoCampanhaDinheiro(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    titulo = models.CharField(max_length=150, null=True, blank=True)
+    titulo = models.CharField(max_length=100, null=True, blank=True)
     descricao = models.TextField(max_length=1000, null=True, blank=True)
     chavePix = models.TextField(max_length=500, null=True, blank=True)
     nomeChave = models.CharField(max_length=500, null=True)

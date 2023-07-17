@@ -9,6 +9,7 @@ from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
 from doacao.forms import DoacaoCampanhaObjForm, DoacaoCampanhaDinheiroForm, DoacaoCampanhaObjUserForm
+from django.contrib import messages
 
 
 #cria a campanha de doação de objetos(ator: instituição)
@@ -62,8 +63,7 @@ def publicarDoacao(request):
 def deletar(request, doacaocampanhaobj_id):
     user = request.user
     DoacaoCampanhaObj.objects.filter(id=doacaocampanhaobj_id, user=user).delete()
-
-    return redirect('postarDoacao')
+    return redirect('publicar')
 
 
 #atualiza a doação (somente os donos do post: instituição)
@@ -129,8 +129,8 @@ def publicarDoacaoDinheiro(request):
 def excluir(request, doacaocampanhadinheiro_id):
     user = request.user
     DoacaoCampanhaDinheiro.objects.filter(id=doacaocampanhadinheiro_id, user=user).delete()
-
     return redirect('publicar')
+   
 
 
 #atualiza a doação de dinheiro (somente os donos do post: instituição)
@@ -153,33 +153,10 @@ def editar(request, doacaocampanhadinheiro_id):
             'form': form,
             'edita' : edita
         }
-    return render(request, 'doacao/editar.html', context)
+    return render(request, 'doacao/editarPix.html', context)
 
 #################################################
 
-#entrega de doação pelo user
-@login_required
-@permission_required('doacao.user')
-def doar2(request):
-    if request.method == 'POST':
-        form = DoacaoCampanhaObjUserForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
-            post.save()
-            return redirect("/doacao/doe/")
-    else:
-        form = DoacaoCampanhaObjUserForm()
-    context = {
-    "form": form,
-    }
-
-    return render(request, "doacao/doar.html", context)
-
-
-#página de concentização
-def concentizacao(request):
-    return render(request, "doacao/concentizacao.html", {})
 
 
   
@@ -246,6 +223,7 @@ def pedir(request, doacaocampanhaobj_id):
    
     return HttpResponseRedirect(reverse('doar', args=[doacaocampanhaobj_id]))
 
+#edita a data e quantidade de doação
 def doeEdit(request, doeuser_id):
     sender = request.user
     edita = DoeUser.objects.get(id=doeuser_id, sender=sender)

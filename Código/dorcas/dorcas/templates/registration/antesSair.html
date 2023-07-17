@@ -1,0 +1,114 @@
+<!--Tai-->
+{% load static %}
+{%load bootstrap%}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Sistema Dorcas</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+
+    </head> 
+
+    <body style="background-color: #fff;">
+
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+        <!--*******************
+            Preloader end
+        ********************-->
+
+      {% include 'navBar.html' %} 
+<br><br>
+<br><br>
+  <div class="container mt-40">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td colspan="11">
+                                <center><b>Excluir sua conta</b></center>
+                            </td>
+                        </tr>
+
+                        
+                    </thead>
+
+                    <br />
+                    <tbody>
+                        <tr>
+                            <td scope="row">
+                               Ao excluir sua conta, você perde o acesso aos seus dados, informações prestadas durante o uso do site e operações anteriomente realizadas.
+<br>
+                               <center><b><i>Tem certeza que deseja excluir sua conta?</i></b></center>
+                            </td></tr>
+                            <tr>
+                             <td scope="row">
+                                 <a href="/accounts/antesSair/" class="text-danger"><b>Sim, desejo desativar minha conta.</b></a>
+                                    </h6>
+                            </td></tr>
+                            <tr>
+                             <td scope="row">
+                                 <a  href="/home"><h6 style="color: #677D69;" >Não, desejo permanecer com minha conta.</a>
+                                    </h6>
+                            </td></tr>
+                          </tr>
+                        </tbody></table></div></div></div></div>
+
+
+
+
+   <script src="{% static 'plugins/common/common.min.js' %}"></script>
+        <script src="{% static 'js/custom.min.js' %}"></script>
+        <script src="{% static  'js/settings.js' %}"></script>
+        <script src="{% static 'js/gleek.js' %}"></script>
+        <script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+        <!-- Chartjs -->
+        <script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+        <!-- Circle progress -->
+        <script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+        <!-- Datamap -->
+        <script src="{% static '/plugins/d3v3/index.js' %}"></script>
+        <script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+        <script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+        <!-- Morrisjs -->
+        <script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+        <script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+        <!-- Pignose Calender -->
+        <script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+        <script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+        <!-- ChartistJS -->
+        <script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+        <script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+        <script src="{% static '/js/dashboard/menor.js' %}"></script>
+        <script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+      </body></html>
+  

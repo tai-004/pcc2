@@ -24,15 +24,6 @@ def create_user_inst(sender, instance, created, **kwargs):
        created = Instituicao.objects.get_or_create(user=instance)
 
 
-#@receiver(pre_delete, sender=User)
-#def delete_user_profile(sender, instance, **kwargs):
- #   if instance.groups.filter(name='instituicao').exists():
-  #      instance.Profile.delete()
-
-#@receiver(pre_delete, sender=User)
-#def delete_user_profile(sender, instance, **kwargs):
- #   if instance.groups.filter(name='usuarios').exists():
-  #      instance.Instituicao.delete()
 
 @receiver(post_save, sender=User)
 def create_user_responsavel(sender, instance, created, **kwargs):  

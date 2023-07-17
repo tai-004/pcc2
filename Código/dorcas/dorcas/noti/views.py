@@ -7,7 +7,7 @@ from django.urls import reverse
 from instituicao.forms import NovaTabelaForm
 from voluntariado.models import Curriculo
 from django.db.models import Count
-from noti.forms import Tabela_notisForm
+from noti.forms import Tabela_notisForm, LidoForm
 from django.contrib.auth.decorators import login_required
 
 #função de avaliar o desempenho do voluntario
@@ -32,22 +32,49 @@ def desempenho(request, tabela_notis_id):
         }
     return render(request, 'noti/notiPreencher.html', context)
 
+@login_required
+
+def lido(request, tabela_notis_id):
+    user = request.user
+    edita = Tabela_notis.objects.get(id=tabela_notis_id, user=user)
+    form = LidoForm(instance=edita)
+    if form:
+        if request.method == "POST":
+                form = LidoForm(request.POST, request.FILES, instance=edita)
+                if form.is_valid():
+                    form.save()
+                    return redirect('tabela_notis')
+    
+    else:
+        return redirect('login')
+    context = {
+            'form': form,
+            'edita' : edita
+        }
+    return render(request, 'notifications.html', context)
+
 
 #tem a função de contar as notificações não lidas do usuario
 def countarNoti(request):
     contar = None
-    somar = None
+    
     if request.user.is_authenticated:
         contar = Notificacao.objects.filter(user=request.user, visto=False).count()
+        
+
+    return {'contar': contar}
+
+#somar as notificações do user não lidas
+def somarNoti(request):
+    
+    somar = None
+    if request.user.is_authenticated:
+       
         somar = Tabela_notis.objects.filter(user=request.user, lido=False).count()
 
-    return {'contar': contar, 'somar': somar}
+    return {'somar': somar}
 
-#deleta a notificação: função inativa
-def apagar(request, noti_id):
-    user = request.user
-    Notificacao.objects.filter(id=noti_id, user=user).delete()
-    return redirect('noti')
+
 
 #apresenta  todas as notificações disponiveis para o usuario
 def apresentaNoti(request):
@@ -63,19 +90,6 @@ def apresentaNoti(request):
     }
 
     return render(request, 'notifications.html', context)
-
-#deve ser apagada: sem importancia
-def notiTabelar(request, noti_id):
-    user = request.user
-    notifications = Notificacao.objects.filter(user=user).order_by('-data')
-
-
-    context = {
-        'notifications': notifications
-    }
-
-    return render(request, 'instituicao/novatabela.html', context)
-
 
 
 def apresentaNoti2(request):
@@ -133,11 +147,4 @@ def detalhar(request, noti_id):
     }
     return render(request, "noti/detalhar2.html", context)
 
-
-def nnn(request):
-    user = request.user
-    voluntario = Curriculo.objects.filter(user=user)
-   
-    return render(request, "noti.html", {'voluntario': voluntario})
-    
 

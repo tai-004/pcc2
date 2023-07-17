@@ -10,13 +10,14 @@ from django.forms.widgets import FileInput
 from django.forms.models import ModelForm
 from accounts.models import Profile
 
+#pesquisa a instituição
 class SearchForm(forms.Form):
     search_query = forms.CharField(label='Digite o nome da instituição')
 
+#valida o formulario de menores de idade com email
 class MenorForm(UserCreationForm):
     email = forms.EmailField(max_length=100)
-   # idade = forms.IntegerField()
-
+ 
     class Meta:
         model = User
         fields = ['username', 'last_name', 'first_name', 'email', 'password1', 'password2']
@@ -28,71 +29,29 @@ class MenorForm(UserCreationForm):
 
         return e 
 
-    #def clean_cpf(self):
-     #   c = self.cleaned_data['idade']
-      #  if idade < 15:
-       #     raise ValidationError("buu")
-
-       # if User.objects.filter(cpf=c).exists():
-        #    raise ValidationError("O cpf {} já está em uso.".format(c))
-
-        #return c   
+    
     
 
+#valida o formulario de usuario  com email
 class UsuarioForm(UserCreationForm):
     email = forms.EmailField(max_length=100)
-  #  username = forms.CharField(widget=forms.TextInput(), max_length=30, required=True)
-  #  idade = forms.IntegerField()
  
     class Meta:
         model = User
-        fields = ['username', 'last_name', 'first_name', 'email', 'password1', 'password2']
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
     def clean_email(self):
         e = self.cleaned_data['email']
         if User.objects.filter(email=e).exists():
             raise ValidationError("O email {} já está em uso.".format(e))
 
         return e
-   # def clean_username(self):
-    #    u = self.cleaned_data['username']
-     #   if User.objects.filter(username=u).exists():
-      #      raise ValidationError("O username {} já está em udddddddso.".format(u))
-
-       # return u
-
-    #def clean_idade(self):
-     #   ida = self.cleaned_data['idade']
-      #  if ida <= 14 :
-       #     raise ValidationError("Você não pode se cadastrar, tem idade inferior há 15 anos.".format(ida))
-        
-        #elif ida == 15 :
-         #   raise ValidationError("Você precisa de um responsavel.".format(ida))
-        #elif ida == 16 :
-         #   raise ValidationError("Você precisa de um responsavel.".format(ida))
-        #elif ida == 17 :
-
-          #  raise ValidationError("Você precisa de um responsavel.".format(ida))
-         #   
-       # return ida
+  
 
 
+#formulario ue pergunta idade do user antes do login
 class MenoresForm(ModelForm):
-  #  campo = forms.CharField()
     idade = forms.IntegerField()
-    #def clean(self):
-     #   cleaned_data = super().clean()
-    #    cpf = cleaned_data.get('campo')
 
-        # Realize a consulta ao banco de dados
-     #   resultados = Profile.objects.filter(cpf=cpf)
-
-        # Faça o processamento dos resultados conforme necessário
-      #  for resultado in resultados:
-       #     raise ValidationError("cpf em uso.".format(resultados))
-
-        #return cleaned_data
- 
- 
     class Meta:
         model = Menores
         fields = ['idade']
@@ -103,25 +62,22 @@ class MenoresForm(ModelForm):
         if ida <= 14 :
             raise ValidationError("Você não pode se cadastrar, tem idade inferior a 15 anos.".format(ida))
         
-      #  elif ida == 15 :
-       #     raise ValidationError("Você precisa de um responsavel.".format(ida))
-        #elif ida == 16 :
-         #   raise ValidationError("Você precisa de um responsavel.".format(ida))
-    #    elif ida == 17 :
-
-     #       raise ValidationError("Você precisa de um responsavel.".format(ida))
+      
             
         return ida
 
     
  
+    
+ 
 
+#valida o formulario dda instituição com email
 class InstituicaoLoginForm(UserCreationForm):
     email = forms.EmailField(max_length=100)
 
     class Meta:
         model = User
-        fields = ['username','last_name', 'first_name', 'email', 'password1', 'password2']
+        fields = ['username','first_name', 'last_name', 'email', 'password1', 'password2']
 
     def clean_email(self):
         ins = self.cleaned_data['email']
@@ -140,7 +96,6 @@ class ProfileForm(ModelForm):
         fields = '__all__'
         exclude = ['user']
         widgets = {
-        'picture': FileInput(),
         'banner': FileInput(),
          }
 
@@ -153,6 +108,5 @@ class InstituicaoForm(ModelForm):
         exclude = ['user']
         widgets = {
          'picture': FileInput(),
-         'banner': FileInput(),
          }
         

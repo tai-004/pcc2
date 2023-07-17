@@ -11,7 +11,10 @@ from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
 from doacao.models import DoacaoCampanhaObj
- 
+from django.contrib import messages
+
+
+
 def pesquisa(request):
     termo = request.GET.get('termo')
     tipo = request.GET.get('tipo')
@@ -148,10 +151,12 @@ def atualizar(request, curriculo_id):
 @permission_required('voluntariado.inst')
 def excluir(request, voluntario_id):
     user = request.user
-    Voluntario.objects.filter(id=voluntario_id, user=user).delete()
-    return redirect('publicar')
 
- 
+    Voluntario.objects.filter(id=voluntario_id, user=user).delete()
+   
+    
+    return redirect('publicarVolunt')
+
 @login_required
 @permission_required('voluntariado.inst')
 def editar(request, voluntario_id):
@@ -276,8 +281,3 @@ def ntso(request, curriculo_id):
 
     return render(request, 'notifications.html', context)
     
-def nto(request):
- 
-    nto = Curriculo.objects.all().order_by('-id')
-   
-    return render(request, "noti/detalhar.html", {'nto': nto})

@@ -59,6 +59,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'noti.views.countarNoti',
+                'noti.views.somarNoti',
                 'django.contrib.messages.context_processors.messages',
             ],
         },

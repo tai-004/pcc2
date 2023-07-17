@@ -1,42 +1,179 @@
-<!--Trabalho Feito-->
-{% extends 'templade.html' %}
-{% load bootstrap %}
+<!--Tai-->
 {% load static %}
-{% block detalhar %}
+{%load bootstrap%}
+<!DOCTYPE html>
+<html lang="pt-br">
 
-  <br><br>
-  <div class="container">
-      <div class="row">
-          <div class="col-lg-6 col-xl-6 mx-auto">
-              <div class="card text-center">
-                  <div class="card-body">
-                      <h2 class="card-title text-center">{{ voluntario.titulo }}</h2>
-                      <br>
-                      <ul class="list-group list-group-flush">
-                          <li class="list-group-item"><b>Horáriosdfgh:</b> {{ voluntario.horario}}</li>
-                          <li class="list-group-item"><b>Função:</b> {{ voluntario.funcao }}</li>
-                          <li class="list-group-item"><b>Quantidade de vagas:</b> {{ voluntario.qnt }}</li>
-                          <li class="list-group-item"><b>Tempo necessário:</b> {{ voluntario.tempo }}</li>
-                          <li class="list-group-item"><b>Idade mínima:</b> {{ voluntario.idademin }}</li>
-                          <li class="list-group-item"><b>Cidade:</b> {{ voluntario.cidade }}</li>
-                          <li class="list-group-item"><b>Rua:</b> {{ voluntario.rua }}</li>
-                          <li class="list-group-item"><b>Número:</b> {{ voluntario.numero }}</li>
-                          <li class="list-group-item"><b>Bairro:</b> {{ voluntario.bairro }}</li>
-                          <li class="list-group-item"><b>Telefone:</b> {{ voluntario.telefone }}</li>
-                      </ul>
-                      <p class="card-text mt-3">{{ voluntario.favoC }} voluntários cadastrados. Aguarde a resposta da instituição!</p>
-                      <p class="card-text mt-3">{{ voluntario.aceitar_count }} voluntários Aceitos.</p>
-                  </div>
-                  
-              </div> 
-              <br> <br><br>
-          </div>
-          <br><br>
-      </div>
-  </div>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Sistema Dorcas</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
-{% endblock %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
 
+    </head> 
+
+    <body style="background-color: #fff;">
+
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+        <!--*******************
+            Preloader end
+        ********************-->
+
+      {% include 'navBar.html' %} 
+<br><br>
+   <style>
+        /* Estilo para o alerta */
+        .alert {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: auto;
+            background-color: #F2AD9D;
+            color: black;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+   
+<br><br>
+     <div class="container mt-40">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+           
+<table class="table table-bordered">
+  <thead>
+   <tr>      
+     <td colspan="8" style="color: #bd5942;"><center>
+      <b>Vaga de voluntariado</b>
+   </center>
+    </td>
+
+    </tr>
+
+    <tr>
+        <th scope="col"></th>
+    
+      <th scope="col">Horário</th>
+      <th scope="col">Função</th>
+      <th scope="col">Quantidade de vagas</th>
+      <th scope="col">Tempo necessário</th>
+      <th scope="col">Idade mínima</th>
+            <th scope="col">Telefone</th>
+                  <th scope="col">data</th>
+
+       </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <th scope="row">{{voluntario.user.instituicao.nome}}</th>
+        <td>{{voluntario.horario}}</td>
+      <td>{{voluntario.funcao}}</td>
+      <td>{{voluntario.qnt}}</td>
+       <td>{{voluntario.tempo}}</td>
+        <td>{{voluntario.idademin}}</td>
+        <td>{{voluntario.telefone}}</td>
+      <td>{{voluntario.data}}</td>
+    </tr>
+  
+     <tr>
+    
+       <th colspan="2">Endereço</th>
+
+
+        <td colspan="7">{{voluntario.cidade}}, {{voluntario.bairro}}, {{voluntario.rua}}, {{voluntario.numero}}</td>
+ </tr>
+    </tbody>
+
+</table> 
+    <div class="container mt-40">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+
+<div class="left-align-container">
+    
+<span class="mdi mdi-heart" style="color: #705049;"></span>
+   
+ <b style="color: #705049;">{{ voluntario.aceitar_count }} voluntários Aceitos.</b>
 
   
+</div>
 
+<style>
+    .left-align-container {
+        text-align: right;
+    }
+
+    /* Adicione outros estilos CSS conforme necessário */
+</style>
+</div></div></div>
+
+{% if request.user.is_authenticated %}
+{% if perms.accounts.atual %}
+
+<script>
+        window.onload = function() {
+            // Cria um elemento div para o alerta
+            var alerta = document.createElement('div');
+            alerta.className = 'alert';
+            alerta.innerHTML = 'Parabéns, você se voluntariou! Aguarde uma resposta da instituição.';
+
+            // Adiciona o alerta ao corpo da página
+            document.body.appendChild(alerta);
+        };
+    </script>
+
+{% endif %}
+{% endif %}
+
+<script src="{% static 'plugins/common/common.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static  'js/settings.js' %}"></script>
+<script src="{% static 'js/gleek.js' %}"></script>
+<script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+<!-- Chartjs -->
+<script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+<!-- Circle progress -->
+<script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+<!-- Datamap -->
+<script src="{% static '/plugins/d3v3/index.js' %}"></script>
+<script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+<script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+<!-- Morrisjs -->
+<script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+<script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+<!-- Pignose Calender -->
+<script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+<script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+<!-- ChartistJS -->
+<script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+<script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+<script src="{% static '/js/dashboard/menor.js' %}"></script>
+
+<script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+
+</html>

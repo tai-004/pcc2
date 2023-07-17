@@ -9,7 +9,6 @@ from django.db.models.signals import post_save, post_delete
 
 class Curriculo(models.Model):
     user= models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-   # user2 = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     data_nasc = models.CharField(max_length=100, null=True, blank=True)
     telefone = models.CharField(max_length=100, null=True, blank=True)
     email = models.CharField(max_length=100, null=True, blank=True)
@@ -17,8 +16,13 @@ class Curriculo(models.Model):
     motivacao = models.CharField(max_length=700, null=True, blank=True)
     resumo = models.CharField(max_length=1000, null=True, blank=True)
     aceitar_count = models.IntegerField(default=0)
-    
- 
+    cidade = models.CharField(max_length=150, null=True)
+    estado = models.CharField(max_length=150, null=True)
+    rua = models.CharField(max_length=150, null=True)
+    numero = models.CharField(max_length=10, null=True)
+    bairro = models.CharField(max_length=150, null=True)
+    experiencia = models.CharField(max_length=700, null=True, blank=True)
+  
 
 
 class Voluntario(models.Model):

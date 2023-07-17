@@ -1,0 +1,161 @@
+
+<!--Tai-->
+{% load static %}
+{%load bootstrap%}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Sistema Dorcas</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+
+    </head> 
+
+    <body style="background-color: #fff;">
+
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+        <!--*******************
+            Preloader end
+        ********************-->
+
+      {% include 'navBar.html' %} 
+<br><br>
+
+
+ <div class="container mt-40">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+<div class="card">
+  <div class="card-body">
+    <div class="card-body text-center">
+   <h6 class="card-title" style="color: #bd5942;">Preencha o formulário de doação em dinheiro.</h6>
+ </div>
+
+
+<form method="post" enctype="multipart/form-data" action="" role="form">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="{{ form.titulo.id_for_label }}"></label>
+            
+            <input type="text" class="form-control" id="inputAddress" placeholder="Titulo" value="{{ form.instance.titulo }}" name="{{ form.titulo.name }}"></input>
+        </div>
+        <div class="form-group col-md-6">
+            <label  for="{{ form.descricao.id_for_label }}"></label>
+            
+            <input type="text" class="form-control" id="inputAddress" placeholder="Descrição" value="{{ form.instance.descricao }}" name="{{ form.descricao.name }}">
+        </div>
+        <div class="form-group col-md-12">
+            <label  for="{{ form.chavePix.id_for_label }}"></label>
+            
+            <input type="text" value="{{ form.instance.chavePix }}" class="form-control" id="inputAddress" placeholder="Chave Pix" name="{{ form.chavePix.name }}">
+        </div>
+           <div class="form-group col-md-12">
+            <label for="{{ form.nomeChave.id_for_label }}"></label>
+            
+            <input type="text" value="{{ form.instance.nomeChave }}" class="form-control" id="inputAddress" placeholder="Nome da Chave" name="{{ form.nomeChave.name }}">
+        </div>
+        <div class="form-group col-md-6">
+            <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
+        </div>
+    </div>
+ <div class="col-md-12 text-right">
+   <button type="submit" class="btn btn-lg" onclick="Editdinheiro()" style="background-color: #F07054; border: 0%; color: white;">Entrar</button></div>
+</form>
+
+</div></div></div>
+</div></div>
+     <div id="Editdinheiro" class="alerta-amarelo">
+        Item editado com sucesso!
+    </div>
+    
+    
+<style>
+    .alerta-marrom {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #8B4513;
+    color: #fff;
+    font-weight: bold;
+
+}
+  .alerta-amarelo {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #cd8d00;
+    color: #fff;
+    font-weight: bold;
+</style>
+
+<script>
+     
+        function Editdinheiro() {
+            var alerta = document.getElementById("Editdinheiro");
+            alerta.style.display = "block";
+            setTimeout(function () {
+                alerta.style.display = "none";
+            }, 6000); // O alerta será ocultado após 3 segundos (3000 milissegundos)
+        }
+    
+</script>
+
+
+<script src="{% static 'plugins/common/common.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static  'js/settings.js' %}"></script>
+<script src="{% static 'js/gleek.js' %}"></script>
+<script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+<!-- Chartjs -->
+<script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+<!-- Circle progress -->
+<script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+<!-- Datamap -->
+<script src="{% static '/plugins/d3v3/index.js' %}"></script>
+<script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+<script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+<!-- Morrisjs -->
+<script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+<script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+<!-- Pignose Calender -->
+<script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+<script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+<!-- ChartistJS -->
+<script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+<script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+<script src="{% static '/js/dashboard/menor.js' %}"></script>
+
+<script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+
+</html>

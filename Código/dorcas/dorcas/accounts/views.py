@@ -22,11 +22,11 @@ from django.core.paginator import Paginator
 from django.contrib.auth import get_user_model
 from django.forms import formset_factory
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
-from doacao.models import DoacaoCampanhaObj
-#login e register#############################################################
+from doacao.models import DoacaoCampanhaObj, DoacaoCampanhaDinheiro
 from .forms import SearchForm
 
 
+#pesquisa a instituição de caridade/ tentativa de paginação que deu errado.
 def search_users(request):
 
     instituicao = Instituicao.objects.all().order_by('nome')
@@ -51,18 +51,17 @@ def search_users(request):
     return render(request, 'search.html', context)
 
 
-
+#redefine senha no cmd
 def senhaDone(request):
     return render(request, 'change_password_done.html')
 
-
-
+#usei class para redefinir a senha/ ainda ta no cmd
 class redefinirSenha(PasswordResetView):
     template_name = 'password_reset.html'
     email_template_name = 'password_reset_email.html'
     subject_template_name = 'password_reset_subject.txt'
     success_url = '/conta/recuperar/sucesso/'
-
+#senha no smd
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'password_reset_confirm.html'
     success_url = '/conta/recuperar/sucesso/'
@@ -76,38 +75,28 @@ def sairConta(request, id):
 
         return redirect("login") # retorna ao login
         
-   
-      
-def responalert(request):
-    return render(request, "registration/responsavel.html", {})
+#antes do usuario desativar a conta, pergunta se ele tem certeza
+def antesSair(request):
+       return render(request, "registration/antesSair.html", {})
+        
+
 
 
 #define a pesquisa da instituição por parte do user comum.
 def perfilInstituicao(request, username):
-    user = get_object_or_404(User, username=username) #pega o user e username
+    sender = get_object_or_404(User, username=username) #pega o user e username
    
-    voluntario = Voluntario.objects.filter(user=user).order_by('-data')
-    doacao = DoacaoCampanhaObj.objects.filter(user=user).order_by('-data')
+    voluntario = Voluntario.objects.filter(user=sender).order_by('-data')
+    doacao = DoacaoCampanhaObj.objects.filter(user=sender).order_by('-data')
+    doacaoPix = DoacaoCampanhaDinheiro.objects.filter(user=sender).order_by('-data')
 
     context = {
-            'user': user,
+            'sender': sender,
             'voluntario': voluntario,
-            'doacao': doacao
+            'doacao': doacao,
+            'doacaoPix': doacaoPix
     }
     return render(request, 'registration/app-profile.html', context)
-
-
-def perfil(request, username):
-    user = get_object_or_404(User, username=username)
-    profile = Profile.objects.get(user=user)
-    template = loader.get_template('registration/apresenteprofile.html')
-
-    context = {
-        'profile':profile,
-
-    }
-
-    return HttpResponse(template.render(context, request))
 
 
 #usuarios maiores de 18 anos/ sem responsavel / 
@@ -167,8 +156,6 @@ def MenorCreate(request):
 
 
 #registro de instituicao
-
-
 def InstituicaoCreate(request):
     if request.method == 'POST':
         form = InstituicaoLoginForm(request.POST)
@@ -185,7 +172,7 @@ def InstituicaoCreate(request):
 
 
 
-#perfil########################
+#criar perfil para usuario simples
 @login_required
 def criarprofile(request):
             if request.method == 'POST':
@@ -203,6 +190,7 @@ def criarprofile(request):
             }
             return render(request, 'registration/profile.html', context)
 
+#criar perfil de instituição
 @login_required
 @permission_required('accounts.inst')
 
@@ -226,10 +214,8 @@ def lerprofile(request):
     return render(request, "registration/apresenteprofile.html", {})
 @login_required
 @permission_required('accounts.atual')
+
 #ler perfil de usuario simples 
 def lerperfil(request):
     return render(request, "registration/perfilapresente.html", {})
-
-def profilealert(request):
-    return render(request, "registration/profile1.html", {})
 

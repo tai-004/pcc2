@@ -18,7 +18,6 @@ urlpatterns = [
     path('', views.postarTudo, name='postarTudo'), #esse
     path('<voluntario_id>/favo', favo, name='favo'),
     path('<curriculo_id>/pedir', pedir, name='pedir'),#notificação de curriculo
-    path('/', views.nto, name='nto'),
     path('ppp/', views.notiCurriculo, name='notiCurriculo'),
     path('pesquisaVoluntario/', views.pesquisaVoluntario, name='pesquisaVoluntario'),
     

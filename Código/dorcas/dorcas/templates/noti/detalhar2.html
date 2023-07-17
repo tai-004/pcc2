@@ -1,87 +1,152 @@
-{% extends 'templade.html' %}
+<!--Tai-->
 {% load static %}
+{%load bootstrap%}
+<!DOCTYPE html>
+<html lang="pt-br">
 
-{% block curriculo %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Sistema Dorcas</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+
+    </head> 
+
+    <body style="background-color: #fff;">
+
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+        <!--*******************
+            Preloader end
+        ********************-->
+
+      {% include 'navBar.html' %} 
 <br><br>
-<!--{{notifi.sender.curriculo.id}}-->
 
 
-<div class="col-12">
-  <div class="card border-0 shadow-sm">
-    <div class="card-body">
-      <div class="text-center">
-        <h1 class="card-widget__title text-dark font-weight-bold mb-4">Currículo</h1>
-        {% if notifi.sender.profile.banner %}
-          <img src="{{ notifi.sender.profile.banner.url }}" width="300" height="310" class="rounded-circle img-fluid mb-3" alt="Foto do perfil">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-12 mb-12 mb-lg-0">
+        <div class="card mb-12" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-white"
+              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              <br><br>
+             {% if notifi.sender.profile.banner %}
+          <img src="{{ notifi.sender.profile.banner.url }}" class="rounded-circle img-fluid" style="width: 150px;  height: 150px; object-fit: cover; " alt="Foto de Perfil" alt="Foto do perfil">
         {% else %}
           {% if notifi.sender.instituicao.picture %}
-            <img src="{{ notifi.sender.instituicao.picture.url }}" width="300" height="310" class="rounded-circle img-fluid mb-3" alt="Foto da instituição">
+            <img src="{{ notifi.sender.instituicao.picture.url }}" style="width: 80px;" class="rounded-circle img-fluid mb-3" alt="Foto da instituição">
           {% endif %}
-        {% endif %}
-        <h4 class="card-widget__title text-dark">{{ notifi.sender.profile.nome }}</h4>
-        <p class="text-muted">@{{ notifi.sender.username }}</p>
-        <a class="btn btn-outline-danger btn-rounded px-5" href="/voluntariado/{{notifi.sender.curriculo.id}}/pedir">Aceitar</a>
+        {% endif %}<br><br>
+              <h5>{{ notifi.sender.first_name }} {{ notifi.sender.last_name }}</h5>
+              <p>@{{ notifi.sender.username }}</p>
+             
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h6>Informações</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Email</h6>
+                    <p class="text-muted">{{ notifi.sender.curriculo.email }}</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Telefone</h6>
+                    <p class="text-muted">{{ notifi.sender.curriculo.telefone }}</p>
+                  </div>
+                </div>
+                <h6>Caraterísticas</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Habilidades</h6>
+                    <p class="text-muted">{{ notifi.sender.profile.habilidades }}</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Formação</h6>
+                    <p class="text-muted">{{ notifi.sender.profile.formacao }}</p>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-start">
+                  <a href="/voluntariado/{{notifi.sender.curriculo.id}}/pedir" style="color:#D95F23;"><h6>Aceitar voluntario<span class="mdi mdi-checkbox-marked-circle"></span></h6></a>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="card-footer bg-transparent">
-      <div class="row">
-        <div class="col-4 border-right">
-          <div class="py-3">
-            <h6 class="font-weight-bold">Telefone</h6>
-            <p class="text-muted">{{ curriculo.telefone }}</p>
-          </div>
-        </div>
-        <div class="col-4 border-right">
-          <div class="py-3">
-            <h6 class="font-weight-bold">Nome completo</h6>
-            <p class="text-muted">{{ curriculo.user.first_name }} {{ curriculo.user.last_name }}</p>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="py-3">
-            <h6 class="font-weight-bold">Habilidades</h6>
-            <p class="text-muted">{{ notifi.sender.profile.habilidades }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4 border-right">
-          <div class="py-3">
-            <h6 class="font-weight-bold">Sexo</h6>
-            <p class="text-muted">{{ notifi.sender.profile.sexo }}</p>
-          </div>
-        </div>
-        <div class="col-4 border-right">
-          <div class="py-3">
-            <h6 class="font-weight-bold">Formação</h6>
-            <p class="text-muted">{{ notifi.sender.profile.formacao }}</p>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="py-3">
-            <h6 class="font-weight-bold">Email</h6>
-            <p class="text-muted">{{ notifi.sender.curriculo.email }}</p>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>   
-</div>
+<style>
+  
+  
+  .gradient-custom {
+/* fallback for old browsers */
+ background: #D95F23;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+}
+</style>
 
 
-<!--{{ notifi.sender.nto.id }}aaaaaaaaa
-contar{{noti.contar}}-->
-  <!--
-  <footer style="background-color: #dd1727;" class="footer text-center py-3" >
-    <p class="text-white">Copyright © 
-        <script>
-            document.write(new Date().getFullYear());
-        </script> 
-        Sistema Dorcas. Todos os direitos reservados.
-    </p>
-</footer>-->
 
-{% endblock %}
+
+
+<script src="{% static 'plugins/common/common.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static  'js/settings.js' %}"></script>
+<script src="{% static 'js/gleek.js' %}"></script>
+<script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+<!-- Chartjs -->
+<script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+<!-- Circle progress -->
+<script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+<!-- Datamap -->
+<script src="{% static '/plugins/d3v3/index.js' %}"></script>
+<script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+<script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+<!-- Morrisjs -->
+<script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+<script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+<!-- Pignose Calender -->
+<script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+<script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+<!-- ChartistJS -->
+<script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+<script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+<script src="{% static '/js/dashboard/menor.js' %}"></script>
+
+<script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+
+</html>

@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 from django.db.models.signals import post_save, post_delete
 
-
+#notificação referente a class 'voluntario'
+#o user comum realiza notificação para class voluntario
 class Notificacao(models.Model):
     NOTI = ((1, 'Like'), (2, 'Volu'))
 
@@ -13,6 +14,8 @@ class Notificacao(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notiparauser')
     data = models.DateTimeField(auto_now_add=True)
     visto = models.BooleanField(default=False)
+    apresentar = models.BooleanField(default=False)
+
     noti = models.IntegerField(choices=NOTI, blank=True, null=True)
     
  

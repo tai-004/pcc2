@@ -1,28 +1,28 @@
-<!--Trabalho Feito-->
-
+<!--Tai-->
 {% load static %}
-
 {%load bootstrap%}
 
-
-
-<!DOCTYPE html>
-<html class="h-100" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Sistema Dorcas</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+           
+        <title>Sistema Dorcas</title> 
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
     
-</head>
+    </head>
 
-<body class="h-100" style="background-color: #fff;">
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #dd1727;">
+    <body style="background-color: #fff;">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #bd5942;">
         <div class="container">
           <a class="navbar-brand" href="#">Sistema Dorcas</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,20 +45,9 @@
             </ul>
           </div>
         </div>
-      </nav> 
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="loader">
-            <svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
-            </svg>
-        </div>
-    </div>
-    <!--*******************
-        Preloader end
-    ********************-->
+      </nav>      
+
+
     <div class="login-form-bg h-100">
         <div class="container h-100">
             <div class="row justify-content-center h-100">
@@ -66,25 +55,22 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0 border-danger">
                             <div class="card-body pt-5">
-                                <a class="text-center" href="index.html"> <h4>Bem-vindo ao Sistema Dorcas</h4></a>
+                                <a class="text-center" href="index.html" > <h4>Bem-vindo ao Sistema Dorcas</h4></a>
                                 <form action="." method="post">
                                   {% csrf_token %}
                                   {{ form|bootstrap }}
                                 
-                                  <button class="btn login-form__btn submit w-100" style="background-color: #dd1727;" type="submit">Entrar
+                                  <button class="btn login-form__btn submit w-100" style="background-color: #bd5942;" type="submit">Entrar
                                 </button>
                               </form>
-                              <p class="mt-4">
-                                <a class="text-danger" href="/accounts/conta/recuperar">
-                                  Esqueceu a senha?
-                                </a>
+                              <div class="col-md-12">
+              <p class="mt-4 text-right">
 
-                              </p>
-                              <p class="mt-4">
-                                <a class="text-danger" href="/">
-                                  Voltar
-                                </a>
-                              </p>
+   <b><a style="color: #bd5942;" href="/accounts/conta/recuperar">Esqueceu a senha?</a></b></p>
+
+                 <p class="mt-4 text-right">
+   <b><a style="color: #bd5942;" href="/">Voltar</a></b></p>
+</div>
                             </div>
                         </div>
                     </div>
@@ -92,7 +78,7 @@
             </div>
         </div>
     </div>
-    
+    </div>
 
     
 

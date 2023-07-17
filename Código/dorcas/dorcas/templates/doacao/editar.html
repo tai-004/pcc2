@@ -1,37 +1,202 @@
-<!--Não consegui entrar-->
-{% load bootstrap %}
+<!--Tai-->
 {% load static %}
-{% load crispy_forms_tags %}
-{% block criarDoacao %}
+{%load bootstrap%}
+<!DOCTYPE html>
+<html lang="pt-br">
 
-<body>
-  <br><br>
-  <div class="content-body">
-    <div class="container-fluid">
-        <div class="row">  
-            <div class="col-md-10">
-              <div class="card">
-                  <div class="card-body">
-                      <h4 class="card-title text-center">Novo voluntário</h4>
-                      <form method="post" enctype="multipart/form-data" action="" role="form">
-                        {% csrf_token %}
-                        {{ form|bootstrap }}    
-                        <div class="col s12">
-                          <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
-                        </div>
-                        <div class="field">
-                          <p class="control">
-                            <button type="submit"  class="btn btn-danger">Enviar</button> 
-                          </p>
-                        </div>
-                      </form>
-                  </div>
-                </div>
-                <br> <br><br>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Sistema Dorcas</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+
+    </head> 
+
+    <body style="background-color: #fff;">
+
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
             </div>
         </div>
-      </div>
-</body>
+        <!--*******************
+            Preloader end
+        ********************-->
+
+      {% include 'navBar.html' %} 
+<br><br>
+<div class="table-responsive">
+                         
+ <div class="container mt-40">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+<div class="card">
+  <div class="card-body">
+    <div class="card-body text-center">
+   <h6 class="card-title" style="color: #bd5942;">Preencha o formulário de doação.</h6>
+ </div>
+
+ 
+<form method="post" enctype="multipart/form-data" action="" role="form">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="{{ form.nome.id_for_label }}"></label>
+            
+            <input type="text" class="form-control" value="{{ form.instance.titulo }}" id="inputAddress" placeholder="Titulo"name="{{ form.titulo.name }}"></input>
+        </div>
+       <div class="form-group col-md-4">
+          <label for="inputCategoria"></label>
+          <select id="inputCategoria" class="form-control" placeholder="Categoria" name="{{ form.categoria.name }}">
+            <option selected>Categoria...</option>
+            <option>material de limpeza</option>  
+            <option>roupa</option>  
+             <option>brinquedo</option>
+              <option>outros</option>       
+          </select>
+        </div>
+        <div class="form-group col-md-8">
+            <label for="{{ form.outro.id_for_label }}"></label>
+            
+            <input type="text" value="{{ form.instance.outro }}" class="form-control" id="inputAddress" placeholder="Outro tipo de categoria" name="{{ form.outro.name }}">
+        </div>
+           <div class="form-group col-md-12">
+            <label for="{{ form.descricao.id_for_label }}"></label>
+            
+            <input type="text" class="form-control" id="inputAddress" value="{{ form.instance.descricao }}"  placeholder="Descrição" name="{{ form.descricao.name }}">
+        </div>
+        <div class="form-group col-md-12">
+            <label for="{{ form.finalidade.id_for_label }}"></label>
+            
+            <input type="text" class="form-control" id="inputAddress" placeholder="Finalidade" value="{{ form.instance.finalidade }}"  name="{{ form.finalidade.name }}">
+        </div>
+          <div class="form-group col-md-6">
+            <label for="{{ form.estado.id_for_label }}"></label>
+            
+            <input type="text" class="form-control" id="inputAddress" placeholder="Estado" name="{{ form.estado.name }}" value="{{ form.instance.estado }}">
+        </div>
+           <div class="form-group col-md-6">
+            <label for="{{ form.cidade.id_for_label }}"></label>
+            
+            <input type="text" class="form-control" id="inputAddress" placeholder="Cidade" name="{{ form.cidade.name }}" value="{{ form.instance.cidade }}"></input>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="{{ form.bairro.id_for_label }}"></label>
+            
+            <input type="text" class="form-control" id="inputAddress" placeholder="Bairro" name="{{ form.bairro.name }}" value="{{ form.instance.bairro }}">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="{{ form.rua.id_for_label }}"></label>
+            
+            <input type="text" class="form-control" id="inputAddress" placeholder="Rua" name="{{ form.rua.name }}" value="{{ form.instance.rua }}">
+        </div>
+         <div class="form-group col-md-3">
+            <label for="{{ form.numero.id_for_label }}"></label>
+            
+            <input type="text" class="form-control" id="inputAddress" placeholder="Número" name="{{ form.numero.name }}" value="{{ form.instance.numero }}">
+        </div>
+        <div class="form-group col-md-6">
+            <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
+        </div>
+    </div>
+ <div class="col-md-12 text-right">
+   <button type="submit"  onclick="Editalerta()" class="btn btn-lg" style="background-color: #F07054; border: 0%; color: white;">Entrar</button></div>
+</form>
+
+</div></div></div>
+</div></div></div>
+  
+
+  
+
+                        
+                        
+
+<div id="Editalerta" class="alerta-amarelo">
+        Item editado com sucesso!
+</div>
+
+<style>
+    .alerta-marrom {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #8B4513;
+    color: #fff;
+    font-weight: bold;
+
+}
+  .alerta-amarelo {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #cd8d00;
+    color: #fff;
+    font-weight: bold;
+</style>
+<script>
+        
+        function Editalerta() {
+            var alerta = document.getElementById("Editalerta");
+            alerta.style.display = "block";
+            setTimeout(function () {
+                alerta.style.display = "none";
+            }, 5000); // O alerta será ocultado após 3 segundos (3000 milissegundos)
+        }
+
+      
+</script>
 
 
-{% endblock %}
+
+<script src="{% static 'plugins/common/common.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static  'js/settings.js' %}"></script>
+<script src="{% static 'js/gleek.js' %}"></script>
+<script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+<!-- Chartjs -->
+<script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+<!-- Circle progress -->
+<script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+<!-- Datamap -->
+<script src="{% static '/plugins/d3v3/index.js' %}"></script>
+<script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+<script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+<!-- Morrisjs -->
+<script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+<script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+<!-- Pignose Calender -->
+<script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+<script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+<!-- ChartistJS -->
+<script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+<script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+<script src="{% static '/js/dashboard/menor.js' %}"></script>
+
+<script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+
+</html>
