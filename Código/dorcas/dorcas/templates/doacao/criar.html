@@ -55,7 +55,7 @@
  </div>
 
  
-<form method="post" enctype="multipart/form-data" action="" role="form">
+<form method="post" enctype="multipart/form-data" action="" role="form" onsubmit="return criarDoacao()">
     {% csrf_token %}
     <div class="form-row">
         <div class="form-group col-md-12">
@@ -119,12 +119,38 @@
         </div>
     </div>
  <div class="col-md-12 text-right">
-   <button type="submit" class="btn btn-lg" style="background-color: #F07054; border: 0%; color: white;">Entrar</button></div>
+   <button  onclick="criarDoacao()" type="submit" class="btn btn-lg" style="background-color: #F07054; border: 0%; color: white;">Entrar</button></div>
 </form>
-
+ 
 </div></div></div>
 </div></div>
-  
+
+
+<div id="criarDoacao" style="position: fixed; bottom: 10px; right: 10px; background-color: #7ba05b; color: #FFF; padding: 10px; display: none;"></div>
+
+<script> 
+    // Função para exibir a mensagem no canto inferior da página
+    function criarDoacao() {
+        // Obtém a div de mensagem
+        var divMensagem = document.getElementById("criarDoacao");
+
+        // Define a mensagem a ser exibida
+        var criarDoacao = "Ação concluída! O item foi criado.";
+
+        // Atualiza o conteúdo da div com a mensagem
+        divMensagem.innerHTML = criarDoacao;
+
+        // Exibe a div com a mensagem
+        divMensagem.style.display = "block";
+
+        
+        return true;
+    }
+</script>
+
+
+
+
    
 
 

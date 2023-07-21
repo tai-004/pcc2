@@ -22,7 +22,7 @@ def criarDoacaoCampanhaObj(request):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-            return redirect("/accounts/perfil_instituicao/")
+            return redirect("/doacao/publicar/")
     else:
         form = DoacaoCampanhaObjForm()
     context = {
@@ -102,7 +102,7 @@ def criarDoacaoCampanhaDinheiro(request):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-            return redirect("/accounts/perfil_instituicao")
+            return redirect("/doacao/publicar")
     else:
         form = DoacaoCampanhaDinheiroForm()
     context = {

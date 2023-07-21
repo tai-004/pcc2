@@ -52,7 +52,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <td colspan="11" style="color: #bd5942;">
+                            <td colspan="10" style="color: #bd5942;">
                                 <center><b>Suas vagas de voluntariado</b></center>
                             </td>
                         </tr>
@@ -62,12 +62,14 @@
                             <th scope="col">Título</th>
                             <th scope="col">Horário</th>
                             <th scope="col">Função</th>
-                            <th scope="col">Quantidade de vagas</th>
-                            <th scope="col">Tempo necessário </th>
+                         
+                 
                             <th scope="col">Idade mínima</th>
                             <th scope="col">Telefone</th>
-                            <th scope="col">Data</th>
+                            
                             <th scope="col">Endereço</th>
+                             <th scope="col"></th>
+                            <th scope="col">Detalhar</th>
                         </tr>
                     </thead>
 
@@ -81,11 +83,11 @@
                             <td>{{ voluntariado.titulo }}</td>
                             <td>{{voluntariado.horario}}</td>
                             <td>{{voluntariado.funcao}}</td>
-                            <td>{{voluntariado.quantidadepessoas}}</td>
-                            <td>{{ voluntariado.tempo}}</td>
+                           
+                       
                             <td>{{voluntariado.idademinima}}</td>
                             <td>{{ voluntariado.telefone}}</td>
-                            <td>{{voluntariado.data}}</td>
+                         
                             <td colspan="2">{{voluntariado.cidade}}, {{voluntariado.bairro}}, {{voluntariado.rua}}, {{voluntariado.numero}}</td>
                             {% if request.user.is_authenticated %}
                             {% if user == voluntariado.user or perms.voluntariado.inst %}
@@ -102,7 +104,7 @@
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="9" style="color: black;">
+                            <td colspan="10" style="color: black;">
                                 <center>A Instituição não possui vagas de voluntariado.</center>
                             </td>
                         </tr>
@@ -114,10 +116,14 @@
         </div>
     </div>
 </div>
-<div id="excluirVolunt" class="alerta-marrom">
-        Item excluído com sucesso!
-    </div>
 
+
+                        
+                        
+
+<div id="excluirVolunt" class="alerta-amarelo">
+        Item excluido com sucesso!
+</div>
 
 <style>
     .alerta-marrom {
@@ -137,24 +143,22 @@
     bottom: 20px;
     right: 20px;
     padding: 10px 20px;
-    background-color: #ffdb58;
+    background-color: #E64D36;
     color: #fff;
     font-weight: bold;
 </style>
 <script>
-        // Função para exibir o alerta
+        
         function excluirVolunt() {
-            var alerta = document.getElementById("alerta");
+            var alerta = document.getElementById("excluirVolunt");
             alerta.style.display = "block";
             setTimeout(function () {
                 alerta.style.display = "none";
-            }, 6000); // O alerta será ocultado após 3 segundos (3000 milissegundos)
+            }, 5000); // O alerta será ocultado após 3 segundos (3000 milissegundos)
         }
-   
+
+      
 </script>
-
-
-
    <script src="{% static 'plugins/common/common.min.js' %}"></script>
         <script src="{% static 'js/custom.min.js' %}"></script>
         <script src="{% static  'js/settings.js' %}"></script>

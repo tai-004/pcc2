@@ -52,7 +52,7 @@
 <table class="table table-bordered">
   <thead>
     <tr>      
-     <td colspan="9" style="color: #bd5942;"><center>
+     <td colspan="10" style="color: #bd5942;"><center>
       <b>Faça uma doação</b>
    </center>
     </td>
@@ -66,11 +66,10 @@
       <th scope="col">Título</th>
       <th scope="col">Categoria</th>
       <th scope="col">Outro tipo?</th>
-      <th scope="col">Descrição</th>
-      <th scope="col">Finalidade </th>
-     
       <th scope="col">Data</th>
       <th scope="col">Endereço</th>
+      <th scope="col"></th>
+      <th scope="col">Detalhar</th>
       
      
     </tr>
@@ -86,8 +85,7 @@
       <td>{{ doacao.titulo }}</td>
       <td>{{doacao.categoria}}</td>
       <td>{{doacao.outro}}</td>
-      <td>{{vdoacao.descricao}}</td>
-      <td>{{ doacao.finalidade}}</td>
+      
       <td>{{doacao.data}}</td>
       <td colspan="2">{{doacao.cidade}}, {{doacao.bairro}}, {{doacao.rua}}, {{doacao.numero}}</td>
    {% if request.user.is_authenticated %}
@@ -125,7 +123,7 @@
 <table class="table table-bordered">
   <thead>
     <tr>      
-     <td colspan="6" style="color: #bd5942;"><center>
+     <td colspan="7" style="color: #bd5942;"><center>
       <b>Faça uma doação em dinheiro</b>
    </center>
     </td>
@@ -140,6 +138,7 @@
       <th scope="col">Chave Pix</th>
       <th scope="col">Nome Chave</th>
       <th scope="col">Data</th>
+    <th scope="col">Detalhar</th>
    
      
      
@@ -207,7 +206,7 @@
     bottom: 20px;
     right: 20px;
     padding: 10px 20px;
-    background-color: #8B4513;
+    background-color: #E64D36;
     color: #fff;
     font-weight: bold;
 

@@ -19,12 +19,3 @@ class Responsavel(models.Model):
 
 
 
-
-
-class M(models.Model):
-    birth_date = models.DateField()
-    #other fields
-
-    def get_age(self):
-        age = datetime.date.today()-self.birth_date
-        return int((age).days/365.25)

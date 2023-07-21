@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render,  get_object_or_404
 from noti.models import Notificacao, Tabela_notis
-from instituicao.models import Tabela
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from instituicao.forms import NovaTabelaForm
 from voluntariado.models import Curriculo
 from django.db.models import Count
 from noti.forms import Tabela_notisForm, LidoForm

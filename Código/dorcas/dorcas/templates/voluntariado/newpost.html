@@ -54,7 +54,7 @@
  </div>
 
  
-<form method="post" enctype="multipart/form-data" action="" role="form" onsubmit="return exibirMensagem()">
+<form method="post" enctype="multipart/form-data" action="" role="form" onsubmit="return criaVoluntario()">
     {% csrf_token %}
     <div class="form-row">
         <div class="form-group col-md-12">
@@ -125,19 +125,19 @@
 </div></div></div>
 </div></div>
   
-<div id="mensagem" style="position: fixed; bottom: 10px; right: 10px; background-color: #105a77; color: #FFF; padding: 10px; display: none;"></div>
+<div id="criaVoluntario" style="position: fixed; bottom: 10px; right: 10px; background-color: #7ba05b; color: #FFF; padding: 10px; display: none;"></div>
 
 <script> 
     // Função para exibir a mensagem no canto inferior da página
-    function exibirMensagem() {
+    function criaVoluntario() {
         // Obtém a div de mensagem
-        var divMensagem = document.getElementById("mensagem");
+        var divMensagem = document.getElementById("criaVoluntario");
 
         // Define a mensagem a ser exibida
-        var mensagem = "Ação concluída! Voluntariado criado.";
+        var criaVoluntario = "Ação concluída! Voluntariado criado.";
 
         // Atualiza o conteúdo da div com a mensagem
-        divMensagem.innerHTML = mensagem;
+        divMensagem.innerHTML = criaVoluntario;
 
         // Exibe a div com a mensagem
         divMensagem.style.display = "block";

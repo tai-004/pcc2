@@ -70,7 +70,7 @@ def criarVoluntariar(request):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-            return redirect("/accounts/perfil_instituicao/")
+            return redirect("/voluntariado/publicar/")
     else:
         form = NewVoluntarioForm()
 

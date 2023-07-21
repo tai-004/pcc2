@@ -83,11 +83,16 @@
                       <td>{{ tabela.dataEntrega }}</td>
                       <td>{{ tabela.quantidade }}</td>
                       <td>
-                        {% if request.user.is_authenticated and sender == doacao.sender %}
+                   {% if request.user.is_authenticated %}
+                    {% if sender == doacao.sender %}
+                    {% if perms.accounts.atual %}
+
                         <a href="/doacao/doeEdit/{{ tabela.id }}" class="btn btn-outline-danger">Confirme a sua entrega</a>
-                        {% endif %}
+                        {% endif %}  {% endif %}  {% endif %}
                          {% empty %}
      <tr>      
+            
+                    <
      <td colspan="9" style="color: black;"><center>
       Você ainda não realizou doações.
    </center>
