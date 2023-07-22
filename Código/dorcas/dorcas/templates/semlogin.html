@@ -72,7 +72,7 @@
                   Se você quer ajudar uma instituição de caridade, pode fazer uma doação em dinheiro, doar alimentos, roupas ou outros itens, ou até mesmo se voluntariar para trabalhar na organização.</p>
                 </div>
                 <div class="col-md-4">
-                      <img src="{% static 'images/imgs/img3.jpg'%}" alt="Foto de Perfil" class="img-fluid"> 
+                      <img src="{% static 'images/imgs/img3.jpg'%}" alt="Foto de Perfil" class="img-fluid my-image"> 
                 </div>
             </div>
           </section>    
@@ -83,7 +83,7 @@
               <div class="col-md-8">     <p style="font-size: 17px;">A doação é um ato significativo que tem o poder de transformar vidas e fazer a diferença em nossa sociedade. Ao doar, você contribui para causas nobres e ajuda a suprir necessidades básicas de pessoas e comunidades que enfrentam dificuldades. <br><br>Através da doação, é possível oferecer recursos financeiros, alimentos, roupas, medicamentos, materiais educacionais e diversos outros tipos de assistência. Esses recursos são essenciais para apoiar as instituições de caridade e permitir que elas continuem seu trabalho vital.<br><br>Além de beneficiar aqueles que recebem as doações, o ato de doar também traz benefícios pessoais. Ele promove um senso de gratidão, empatia e solidariedade, além de proporcionar a oportunidade de se envolver ativamente em causas importantes e fazer parte da construção de um mundo melhor.</p>
                 </div>
                 <div class="col-md-4">
-                      <img src="{% static 'images/imgs/img4.jpg'%}" alt="Foto de Perfil" class="img-fluid"> 
+                      <img src="{% static 'images/imgs/img4.jpg'%}" alt="Foto de Perfil" class="img-fluid my-image"> 
                 </div>
             </div>
           </section>    
@@ -97,7 +97,7 @@
               <div class="col-md-8">     <p style="font-size: 17px;">Nós acreditamos que a doação é uma das melhores formas de ajudar pessoas que estão em situação de vulnerabilidade social. Por isso, criamos o nosso projeto de doação, que tem como objetivo arrecadar recursos financeiros e materiais para instituições de caridade da nossa região.</p>
                 </div>
                 <div class="col-md-4">
-                      <img src="{% static 'images/imgs/img5.jpg'%}" alt="Foto de Perfil" class="img-fluid"> 
+                      <img src="{% static 'images/imgs/img5.jpg'%}" alt="Foto de Perfil" class="img-fluid my-image"> 
                 </div>
             </div>
           </section>    
@@ -143,6 +143,14 @@
               text-align: center;
               text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adicione sombra ao texto para melhor legibilidade */
             }
+          .my-image {
+          margin: 20px; /* Ajuste o valor para definir o tamanho da margem desejada */
+          /* Profundidade na imagem (Exemplo para 8 bits de profundidade) */
+          image-rendering: pixelated;
+          image-rendering: crisp-edges;
+          /* Sombreamento da imagem */
+          box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+      }
 
         </style>
 

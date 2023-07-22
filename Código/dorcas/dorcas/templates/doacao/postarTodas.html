@@ -52,7 +52,7 @@
 <table class="table table-bordered">
   <thead>
     <tr>      
-     <td colspan="9" style="color: #bd5942;"><center>
+     <td colspan="12" style="color: #bd5942;"><center>
       <b>Faça uma doação em dinheiro</b>
    </center>
     </td>
@@ -71,6 +71,8 @@
      
       <th scope="col">Data</th>
       <th scope="col">Endereço </th>
+       <th scope="col"> </th>
+        <th scope="col"> </th>
     </tr>
   </thead>
    
@@ -79,19 +81,13 @@
    {% for doacao in doacao %}
     <tr>
       <th scope="row" style="color:#705049;">
-      {{doacao.user.username}} 
-      {% if request.user.is_authenticated %}
-     {% if perms.accounts.atual %}
-   <br>
-  <a href="/doacao/{{ doacao.id }}/pedir" style="color: #b98835;">
-              Ver doação
-            </a>    {% endif %}
-                                   
-                                {% endif %}</th>
+       <a href="/{{doacao.user.username}}" style="color:#705049;">  
+        {{doacao.user.username}} </a>
+     </th>
       <td>{{ doacao.titulo }}</td>
       <td>{{doacao.categoria}}</td>
       <td>{{doacao.outro}}</td>
-      <td>{{vdoacao.descricao}}</td>
+      <td>{{doacao.descricao}}</td>
       <td>{{ doacao.finalidade}}</td>
       <td>{{doacao.data}}</td>
       <td colspan="2">{{doacao.cidade}}, {{doacao.bairro}}, {{doacao.rua}}, {{doacao.numero}}</td>
@@ -145,7 +141,8 @@
    {% for dinheiro in dinheiro %}
     <tr>
       <th scope="row" style="color:#705049;">
-      {{dinheiro.user.username}}</th>
+     <a href="/{{dinheiro.user.username}}" style="color:#705049;">  
+      {{dinheiro.user.username}}</a></th>
       <td>{{ dinheiro.titulo }}</td>
       <td>{{dinheiro.descricao}}</td>
       <td>{{dinheiro.chavePix}}</td>

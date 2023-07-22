@@ -18,5 +18,5 @@ class pesquisaForm(forms.Form):
 class NovoCurriculoForm(forms.ModelForm):
      class Meta:
         model = Curriculo
-        fields = ('data_nasc', 'telefone', 'email', 'tempo_disponivel', 'motivacao', 'resumo')
+        fields = ('data_nasc', 'telefone', 'email', 'tempo_disponivel', 'motivacao', 'resumo', 'experiencia', 'estado','cidade', 'bairro', 'rua', 'numero')
 

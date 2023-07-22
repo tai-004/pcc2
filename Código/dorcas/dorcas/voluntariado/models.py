@@ -46,8 +46,7 @@ class Voluntario(models.Model):
          permissions = (("inst", "inst"), ("usua", "usua"))
 
 
-    def __str__(self):
-        return self.titulo
+ 
 
 #class referencia de curriculo
 class Informar(models.Model):

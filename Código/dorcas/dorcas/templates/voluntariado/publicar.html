@@ -52,7 +52,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <td colspan="10" style="color: #bd5942;">
+                            <td colspan="13" style="color: #bd5942;">
                                 <center><b>Suas vagas de voluntariado</b></center>
                             </td>
                         </tr>
@@ -62,14 +62,17 @@
                             <th scope="col">Título</th>
                             <th scope="col">Horário</th>
                             <th scope="col">Função</th>
-                         
+                          <th scope="col">Telefone</th>
                  
-                            <th scope="col">Idade mínima</th>
-                            <th scope="col">Telefone</th>
+                         
+                      
                             
                             <th scope="col">Endereço</th>
                              <th scope="col"></th>
+                              <th scope="col"></th>
+                             <th scope="col"></th>
                             <th scope="col">Detalhar</th>
+                             <th scope="col"></th>
                         </tr>
                     </thead>
 
@@ -84,14 +87,14 @@
                             <td>{{voluntariado.horario}}</td>
                             <td>{{voluntariado.funcao}}</td>
                            
-                       
-                            <td>{{voluntariado.idademinima}}</td>
-                            <td>{{ voluntariado.telefone}}</td>
+                          <td>{{voluntariado.telefone}}</td>
+                         
+                           
                          
                             <td colspan="2">{{voluntariado.cidade}}, {{voluntariado.bairro}}, {{voluntariado.rua}}, {{voluntariado.numero}}</td>
                             {% if request.user.is_authenticated %}
                             {% if user == voluntariado.user or perms.voluntariado.inst %}
-                            <td>
+                            <td colspan="4">
                                 <a href="/voluntariado/excluir/{{ voluntariado.id }}">
                                     <button  onclick="excluirVolunt()" type="submit" class="btn btn-sm" style="background-color: #e2725b; border: 0%; color: white;">Excluir</button>
                                 </a>
@@ -104,7 +107,7 @@
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="10" style="color: black;">
+                            <td colspan="13" style="color: black;">
                                 <center>A Instituição não possui vagas de voluntariado.</center>
                             </td>
                         </tr>

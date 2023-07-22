@@ -52,7 +52,7 @@
 <table class="table table-bordered">
   <thead>
     <tr>      
-     <td colspan="10" style="color: #bd5942;"><center>
+     <td colspan="13" style="color: #bd5942;"><center>
       <b>Faça uma doação</b>
    </center>
     </td>
@@ -70,6 +70,9 @@
       <th scope="col">Endereço</th>
       <th scope="col"></th>
       <th scope="col">Detalhar</th>
+       <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
       
      
     </tr>
@@ -80,7 +83,7 @@
    {% for doacao in doacao %}
     <tr>
       <th scope="row" style="color:#705049;">
-      {{doacao.user.username}} 
+       <a href="/{{doacao.user.username}}" style="color:#705049;"> {{doacao.user.username}} </a>
      </th>
       <td>{{ doacao.titulo }}</td>
       <td>{{doacao.categoria}}</td>
@@ -90,13 +93,13 @@
       <td colspan="2">{{doacao.cidade}}, {{doacao.bairro}}, {{doacao.rua}}, {{doacao.numero}}</td>
    {% if request.user.is_authenticated %}
                     {% if user == doacao.user %}
-                        <td>
+                        <td colspan="4">
          <a href="/doacao/excluir/{{ doacao.id }}">
 
-                        <button type="submit" class="btn btn-mg" style="background-color: #e2725b; border: 0%; color: white;"  onclick="mostrarAlerta()">Excluir</button>
+                        <button type="submit" class="btn btn-sm" style="background-color: #e2725b; border: 0%; color: white;"  onclick="mostrarAlerta()">Excluir</button>
                     </a>
                     <a href="/doacao/atualizar/{{ doacao.id }}">
-                        <button  type="submit" class="btn btn-mg" style="background-color: #7ba05b; border: 0%; color: white;">Editar</button>
+                        <button  type="submit" class="btn btn-sm" style="background-color: #7ba05b; border: 0%; color: white;">Editar</button>
                     </a>
  
             </a>    </td>
@@ -107,7 +110,7 @@
     </tr>
      {% empty %}
      <tr>      
-     <td colspan="9" style="color: black;"><center>
+     <td colspan="13" style="color: black;"><center>
       A instituição não realizou postagem de vagas para doação.
    </center>
     </td>
@@ -123,7 +126,7 @@
 <table class="table table-bordered">
   <thead>
     <tr>      
-     <td colspan="7" style="color: #bd5942;"><center>
+     <td colspan="10" style="color: #bd5942;"><center>
       <b>Faça uma doação em dinheiro</b>
    </center>
     </td>
@@ -139,6 +142,10 @@
       <th scope="col">Nome Chave</th>
       <th scope="col">Data</th>
     <th scope="col">Detalhar</th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+      <th scope="col"></th>
+      
    
      
      
@@ -150,7 +157,8 @@
    {% for dinheiro in dinheiro %}
     <tr>
       <th scope="row" style="color:#705049;">
-      {{dinheiro.user.username}}</th>
+    <a href="/{{dinheiro.user.username}}" style="color:#705049;">  {{dinheiro.user.username}}</a>
+   </th>
       <td>{{ dinheiro.titulo }}</td>
       <td>{{dinheiro.descricao}}</td>
       <td>{{dinheiro.chavePix}}</td>
@@ -159,16 +167,16 @@
 
         {% if request.user.is_authenticated %}
                     {% if user == dinheiro.user %}
-                        <td><center>
+                        <td colspan="4">
      <a href="/doacao/apagar/{{ dinheiro.id }}">
 
-                        <button onclick="doacaoDinheiro()" type="submit" class="btn btn-mg" style="background-color: #e2725b; border: 0%; color: white;">Excluir</button>
+                        <button onclick="doacaoDinheiro()" type="submit" class="btn btn-sm" style="background-color: #e2725b; border: 0%; color: white;">Excluir</button>
                     </a>
                      <a href="/doacao/editar/{{ dinheiro.id }}">
-                        <button type="submit" class="btn btn-mg" style="background-color: #7ba05b; border: 0%; color: white;">Editar</button>
+                        <button type="submit" class="btn btn-sm" style="background-color: #7ba05b; border: 0%; color: white;">Editar</button>
                     </a>
  
-            </a></center>    </td>
+            </a>  </td>
                     {% endif %}
                 {% endif %}
    
@@ -176,7 +184,7 @@
     </tr>
     {% empty %}
      <tr>      
-     <td colspan="9" style="color: black;"><center>
+     <td colspan="13" style="color: black;"><center>
       A instituição não realizou postagem para doação.
    </center>
     </td>

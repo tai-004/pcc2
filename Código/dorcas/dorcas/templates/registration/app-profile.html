@@ -62,7 +62,7 @@
       <th ></th>
       <th scope="col">Horário</th>
       <th scope="col">Função</th>
-      <th scope="col">Vagas</th>
+  
       <th scope="col">Tempo</th>
       <th scope="col">Idade minima </th>
       <th scope="col">Telefone </th>
@@ -80,9 +80,9 @@
       {{sender.username}}</th>
       <td>{{voluntariado.horario}}</td>
       <td>{{voluntariado.funcao}}</td>
-      <td>{{voluntariado.qnt}}</td>
+
       <td>{{voluntariado.tempo}}</td>
-      <td>{{voluntariado.idademin}}</td>
+      <td>{{voluntariado.idademinima}}</td>
        <td>{{voluntariado.telefone}}</td>
       <td>{{voluntariado.data}}</td>
       <td colspan="2">{{voluntariado.cidade}}, {{voluntariado.bairro}}, {{voluntariado.rua}}, {{voluntariado.numero}}</td>
@@ -122,8 +122,8 @@
       <th scope="col">Título</th>
       <th scope="col">Categoria</th>
       <th scope="col">Outro tipo?</th>
-      <th scope="col">Descrição</th>
-      <th scope="col">Finalidade </th>
+
+      <th scope="col">Finalidade e Descrição </th>
      
       <th scope="col">Data</th>
       <th scope="col">Endereço </th>
@@ -139,8 +139,9 @@
       <td>{{ doacao.titulo }}</td>
       <td>{{doacao.categoria}}</td>
       <td>{{doacao.outro}}</td>
-      <td>{{vdoacao.descricao}}</td>
-      <td>{{ doacao.finalidade}}</td>
+ 
+      <td>{{ doacao.finalidade}};<br> 
+      -{{doacao.descricao}}</td>
       <td>{{doacao.data}}</td>
       <td colspan="2">{{doacao.cidade}}, {{doacao.bairro}}, {{doacao.rua}}, {{doacao.numero}}</td>
 

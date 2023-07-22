@@ -258,7 +258,7 @@ def pedir(request, curriculo_id):
 class CurriculoUpdate(UpdateView):
     template_name = "voluntariado/curriculo.html"
     model = Curriculo
-    fields = ('data_nasc', 'telefone', 'email', 'tempo_disponivel', 'motivacao', 'resumo')
+    fields = ('data_nasc', 'telefone', 'email', 'tempo_disponivel', 'motivacao', 'resumo', 'experiencia', 'estado', 'cidade', 'bairro', 'rua', 'numero')
     success_url = reverse_lazy("templates")
 
     def get_object(self, queryset=None):

@@ -55,7 +55,7 @@
                   Se você quer ajudar uma instituição de caridade, pode fazer uma doação em dinheiro, doar alimentos, roupas ou outros itens, ou até mesmo se voluntariar para trabalhar na organização.</p>
                 </div>
                 <div class="col-md-4">
-                      <img src="{% static 'images/imgs/img1.jpg'%}" alt="Foto de Perfil" class="img-fluid"> 
+                      <img src="{% static 'images/imgs/img1.jpg'%}" alt="Foto de Perfil" class="img-fluid my-image"> 
                 </div>
             </div>
      
@@ -68,7 +68,7 @@
               <div class="col-md-8">     <p style="font-size: 17px;">As instituições de caridade desempenham um papel crucial em ajudar os mais necessitados e causas importantes. Elas são organizações sem fins lucrativos dedicadas a melhorar a vida das pessoas e comunidades em diferentes aspectos. Essas instituições oferecem assistência e apoio a diversas causas, como crianças em situação de risco, pessoas com doenças graves, idosos, desabrigados, animais abandonados, entre outros grupos vulneráveis.  <br><br>Além de fornecer ajuda direta, as instituições de caridade também desempenham um papel importante na conscientização e na defesa de mudanças sociais. Elas trabalham para criar um impacto positivo duradouro e promover a igualdade, a justiça e a compaixão em nossa sociedade.</p>
                 </div>
                 <div class="col-md-4">
-                       <img src="{% static 'images/imgs/img2.jpg'%}" alt="Foto de Perfil" class="img-fluid"> 
+                       <img src="{% static 'images/imgs/img2.jpg'%}" alt="Foto de Perfil" class="img-fluid my-image"> 
                 </div>
             </div>
      
@@ -115,7 +115,14 @@
           text-align: center;
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adicione sombra ao texto para melhor legibilidade */
         }
-
+      .my-image {
+          margin: 20px; /* Ajuste o valor para definir o tamanho da margem desejada */
+          /* Profundidade na imagem (Exemplo para 8 bits de profundidade) */
+          image-rendering: pixelated;
+          image-rendering: crisp-edges;
+          /* Sombreamento da imagem */
+          box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+      }
     </style>
 
 </body>

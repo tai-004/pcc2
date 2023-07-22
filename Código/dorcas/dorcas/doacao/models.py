@@ -28,8 +28,7 @@ class DoacaoCampanhaObj(models.Model):
     
     class Meta:
          permissions = (("user", "user"), )
-    def __str__(self):
-        return self.titulo
+ 
 
 
 #parte da notificação
@@ -76,7 +75,4 @@ class DoacaoCampanhaDinheiro(models.Model):
     data = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     class Meta:
          permissions = (("chave", "chave"),)
-    def __str__(self):
-        return self.titulo
-
-    
+ 
